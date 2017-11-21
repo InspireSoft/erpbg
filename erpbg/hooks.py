@@ -11,4 +11,4 @@ app_color = "grey"
 app_email = "petko.mirchev@inspiresoft.de"
 app_license = "MIT"
 
-fixtures = ["Custom Field", "Print Format", "Property Setter"]
+fixtures = ["Custom Field", "System Settings", "Website Theme", "Website Settings", "Role", "Property Setter", "Print Format", "Letter Head", "Web Page", "Terms and Conditions", "Translation", "Web Page", "Portal Settings", "Web Form", "Country"]

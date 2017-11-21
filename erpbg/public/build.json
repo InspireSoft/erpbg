@@ -1,0 +1,5 @@
+{
+	"js/erpbg.js": [
+		"public/js/SalesInvoice.js"
+	]
+}
