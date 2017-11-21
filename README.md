@@ -1,2 +1,7 @@
-# erpbg
-This is customisation module for ERPNext for Bulgarian Companies
+## ERPBG
+
+Custom app for Bulgaria
+
+#### License
+
+MIT
