@@ -11,4 +11,4 @@ app_color = "grey"
 app_email = "petko.mirchev@inspiresoft.de"
 app_license = "MIT"
 
-fixtures = ["Custom Field", "Property Setter", "Print Format"]
+fixtures = ["Custom Field", "Print Format", "Property Setter"]
