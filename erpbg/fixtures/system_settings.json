@@ -28,7 +28,7 @@
   "name": "System Settings", 
   "number_format": "#,###.##", 
   "otp_issuer_name": "Frappe Framework", 
-  "scheduler_last_event": "2017-11-22 11:15:18", 
+  "scheduler_last_event": "2017-11-22 11:47:08", 
   "session_expiry": "06:00", 
   "session_expiry_mobile": "720:00", 
   "setup_complete": 1, 
