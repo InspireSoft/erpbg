@@ -12,3 +12,5 @@ app_email = "petko.mirchev@inspiresoft.de"
 app_license = "MIT"
 
 fixtures = ["Custom Field", "System Settings", "Website Theme", "Website Settings", "Role", "Property Setter", "Print Format", "Letter Head", "Web Page", "Terms and Conditions", "Translation", "Web Page", "Portal Settings", "Web Form", "Country"]
+
+app_include_js = "assets/js/erpbg.js"
