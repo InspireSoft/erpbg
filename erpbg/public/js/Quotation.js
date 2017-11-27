@@ -6,6 +6,10 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         return;
     }
 
+    var doc = locals[cdt][cdn];
+    doc.letter_head = "Dimela-Quotation-Head";
+    frm.refresh_field("letter_head");
+
     var child = frm.add_child("payment_ways");
     frappe.model.set_value(child.doctype, child.name, "description", "50% авансово плащане");
 
