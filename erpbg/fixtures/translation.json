@@ -300,7 +300,7 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-28 14:25:16.959832", 
+  "modified": "2017-11-28 17:26:45.638228", 
   "name": "4dbfee71a4", 
   "source_name": "Sales Order", 
   "target_name": "\u041f\u043e\u0440\u044a\u0447\u043a\u0430 \u043e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442"
@@ -475,5 +475,14 @@
   "name": "64cf00ffd3", 
   "source_name": "Attachment name", 
   "target_name": "\u0418\u043c\u0435 \u043d\u0430 \u043f\u0440\u0438\u043a\u0430\u0447\u0435\u043d\u0438\u044f \u0444\u0430\u0439\u043b"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 17:26:25.057679", 
+  "name": "bdb00eea3f", 
+  "source_name": "Execution date limit", 
+  "target_name": "\u0421\u0440\u043e\u043a \u0437\u0430 \u0438\u0437\u043f\u044a\u043b\u043d\u0435\u043d\u0438\u0435"
  }
 ]
