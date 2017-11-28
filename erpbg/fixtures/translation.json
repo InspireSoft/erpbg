@@ -448,5 +448,32 @@
   "name": "9c5723d76f", 
   "source_name": "Estestvena koja", 
   "target_name": "\u0415\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u0430 \u043a\u043e\u0436\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 16:42:13.456601", 
+  "name": "a439863234", 
+  "source_name": "Quotation Attachment", 
+  "target_name": "\u041f\u0440\u0438\u043a\u0430\u0447\u0438 \u043a\u044a\u043c \u041e\u0444\u0435\u0440\u0442\u0430\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 16:42:39.201908", 
+  "name": "f61201befc", 
+  "source_name": "Procentage width", 
+  "target_name": "\u0428\u0438\u0440\u043e\u0447\u0438\u043d\u0430 \u0432 \u041f\u0440\u043e\u0446\u0435\u043d\u0442\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 17:14:59.936575", 
+  "name": "64cf00ffd3", 
+  "source_name": "Attachment name", 
+  "target_name": "\u0418\u043c\u0435 \u043d\u0430 \u043f\u0440\u0438\u043a\u0430\u0447\u0435\u043d\u0438\u044f \u0444\u0430\u0439\u043b"
  }
 ]
