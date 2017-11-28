@@ -3,8 +3,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 12:49:54.939321", 
-  "name": "d18c26d8da", 
+  "modified": "2017-11-27 12:26:53.385174", 
+  "name": "36b09e2ebe", 
   "source_name": "Tax Id", 
   "target_name": "\u0414\u0414\u0421 \u2116"
  }, 
@@ -12,8 +12,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.464283", 
-  "name": "ec750c635c", 
+  "modified": "2017-11-27 12:26:53.388859", 
+  "name": "b86b172fbb", 
   "source_name": "Deal Place", 
   "target_name": "\u041c\u044f\u0441\u0442\u043e \u043d\u0430 \u0441\u0434\u0435\u043b\u043a\u0430\u0442\u0430"
  }, 
@@ -21,8 +21,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.466661", 
-  "name": "d17d809a48", 
+  "modified": "2017-11-27 12:26:53.391531", 
+  "name": "dd5b7a397b", 
   "source_name": "Deal Reason", 
   "target_name": "\u041e\u0441\u043d\u043e\u0432\u0430\u043d\u0438\u0435 \u043d\u0430 \u0441\u0434\u0435\u043b\u043a\u0430\u0442\u0430"
  }, 
@@ -30,8 +30,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.468857", 
-  "name": "d31db141cc", 
+  "modified": "2017-11-27 12:26:53.394196", 
+  "name": "c9eb801a6c", 
   "source_name": "ID number", 
   "target_name": "\u0418\u0434\u0435\u043d\u0442. \u2116"
  }, 
@@ -39,8 +39,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.471154", 
-  "name": "7741bd185c", 
+  "modified": "2017-11-27 12:26:53.396850", 
+  "name": "5d2acb5d1e", 
   "source_name": "MOL", 
   "target_name": "\u041c\u041e\u041b"
  }, 
@@ -48,8 +48,8 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.473417", 
-  "name": "983975ec29", 
+  "modified": "2017-11-27 12:26:53.399495", 
+  "name": "c2dd4b1276", 
   "source_name": "Bank Code", 
   "target_name": "\u0411\u0430\u043d\u043a\u043e\u0432 \u043a\u043e\u0434"
  }, 
@@ -57,9 +57,396 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-22 11:50:47.475797", 
-  "name": "3a016c3283", 
+  "modified": "2017-11-27 12:26:53.402129", 
+  "name": "9454fc3835", 
   "source_name": "Bulgaria VAT 20%", 
   "target_name": "\u0414\u0414\u0421 20%"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:04:04.135423", 
+  "name": "a20fa58e6b", 
+  "source_name": "Print Heading", 
+  "target_name": "\u041d\u0430\u0447\u0430\u043b\u043e \u043d\u0430 \u043f\u0440\u0438\u043d\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:04:23.678407", 
+  "name": "49723a6e37", 
+  "source_name": "Print", 
+  "target_name": "\u041f\u0440\u0438\u043d\u0442\u0438\u0440\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:05:37.286663", 
+  "name": "75e5039fdd", 
+  "source_name": "Item", 
+  "target_name": "\u041f\u0440\u043e\u0434\u0443\u043a\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:06:53.825764", 
+  "name": "62d7ab3aa5", 
+  "source_name": "Taxable Amount", 
+  "target_name": "\u0421\u0442\u043e\u0439\u043d\u043e\u0441\u0442 \u0437\u0430 \u0442\u0430\u043a\u0441\u0443\u0432\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:07:34.765591", 
+  "name": "8c80a9cb75", 
+  "source_name": "Time Sheet", 
+  "target_name": "\u0412\u0440\u0435\u043c\u0435\u0432 \u043b\u0438\u0441\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:08:35.829059", 
+  "name": "ba0917b4e6", 
+  "source_name": "Expense Account", 
+  "target_name": "\u041f\u0440\u043e\u0444\u0438\u043b \u0437\u0430 \u0440\u0430\u0437\u0445\u043e\u0434\u0438\u0442\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:11:21.558606", 
+  "name": "dc47389576", 
+  "source_name": "Task Valid", 
+  "target_name": "\u041f\u043e\u0440\u044a\u0447\u043a\u0430\u0442\u0430 \u0435 \u0432\u0430\u043b\u0438\u0434\u043d\u0430 (\u0411\u0435\u043b\u0435\u0436\u043a\u0430)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:11:46.364004", 
+  "name": "1e297dfb4c", 
+  "source_name": "Task Time", 
+  "target_name": "\u0412\u0440\u0435\u043c\u0435 \u0437\u0430 \u043f\u043e\u0440\u044a\u0447\u043a\u0430\u0442\u0430 (\u0411\u0435\u043b\u0435\u0436\u043a\u0430)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:12:26.856860", 
+  "name": "277be354b1", 
+  "source_name": "Delivery rules", 
+  "target_name": "\u041f\u0440\u0430\u0432\u0438\u043b\u0430 \u0437\u0430 \u0434\u043e\u0441\u0442\u0430\u0432\u044f\u043d\u0435 (\u0411\u0435\u043b\u0435\u0436\u043a\u0430)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:14:21.447461", 
+  "name": "4341c24e42", 
+  "source_name": "Mode", 
+  "target_name": "\u041d\u0430\u0447\u0438\u043d"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:14:55.491043", 
+  "name": "ce8b72666c", 
+  "source_name": "Email", 
+  "target_name": "\u0415\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u0430 \u043f\u043e\u0449\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:15:36.289693", 
+  "name": "c0ba46e34f", 
+  "source_name": "Exit", 
+  "target_name": "\u0418\u0437\u0445\u043e\u0434"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:17:03.414509", 
+  "name": "2f559bb028", 
+  "source_name": "Block List", 
+  "target_name": "\u041b\u0438\u0441\u0442 \u0437\u0430 \u0431\u043b\u043e\u043a\u0438\u0440\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:17:33.238131", 
+  "name": "7027604288", 
+  "source_name": "Expense", 
+  "target_name": "\u0420\u0430\u0437\u0445\u043e\u0434"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:17:54.578349", 
+  "name": "d2d9587b30", 
+  "source_name": "Template ", 
+  "target_name": "\u0411\u043b\u0430\u043d\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:18:23.930745", 
+  "name": "7519fdc772", 
+  "source_name": "Training Program", 
+  "target_name": "\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u0430 \u0437\u0430 \u0442\u0440\u0435\u043d\u0438\u0440\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:18:57.855083", 
+  "name": "f3a3b885df", 
+  "source_name": "Settings", 
+  "target_name": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:19:12.206408", 
+  "name": "ff73276258", 
+  "source_name": "Work", 
+  "target_name": "\u0420\u0430\u0431\u043e\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:19:43.300840", 
+  "name": "aee38ee576", 
+  "source_name": "Sheet", 
+  "target_name": "\u0421\u043f\u0438\u0441\u044a\u043a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:20:21.186145", 
+  "name": "465f2384df", 
+  "source_name": "Type", 
+  "target_name": "\u0422\u0438\u043f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:24:03.487977", 
+  "name": "58c82c3512", 
+  "source_name": "Resume Attachment", 
+  "target_name": "\u0417\u0430\u043a\u0430\u0447\u0432\u0430\u043d\u0435 \u043d\u0430 \u0440\u0435\u0437\u0443\u043c\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:24:39.758923", 
+  "name": "ea9b7e468c", 
+  "source_name": "User ID", 
+  "target_name": "\u041f\u043e\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043b"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:25:02.355621", 
+  "name": "4bfd2f80a4", 
+  "source_name": "System", 
+  "target_name": "\u0421\u0438\u0441\u0442\u0435\u043c\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:25:40.836897", 
+  "name": "d5fa37d0da", 
+  "source_name": "Holiday", 
+  "target_name": "\u041f\u0440\u0430\u0437\u043d\u0438\u043a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:26:00.828587", 
+  "name": "5b0c998940", 
+  "source_name": "Mode", 
+  "target_name": "\u0422\u0438\u043f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-27 15:33:06.475491", 
+  "name": "16732658a1", 
+  "source_name": "Download the Template, fill appropriate data and attach the modified file. All dates and employee combination in the selected period will come in the template, with existing attendance records", 
+  "target_name": "\u0421\u0432\u0430\u043b\u0438 \u0431\u043b\u0430\u043d\u043a\u0430\u0442\u0430, \u043f\u043e\u043f\u044a\u043b\u043d\u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f\u0442\u0430 \u0438 \u0437\u0430\u043a\u0430\u0447\u0438 \u043f\u043e\u043f\u044a\u043b\u043d\u0435\u043d\u0438\u044f \u0444\u0430\u0439\u043b."
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:25:16.959832", 
+  "name": "4dbfee71a4", 
+  "source_name": "Sales Order", 
+  "target_name": "\u041f\u043e\u0440\u044a\u0447\u043a\u0430 \u043e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 10:22:59.891995", 
+  "name": "fa6f9f3b78", 
+  "source_name": "DRAFT", 
+  "target_name": "\u0427\u0415\u0420\u041d\u041e\u0412\u0410"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:25:39.999455", 
+  "name": "92870754c7", 
+  "source_name": "Order details", 
+  "target_name": "\u0414\u0435\u0442\u0430\u0439\u043b\u0438 \u043d\u0430 \u043f\u043e\u0440\u044a\u0447\u043a\u0430\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:26:35.814421", 
+  "name": "6e4a4364fd", 
+  "source_name": "Make", 
+  "target_name": "\u0421\u044a\u0437\u0434\u0430\u0432\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:34:18.521855", 
+  "name": "bbf86d1434", 
+  "source_name": "divan", 
+  "target_name": "\u0414\u0438\u0432\u0430\u043d"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:34:39.797766", 
+  "name": "99570c774a", 
+  "source_name": "garnitura", 
+  "target_name": "\u0413\u0430\u0440\u043d\u0438\u0442\u0443\u0440\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:35:46.630322", 
+  "name": "e5791c3a87", 
+  "source_name": "spalnq", 
+  "target_name": "\u0421\u043f\u0430\u043b\u043d\u044f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:38:33.085218", 
+  "name": "06a7dfcaae", 
+  "source_name": "tabla", 
+  "target_name": "\u0422\u0430\u0431\u043b\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:39:01.667746", 
+  "name": "2761d686f6", 
+  "source_name": "vuzglavnica", 
+  "target_name": "\u0412\u044a\u0437\u0433\u043b\u0430\u0432\u043d\u0438\u0446\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 14:44:37.071502", 
+  "name": "6217f6cb64", 
+  "source_name": "Mechanics", 
+  "target_name": "\u041c\u0435\u0445\u0430\u043d\u0438\u0437\u043c\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:21:16.849433", 
+  "name": "f102bce17a", 
+  "source_name": "Size", 
+  "target_name": "\u0420\u0430\u0437\u043c\u0435\u0440"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:25:25.684619", 
+  "name": "36bd5b6929", 
+  "source_name": "Highly elastic cream", 
+  "target_name": "\u0412\u0438\u0441\u043e\u043a\u043e\u0435\u043b\u0430\u0441\u0442\u0438\u0447\u043d\u0430 \u043f\u044f\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:26:22.724131", 
+  "name": "fde22b2436", 
+  "source_name": "silikonov muh i mlqn donapren", 
+  "target_name": "\u0421\u0438\u043b\u0438\u043a\u043e\u043d\u043e\u0432 \u043f\u0443\u0445 + \u041c\u043b\u044f\u043d \u0414\u0443\u043d\u0430\u043f\u0440\u0435\u043d"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:30:37.524214", 
+  "name": "708bd5a412", 
+  "source_name": "Legs Number", 
+  "target_name": "\u0411\u0440\u043e\u0439 \u043a\u0440\u0430\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:40:05.817141", 
+  "name": "79501a7469", 
+  "source_name": "Eco koja", 
+  "target_name": "\u0415\u043a\u043e \u043a\u043e\u0436\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:40:15.368376", 
+  "name": "3e599affd1", 
+  "source_name": "Damaska", 
+  "target_name": "\u0414\u0430\u043c\u0430\u0441\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-28 15:42:53.657388", 
+  "name": "9c5723d76f", 
+  "source_name": "Estestvena koja", 
+  "target_name": "\u0415\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u0430 \u043a\u043e\u0436\u0430"
  }
 ]
