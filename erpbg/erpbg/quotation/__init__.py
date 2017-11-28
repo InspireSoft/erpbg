@@ -3,5 +3,5 @@ import frappe
 
 @frappe.whitelist()
 def generate_custom_number():
-    number = ""
+    number = "test"
     return number
