@@ -300,7 +300,7 @@
   "docstatus": 0, 
   "doctype": "Translation", 
   "language": "bg", 
-  "modified": "2017-11-28 17:26:45.638228", 
+  "modified": "2017-11-30 12:06:03.747660", 
   "name": "4dbfee71a4", 
   "source_name": "Sales Order", 
   "target_name": "\u041f\u043e\u0440\u044a\u0447\u043a\u0430 \u043e\u0442 \u043a\u043b\u0438\u0435\u043d\u0442"
@@ -493,5 +493,518 @@
   "name": "29ad28a2c3", 
   "source_name": "Letter Head", 
   "target_name": "\u0417\u0430\u0433\u043b\u0430\u0432\u0438\u0435 \u043d\u0430 \u043f\u0440\u0438\u043d\u0442\u0438\u0440\u0430\u043d\u0435\u0442\u043e"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:04:47.936095", 
+  "name": "793717d47b", 
+  "source_name": "Mechanics divan klapva6t grub", 
+  "target_name": "\u041a\u043b\u0430\u043f\u0432\u0430\u0449 \u0433\u0440\u044a\u0431 Spiros"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:05:06.092278", 
+  "name": "4cd8a720d7", 
+  "source_name": "Mechanics divan Belgiski", 
+  "target_name": "\u0411\u0435\u043b\u0433\u0438\u0439\u0441\u043a\u0438 (Sedaflex 12M)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:07:27.676739", 
+  "name": "8fb3f68022", 
+  "source_name": "Mechanics divan potapq6t", 
+  "target_name": "\u041f\u043e\u0442\u0430\u043f\u044f\u0449"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:07:21.706376", 
+  "name": "b6a5d0cdd1", 
+  "source_name": "Mechanics divan Rios", 
+  "target_name": "Rios"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:08:31.831213", 
+  "name": "dd971fa5f3", 
+  "source_name": "Mechanics divan j4 1", 
+  "target_name": "\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438 (\u041c\u0435\u0440\u0430\u043b J4) (100x187x5)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:09:19.378813", 
+  "name": "57fdcf15c6", 
+  "source_name": "Mechanics divan j4 2", 
+  "target_name": "\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438 (\u041c\u0435\u0440\u0430\u043b J4) (138x187x5)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:10:13.327096", 
+  "name": "240cd0d027", 
+  "source_name": "Mechanics divan others", 
+  "target_name": "\u0414\u0440\u0443\u0433\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:12:52.851647", 
+  "name": "586f6c479e", 
+  "source_name": "Divan Legs Break", 
+  "target_name": "\u041a\u0440\u0430\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:14:11.118019", 
+  "name": "1c7257df74", 
+  "source_name": "Legs Other", 
+  "target_name": "\u0414\u0440\u0443\u0433\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:14:46.725359", 
+  "name": "6caac8248b", 
+  "source_name": "Legs Color", 
+  "target_name": "\u041c\u0430\u0441\u0438\u0432 \u0431\u0443\u043a + \u0431\u0430\u0439\u0446 (\u0426\u0432\u044f\u0442)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 11:18:40.696267", 
+  "name": "f715386aa4", 
+  "source_name": "Natural skin", 
+  "target_name": "\u0415\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u0430 \u043a\u043e\u0436\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 13:19:51.537007", 
+  "name": "5f901771a4", 
+  "source_name": "Damaska color", 
+  "target_name": "\u0426\u0432\u044f\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 13:21:12.016264", 
+  "name": "fc5af88151", 
+  "source_name": "Natural skin color", 
+  "target_name": "\u0426\u0432\u044f\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 13:21:29.202250", 
+  "name": "a81c02eb2b", 
+  "source_name": "Eco koja color", 
+  "target_name": "\u0426\u0432\u044f\u0442"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 14:53:25.121933", 
+  "name": "ad2c01a7bb", 
+  "source_name": "Delivery Hour", 
+  "target_name": "\u0427\u0430\u0441 \u043d\u0430 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 15:07:17.093406", 
+  "name": "244ef26dc5", 
+  "source_name": "ORDER DETAILS", 
+  "target_name": "\u0414\u0435\u0442\u0430\u0439\u043b\u0438 \u043d\u0430 \u043f\u043e\u0440\u044a\u0447\u043a\u0430\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-29 15:07:50.041857", 
+  "name": "2297126bcb", 
+  "source_name": "Order Details", 
+  "target_name": "\u0414\u0435\u0442\u0430\u0439\u043b\u0438 \u043d\u0430 \u043f\u043e\u0440\u044a\u0447\u043a\u0430\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 12:09:12.258780", 
+  "name": "d22e8d13b2", 
+  "source_name": "Decorative pillows", 
+  "target_name": "\u0414\u0435\u043a\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u0438 \u0432\u044a\u0437\u0433\u043b\u0430\u0432\u043d\u0438\u0446\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 12:13:29.392302", 
+  "name": "cbe0bde0f0", 
+  "source_name": "Collection 1", 
+  "target_name": "\u041a\u043e\u043b\u0435\u043a\u0446\u0438\u044f 1"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 12:17:34.041358", 
+  "name": "7228723b4e", 
+  "source_name": "Collection 2", 
+  "target_name": "\u041a\u043e\u043b\u0435\u043a\u0446\u0438\u044f 2"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 12:17:51.597470", 
+  "name": "550f5ef8db", 
+  "source_name": "Collection 3", 
+  "target_name": "\u041a\u043e\u043b\u0435\u043a\u0446\u0438\u044f 3"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 12:37:57.820582", 
+  "name": "71d93056c2", 
+  "source_name": "Size", 
+  "target_name": "\u0420\u0430\u0437\u043c\u0435\u0440"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 13:04:14.704601", 
+  "name": "724181b993", 
+  "source_name": "Damaska Quantity", 
+  "target_name": "\u043b.\u043c."
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 13:10:54.403021", 
+  "name": "ca09827d6c", 
+  "source_name": "Pillows Number", 
+  "target_name": "\u0411\u0440\u043e\u0439"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-11-30 14:30:16.993781", 
+  "name": "b6de32c727", 
+  "source_name": "Damaska, Eco koja i estestvena koja", 
+  "target_name": "\u0414\u0430\u043c\u0430\u0441\u043a\u0430 / \u0435\u043a\u043e \u043a\u043e\u0436\u0430 / \u0435\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043d\u0430 \u043a\u043e\u0436\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 12:59:40.047225", 
+  "name": "20d69c844a", 
+  "source_name": "Collection", 
+  "target_name": "\u041a\u043e\u043b\u0435\u043a\u0446\u0438\u044f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 15:52:42.882834", 
+  "name": "e19409c232", 
+  "source_name": "Tabla data", 
+  "target_name": "\u0422\u0430\u0431\u043b\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 15:54:44.862451", 
+  "name": "afd8968795", 
+  "source_name": "Tabla Size", 
+  "target_name": "\u0420\u0430\u0437\u043c\u0435\u0440\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 15:57:56.310543", 
+  "name": "e7b5804568", 
+  "source_name": "Tabla or vuzglavnica model", 
+  "target_name": "\u041c\u043e\u0434\u0435\u043b"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:01:16.789171", 
+  "name": "39637c9f3d", 
+  "source_name": "Domino", 
+  "target_name": "\u0414\u043e\u043c\u0438\u043d\u043e"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:03:24.986838", 
+  "name": "26ea55d2e2", 
+  "source_name": "Spalnq Specifications", 
+  "target_name": "\u0421\u043f\u0435\u0446\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0438 \u0440\u0430\u0437\u043c\u0435\u0440\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:04:50.326931", 
+  "name": "b64601ff9f", 
+  "source_name": "Spalnq", 
+  "target_name": "\u0421\u043f\u0430\u043b\u043d\u044f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:05:25.535247", 
+  "name": "5652cd7723", 
+  "source_name": "Tabla", 
+  "target_name": "\u0422\u0430\u0431\u043b\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:06:13.769280", 
+  "name": "954604518a", 
+  "source_name": "Cargi", 
+  "target_name": "\u0426\u0430\u0440\u0433\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:07:09.744211", 
+  "name": "349a13bd1d", 
+  "source_name": "Tapicirane na gotovi konstrukcii", 
+  "target_name": "\u0422\u0430\u043f\u0438\u0446\u0438\u0440\u0430\u043d\u0435 \u043d\u0430 \u0433\u043e\u0442\u043e\u0432\u0438 \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:08:01.692432", 
+  "name": "70a7400c44", 
+  "source_name": "Tabla razmeri", 
+  "target_name": "\u0422\u0430\u0431\u043b\u0430  \u0440\u0430\u0437\u043c\u0435\u0440\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:09:17.279675", 
+  "name": "2e761e3da5", 
+  "source_name": "Cagari h", 
+  "target_name": "\u0426\u0430\u0440\u0433\u0438 h="
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:09:32.508130", 
+  "name": "502d933b4e", 
+  "source_name": "Cagari d", 
+  "target_name": "\u0426\u0430\u0440\u0433\u0438 d="
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:10:51.579120", 
+  "name": "186d659047", 
+  "source_name": "Dve g obrazni", 
+  "target_name": "\u0414\u0432\u0435 \u0413-\u043e\u0431\u0440\u0430\u0437\u043d\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:11:34.133643", 
+  "name": "2a2b35cd01", 
+  "source_name": "Edna p obrazna", 
+  "target_name": "\u0415\u0434\u043d\u0430 \u041f-\u043e\u0431\u0440\u0430\u0437\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:12:09.247953", 
+  "name": "d0e2520b63", 
+  "source_name": "Three", 
+  "target_name": "\u0422\u0440\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:13:11.188882", 
+  "name": "efdc5b3b72", 
+  "source_name": "Separate", 
+  "target_name": "\u041e\u0442\u0434\u0435\u043b\u043d\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:13:49.578324", 
+  "name": "9c4aaea960", 
+  "source_name": "Size matrac", 
+  "target_name": "\u0420\u0430\u0437\u043c\u0435\u0440 \u043c\u0430\u0442\u0440\u0430\u043a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:14:26.330707", 
+  "name": "9a42c11702", 
+  "source_name": "Thinkness matrac", 
+  "target_name": "\u0414\u0435\u0431\u0435\u043b\u0438\u043d\u0430 \u043c\u0430\u0442\u0440\u0430\u043a"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:15:08.741274", 
+  "name": "5517eb97be", 
+  "source_name": "Height sitting", 
+  "target_name": "\u0412\u0438\u0441\u043e\u0447\u0438\u043d\u0430 \u043d\u0430 \u0441\u0435\u0434\u0435\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:15:44.009749", 
+  "name": "bdc6bc1757", 
+  "source_name": "Sinking matrac", 
+  "target_name": "\u041f\u043e\u0442\u044a\u0432\u0430\u043d\u0435 \u043d\u0430 \u043c\u0430\u0442\u0440\u0430\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:17:28.014615", 
+  "name": "c250768dab", 
+  "source_name": "Under matrac ramka", 
+  "target_name": "\u041f\u043e\u0434\u043c\u0430\u0442\u0440\u0430\u0447\u043d\u0430 \u0440\u0430\u043c\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:32:55.601696", 
+  "name": "d52f5c4ddd", 
+  "source_name": "Under matric by dimela", 
+  "target_name": "\u041e\u0442 \u0414\u0438\u043c\u0435\u043b\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:20:31.468423", 
+  "name": "e8b2e18499", 
+  "source_name": "Under matric order", 
+  "target_name": "\u041f\u043e\u0440\u044a\u0447\u043a\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:21:33.109745", 
+  "name": "1cca37d74e", 
+  "source_name": "Under matric metal", 
+  "target_name": "\u041c\u0435\u0442\u0430\u043b\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:22:30.142768", 
+  "name": "29ff1c7520", 
+  "source_name": "Under matric wood", 
+  "target_name": "\u0414\u0440\u044a\u0432\u0435\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:24:08.554364", 
+  "name": "0f11db01e8", 
+  "source_name": "With mechanics for lifting", 
+  "target_name": "\u0421 \u0430\u043c\u043e\u0440\u0442\u0438\u0441\u044c\u043e\u0440\u043d\u0438 \u043c\u0435\u0445\u0430\u043d\u0438\u0437\u043c\u0438 \u0437\u0430 \u043f\u043e\u0432\u0434\u0438\u0433\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:25:02.537525", 
+  "name": "18c02ae25a", 
+  "source_name": "Under matric no mechanic", 
+  "target_name": "\u0411\u0435\u0437 \u043c\u0435\u0445\u0430\u043d\u0438\u0437\u043c\u0438"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:25:39.769746", 
+  "name": "702c025753", 
+  "source_name": "Inner base", 
+  "target_name": "\u0412\u044a\u0442\u0440\u0435\u0448\u043d\u0430 \u043e\u0441\u043d\u043e\u0432\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:27:11.926844", 
+  "name": "bc66a831cf", 
+  "source_name": "Inner base by dimela", 
+  "target_name": "\u041e\u0442 \u0414\u0438\u043c\u0435\u043b\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:29:17.445803", 
+  "name": "b2c407a68f", 
+  "source_name": "Inner mechanic", 
+  "target_name": "\u0417\u0430 \u043c\u0435\u0445\u0430\u043d\u0438\u0437\u044a\u043c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-01 16:29:43.205613", 
+  "name": "0c5f70d9af", 
+  "source_name": "Inner no mechanic", 
+  "target_name": "\u0411\u0435\u0437 \u043c\u0435\u0445\u0430\u043d\u0438\u0437\u044a\u043c"
  }
 ]
