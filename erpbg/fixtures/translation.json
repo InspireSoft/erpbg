@@ -1006,5 +1006,140 @@
   "name": "0c5f70d9af", 
   "source_name": "Inner no mechanic", 
   "target_name": "\u0411\u0435\u0437 \u043c\u0435\u0445\u0430\u043d\u0438\u0437\u044a\u043c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 15:44:49.065350", 
+  "name": "2184464ae9", 
+  "source_name": "cnumber", 
+  "target_name": "\u041a\u043e\u0434 \u043d\u0430 \u043e\u0444\u0435\u0440\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 15:46:13.606384", 
+  "name": "3ee4852f9d", 
+  "source_name": "Pulnej", 
+  "target_name": "\u041f\u044a\u043b\u043d\u0435\u0436"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 15:48:21.543461", 
+  "name": "470cb5d38b", 
+  "source_name": "Divan Mechanic", 
+  "target_name": "\u041c\u0435\u0445\u0430\u043d\u0438\u0437\u044a\u043c"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 15:58:13.079905", 
+  "name": "8eabedd00a", 
+  "source_name": "dulbo4ina sedalka", 
+  "target_name": "\u0414\u044a\u043b\u0431\u043e\u0447\u0438\u043d\u0430 \u043d\u0430 \u0441\u0435\u0434\u0430\u043b\u043a\u0430\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:00:05.405967", 
+  "name": "23a5504e07", 
+  "source_name": "dulbo4ina na sqdane", 
+  "target_name": "\u0414\u044a\u043b\u0431\u043e\u0447\u0438\u043d\u0430 \u043d\u0430 \u0441\u044f\u0434\u0430\u043d\u0435"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:07:24.418453", 
+  "name": "ff5914208b", 
+  "source_name": "Gabarit 6irina", 
+  "target_name": "\u0413\u0430\u0431\u0430\u0440\u0438\u0442 \u0448\u0438\u0440\u0438\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:15:41.929746", 
+  "name": "8203538f53", 
+  "source_name": "Gabarit viso4ina", 
+  "target_name": "\u0413\u0430\u0431\u0430\u0440\u0438\u0442 \u0432\u0438\u0441\u043e\u0447\u0438\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:16:09.739482", 
+  "name": "43ba53fc33", 
+  "source_name": "Gabarit dulbo4ina", 
+  "target_name": "\u0413\u0430\u0431\u0430\u0440\u0438\u0442 \u0434\u044a\u043b\u0431\u043e\u0447\u0438\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:19:00.741791", 
+  "name": "48a90baaef", 
+  "source_name": "Oblegalka 6irina gore", 
+  "target_name": "\u041e\u0431\u043b\u0435\u0433\u0430\u043b\u043a\u0430 \u0448\u0438\u0440\u0438\u043d\u0430 (\u0413\u043e\u0440\u0435)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:18:42.235168", 
+  "name": "23aa2e381b", 
+  "source_name": "Oblegalka 6irina dolu", 
+  "target_name": "\u041e\u0431\u043b\u0435\u0433\u0430\u043b\u043a\u0430 \u0448\u0438\u0440\u0438\u043d\u0430 (\u0414\u043e\u043b\u0443)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:19:48.219020", 
+  "name": "fe5359fd4f", 
+  "source_name": "Oblegalka ugul", 
+  "target_name": "\u041e\u0431\u043b\u0435\u0433\u0430\u043b\u043a\u0430 \u044a\u0433\u044a\u043b"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:20:28.221716", 
+  "name": "9a3c7e73f1", 
+  "source_name": "Grub viso4ina", 
+  "target_name": "\u0413\u0440\u044a\u0431 \u0432\u0438\u0441\u043e\u0447\u0438\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:20:47.953695", 
+  "name": "91b8b61a09", 
+  "source_name": "Grub 6irina", 
+  "target_name": "\u0413\u0440\u044a\u0431 \u0448\u0438\u0440\u0438\u043d\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:27:27.642709", 
+  "name": "cefc68b9d5", 
+  "source_name": "divan modification", 
+  "target_name": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-04 16:27:49.747333", 
+  "name": "f598970de9", 
+  "source_name": "divan_modification_image", 
+  "target_name": "\u041c\u043e\u0434\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f (\u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435)"
  }
 ]

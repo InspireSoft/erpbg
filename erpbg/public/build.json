@@ -1,6 +1,7 @@
 {
 	"js/erpbg.js": [
 		"public/js/SalesInvoice.js",
-		"public/js/Quotation.js"
+		"public/js/Quotation.js",
+		"public/js/QuotationItem.js"
 	]
 }
