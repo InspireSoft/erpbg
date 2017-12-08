@@ -1,7 +1,7 @@
 /**
  * Created by Simeon on 4-Dec-17.
  */
-frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cdn) {
+function load_image(frm, cdt, cdn) {
     if(locals[cdt][cdn].divan_modification=="") {
 
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").each(function() {
@@ -31,7 +31,7 @@ frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cd
         if(!hasI) {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\"/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png\" />");
         } else {
-            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image img").attr("src","/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png");
+            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image img").attr("src",function() {return "/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png";});
         }
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("background-color","white");
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("width","auto");
@@ -43,4 +43,15 @@ frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cd
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").removeClass("octicon-circle-slash");
         }
     }
+}
+
+
+frappe.ui.form.on("Quotation Item", "onload_post_render", function (frm, cdt, cdn) {
+    load_image(frm, cdt, cdn);
 });
+
+
+frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cdn) {
+    load_image(frm, cdt, cdn);
+});
+
