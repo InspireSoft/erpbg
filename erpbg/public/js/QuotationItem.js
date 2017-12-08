@@ -46,8 +46,12 @@ function load_image(frm, cdt, cdn) {
 }
 
 
-frappe.ui.form.on("Quotation Item", "onload_post_render", function (frm, cdt, cdn) {
-    load_image(frm, cdt, cdn);
+frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
+    if(frm.doc.items != null && frm.doc.items.length > 0) {
+        frm.doc.items.forEach(function(item) {
+            load_image(frm, "Quotation Item", item.name);
+        });
+    }
 });
 
 
