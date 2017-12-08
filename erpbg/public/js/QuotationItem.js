@@ -19,7 +19,7 @@ frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cd
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").addClass("octicon-circle-slash");
         }
      } else {
-        console.log(url("'/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png') no-repeat center center fixed')");
+        console.log("url('/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png') no-repeat center center fixed')");
 
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("background-color","white");
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("background-repeat","no-repeat");
