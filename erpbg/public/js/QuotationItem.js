@@ -29,7 +29,7 @@ frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cd
             }
         });
         if(!hasI) {
-            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\"+/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png\" />");
+            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\"/private/files/divan_"+(locals[cdt][cdn].divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png\" />");
         }
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("background-color","white");
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("width","auto");
