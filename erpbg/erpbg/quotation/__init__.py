@@ -34,7 +34,7 @@ def generate_custom_number(qname, customer):
     if customer.customer_commision > 0:
         if len(number) > 0:
             number += "-"
-        number += "01" + str(customer.customer_commision)
+        number += "00" + str(customer.customer_commision)
     if customer.customer_cnumber:
         if len(number) > 0:
             number += "-"
