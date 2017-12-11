@@ -1168,5 +1168,14 @@
   "name": "c57cd4d201", 
   "source_name": "Customer commision", 
   "target_name": "\u041a\u043e\u043c\u0438\u0441\u0438\u043e\u043d\u043d\u0430 (%)"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2017-12-11 17:18:38.935098", 
+  "name": "9139dc6af1", 
+  "source_name": "Quotation from email", 
+  "target_name": "\u041d\u0430\u043f\u0440\u0430\u0432\u0435\u043d \u043e\u0442 Email"
  }
 ]
