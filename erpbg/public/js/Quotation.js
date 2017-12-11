@@ -25,7 +25,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     frm.refresh_field("payment_ways");
 });
 
-frappe.ui.form.on("Quotation", "customer", function(){
+frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
     frappe.call({
         method: "erpbg.erpbg.quotation.generate_custom_number",
         args: { "customer": locals[cdt][cdn].customer },
