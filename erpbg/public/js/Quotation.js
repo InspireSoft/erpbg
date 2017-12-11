@@ -26,9 +26,13 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 });
 
 frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
+    var name = "";
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        name = locals[cdt][cdn].name;
+    }
     frappe.call({
         method: "erpbg.erpbg.quotation.generate_custom_number",
-        args: { "customer": locals[cdt][cdn].customer },
+        args: { "qname": name, "customer": locals[cdt][cdn].customer },
         callback: function (r) {
             if (r.message !== undefined) {
                 locals[cdt][cdn].cnumber = r.message;
