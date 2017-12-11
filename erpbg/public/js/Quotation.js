@@ -23,14 +23,15 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела Дизайн”ООД:\nIBAN: BG71BPBI79421020455201\nБАНКА: Пощенска Банка\nБулстат: 175278203");
 
     frm.refresh_field("payment_ways");
+});
 
+frappe.ui.form.on("Quotation", "customer", function(){
     frappe.call({
         method: "erpbg.erpbg.quotation.generate_custom_number",
-        args: {},
+        args: { "customer": customer },
         callback: function (r) {
             if (r.message !== undefined) {
                 locals[cdt][cdn].cnumber = r.message;
-                frm.refresh_field("cnumber");
             }
         }
     });
