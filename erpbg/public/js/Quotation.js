@@ -28,7 +28,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 frappe.ui.form.on("Quotation", "customer", function(){
     frappe.call({
         method: "erpbg.erpbg.quotation.generate_custom_number",
-        args: { "customer": customer },
+        args: { "customer": locals[cdt][cdn].customer },
         callback: function (r) {
             if (r.message !== undefined) {
                 locals[cdt][cdn].cnumber = r.message;
