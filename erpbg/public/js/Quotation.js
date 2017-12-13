@@ -2,12 +2,11 @@
  * Created by Simeon on 21-Nov-17.
  */
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
-    var doc = locals[cdt][cdn];
-    if(locals[cdt][cdn].letter_head != "Dimela-Info-Head") {
-        locals[cdt][cdn].letter_head = "Dimela-Info-Head";
-        locals[cdt][cdn].taxes_and_charges = "Bulgaria VAT 20%";
-        frm.refresh_field("letter_head");
-        frm.refresh_field("taxes_and_charges");
+    console.log(frm.doc.letter_head);
+    if(frm.doc.letter_head != "Dimela-Info-Head") {
+        cur_frm.set_value("letter_head", "Dimela-Info-Head");
+        cur_frm.set_value("taxes_and_charges", "Bulgaria VAT 20%");
+        console.log(frm.doc.letter_head);
     }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
@@ -24,8 +23,6 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     var child = frm.add_child("payment_ways");
     frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела Дизайн”ООД:\nIBAN: BG71BPBI79421020455201\nБАНКА: Пощенска Банка\nБулстат: 175278203");
-
-    frm.refresh_field("payment_ways");
 });
 
 frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
@@ -38,7 +35,7 @@ frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
         args: { "qname": name, "customer": locals[cdt][cdn].customer },
         callback: function (r) {
             if (r.message !== undefined) {
-                locals[cdt][cdn].cnumber = r.message;
+                cur_frm.set_value("cnumber", r.message);
             }
         }
     });
