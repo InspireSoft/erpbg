@@ -13,10 +13,13 @@ def generate_custom_number(qname, customer):
             return quotation.cnumber
         year_and_month = str(quotation.transaction_date)[0:7]
 
-    quotations = frappe.db.sql('''SELECT `name` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
+    quotations = frappe.db.sql('''SELECT `name`,`transaction_date` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
                                (customer, str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m"))+"%"), as_dict=True)
 
-    year_and_month = str(quotations[0].transaction_date)[0:7]
+    if len(quotations) > 0:
+        year_and_month = str(quotations[0].transaction_date)[0:7]
+    else:
+        year_and_month = datetime.datetime.now().strftime("%Y-%m")
 
     number_of_quotations_that_month = len(quotations) + 1
     if len(qname) > 0:
