@@ -3,7 +3,9 @@
  */
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     var doc = locals[cdt][cdn];
-    locals[cdt][cdn].letter_head = "Dimela-Info-Head";
+    if(locals[cdt][cdn].letter_head != "Dimela-Info-Head") {
+        locals[cdt][cdn].letter_head = "Dimela-Info-Head";
+    }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         cur_frm.set_df_property("quotation_attachment", "hidden", false);
