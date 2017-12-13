@@ -32,7 +32,7 @@ function load_image(item) {
         if(!hasI) {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\"/private/files/divan_"+(item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png\" />");
         } else {
-            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image img").attr("src",function() {return "/private/files/divan_"+(item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_"))+".png";});
+            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image img").attr("src",function() {return "/private/files/divan_"+(item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_"))+".png";});
         }
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("background-color","white");
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").css("width","auto");
