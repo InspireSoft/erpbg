@@ -1,9 +1,13 @@
 {
 	"js/erpbg.js": [
+		"public/js/utils/type.js",
+		"public/js/utils/fileUpload.js",
 		"public/js/SalesInvoice.js",
 		"public/js/Quotation.js",
 		"public/js/QuotationItem.js",
 		"public/js/Communication.js",
-		"public/js/fileUpload.js"
+		"public/js/ProductionOrder.js",
+		"public/js/MaterialRequest.js",
+		"public/js/BOM.js"
 	]
 }

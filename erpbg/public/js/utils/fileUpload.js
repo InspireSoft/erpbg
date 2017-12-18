@@ -1,5 +1,4 @@
 
-console.log(frappe.socketio.SocketIOUploader);
 frappe.socketio.SocketIOUploader.prototype.keep_alive = function() {
     if (this.next_check) {
         clearTimeout (this.next_check);
@@ -16,4 +15,3 @@ frappe.socketio.SocketIOUploader.prototype.keep_alive = function() {
         this.disconnect(false);
     }, 3000);
 }
-console.log(frappe.socketio.SocketIOUploader);
