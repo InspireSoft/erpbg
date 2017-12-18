@@ -5,8 +5,10 @@ frappe.ui.form.on("Production Order", "divan_modification", function (frm, cdt, 
     type_image(locals[cdt][cdn]);
 });
 frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, cdn) {
-    doc = locals[cdt][cdn]
-    if(doc.sales_order) {
+    doc = locals[cdt][cdn];
+    if(doc.divan_modification != "") {
+        type_image(doc);
+    } else if(doc.sales_order) {
         frappe.call({
             method: "erpbg.erpbg.production_order.get_sales_order_item",
             args: { "item_name": doc.production_item, "sales_order": doc.sales_order },
@@ -115,28 +117,3 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
         })
     }
 });
-
-function mrss (str) {
-    return str.replace(/[\0\n\r\b\t\\'"\x1a]/g, function (s) {
-        switch (s) {
-          case "\0":
-            return "\\0";
-          case "\n":
-            return "\\n";
-          case "\r":
-            return "\\r";
-          case "\b":
-            return "\\b";
-          case "\t":
-            return "\\t";
-          case "\x1a":
-            return "\\Z";
-          case "'":
-            return "''";
-          case '"':
-            return '""';
-          default:
-            return "\\" + s;
-        }
-    });
-}
