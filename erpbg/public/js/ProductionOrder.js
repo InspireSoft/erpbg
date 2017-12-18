@@ -7,7 +7,7 @@ frappe.ui.form.on("Production Order", "divan_modification", function (frm, cdt, 
 frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, cdn) {
     doc = locals[cdt][cdn]
     if(doc.sales_order) {
-        soi =  frappe.db.sql("SELECT name FROM `tabSales Order Item` WHERE `item_name`='"+mrss(doc.production_item)+"' `parent`='"+mrss(doc.sales_order)+"'")
+        soi =  frappe.db.sql("SELECT * FROM `tabSales Order Item` WHERE `item_name`='"+mrss(doc.production_item)+"' `parent`='"+mrss(doc.sales_order)+"'")
         if(soi.type != doc.type) {
             doc.type = soi.type;
             doc.divan_modification = soi.divan_modification;
