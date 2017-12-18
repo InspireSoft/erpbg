@@ -46,9 +46,9 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
                         doc.height_sitting = soi["height_sitting"];
                         doc.sinking_matrac = soi["sinking_matrac"];
                         doc.under_matric_by_dimela = soi["under_matric_by_dimela"];
-                        doc.under_matric_order = soi["under_matric_order;
-                        doc.under_matric_metal = soi["under_matric_metal;
-                        doc.under_matric_wood = soi["under_matric_wood;
+                        doc.under_matric_order = soi["under_matric_order"];
+                        doc.under_matric_metal = soi["under_matric_metal"];
+                        doc.under_matric_wood = soi["under_matric_wood"];
                         doc.with_mechanics_for_lifting = soi["with_mechanics_for_lifting"];
                         doc.under_matric_no_mechanic = soi["under_matric_no_mechanic"];
                         doc.inner_base_by_dimela = soi["inner_base_by_dimela"];
