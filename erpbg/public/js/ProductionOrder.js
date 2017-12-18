@@ -108,7 +108,7 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
 });
 
 function mrss (str) {
-        val = val.replace(/[\0\n\r\b\t\\'"\x1a]/g, function (s) {
+        return str.replace(/[\0\n\r\b\t\\'"\x1a]/g, function (s) {
         switch (s) {
           case "\0":
             return "\\0";
@@ -130,6 +130,4 @@ function mrss (str) {
             return "\\" + s;
         }
       });
-
-      return val;
 }
