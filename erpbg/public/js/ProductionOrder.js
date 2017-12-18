@@ -28,7 +28,7 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
                         cur_frm.set_value("oblegalka_6irina_gore", soi.oblegalka_6irina_gore);
                         cur_frm.set_value("oblegalka_6irina_dolu", soi.oblegalka_6irina_dolu);
                         cur_frm.set_value("oblegalka_ugul", soi.oblegalka_ugul);
-                        cur_frm.set_value("grub_6irina," soi.grub_6irina);
+                        cur_frm.set_value("grub_6irina", soi.grub_6irina);
                         cur_frm.set_value("tabla_or_vuzglavnica_model", soi.tabla_or_vuzglavnica_model);
                         cur_frm.set_value("spalnq", soi.spalnq);
                         cur_frm.set_value("tabla", soi.tabla);
