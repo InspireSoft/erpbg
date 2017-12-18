@@ -8,8 +8,8 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
     doc = locals[cdt][cdn]
     if(doc.sales_order) {
         frappe.call({
-            method: "library_management.conversion_details.uom_conversion_factor",
-            args: { "production_item": doc.production_item, "sales_order": doc.sales_order },
+            method: "erpbg.erpbg.production_order.get_sales_order_item",
+            args: { "item_name": doc.production_item, "sales_order": doc.sales_order },
             callback: function(r) {
                 if(r.message)  {
                     console.log(r);

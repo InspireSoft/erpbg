@@ -1,8 +1,7 @@
 import frappe
-import datetime
 
 
 @frappe.whitelist()
-def generate_custom_number(production_item, sales_order):
-    soi = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `item_name`=%s `parent`=%s""", (production_item, sales_order))
+def get_sales_order_item(item_name, sales_order):
+    soi = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `item_name`=%s `parent`=%s""", (item_name, sales_order))
     return soi[0]
