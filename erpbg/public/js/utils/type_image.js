@@ -1,6 +1,7 @@
 
 
 function type_image(item) {
+    console.log(item);
     if(item.divan_modification=="") {
 
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").each(function() {

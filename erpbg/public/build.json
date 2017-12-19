@@ -9,6 +9,7 @@
 		"public/js/Communication.js",
 		"public/js/ProductionOrder.js",
 		"public/js/MaterialRequest.js",
+		"public/js/MaterialRequestItem.js",
 		"public/js/BOM.js",
 		"public/js/SalesOrderItem.js"
 	]
