@@ -5,4 +5,12 @@ frappe.ui.form.on("Material Request", "onload_post_render", function (frm, cdt, 
     if(frm.doc.letter_head != "Dimela-Logo-Head") {
         cur_frm.set_value("letter_head", "Dimela-Logo-Head");
     }
+    if(locals[cdt][cdn].divan_modification != "") {
+        type_image(locals[cdt][cdn]);
+    }
+});
+frappe.ui.form.on("Quotation Item", "divan_modification", function (frm, cdt, cdn) {
+    if(locals[cdt][cdn].divan_modification != "") {
+        type_image(locals[cdt][cdn]);
+    }
 });

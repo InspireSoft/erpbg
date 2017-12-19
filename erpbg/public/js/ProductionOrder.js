@@ -2,7 +2,9 @@
  * Created by Simeon on 21-Nov-17.
  */
 frappe.ui.form.on("Production Order", "divan_modification", function (frm, cdt, cdn) {
-    type_image(locals[cdt][cdn]);
+    if(locals[cdt][cdn].divan_modification != "") {
+        type_image(locals[cdt][cdn]);
+    }
 });
 frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, cdn) {
     doc = locals[cdt][cdn];
