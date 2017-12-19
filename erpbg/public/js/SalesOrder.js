@@ -1,10 +1,7 @@
 /**
  * Created by Simeon on 21-Nov-17.
  */
-frappe.ui.form.on("Material Request", "onload_post_render", function (frm, cdt, cdn) {
-    if(frm.doc.letter_head != "Dimela-Logo-Head") {
-        cur_frm.set_value("letter_head", "Dimela-Logo-Head");
-    }
+frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) {
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {

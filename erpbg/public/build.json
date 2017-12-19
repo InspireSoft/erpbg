@@ -11,6 +11,7 @@
 		"public/js/MaterialRequest.js",
 		"public/js/MaterialRequestItem.js",
 		"public/js/BOM.js",
+		"public/js/SalesOrder.js",
 		"public/js/SalesOrderItem.js"
 	]
 }
