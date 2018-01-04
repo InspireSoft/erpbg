@@ -29,7 +29,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
 });
 
 
-make_bom(frm) {
+function make_bom(frm) {
     frappe.call({
         method: 'erpbg.erpbg.sales_order.get_bom_items',
         args: { "doc": frm.doc },
