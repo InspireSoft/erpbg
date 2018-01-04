@@ -5,10 +5,12 @@
 function make_call_for_soi(doc) {
     frappe.call({
         method: "erpbg.erpbg.sales_order.get_sales_order_item",
-        args: { "item_name": doc.item, "sales_order": doc.sales_order },
+        args: {
+            "item_name": doc.item,
+            "sales_order": doc.sales_order
+        },
         callback: function(r) {
             if(r.message)  {
-                console.log(r.message);
                 soi = r.message;
                 if(soi.type != doc.type) {
                     set_values_from_item(soi);
@@ -17,6 +19,37 @@ function make_call_for_soi(doc) {
         }
     })
 }
+
+function make_production_order(doc) {
+    frappe.call({
+        method: 'erpbg.erpbg.bom.make_production_order',
+        args: {
+            doc_name: doc.name
+        },
+        freeze: true,
+        callback: function(r) {
+            console.log(r);
+            if(r.message) {
+                frappe.msgprint({
+                    message: __('Production Orders Created: {0}', [repl('<a href="#Form/Production Order/%(name)s">%(name)s</a>', {name:r.message.name})]),
+                    indicator: 'green'
+                })
+            }
+            d.hide();
+        }
+    });
+}
+
+frappe.ui.form.on("BOM", "onload_post_render", function (frm, cdt, cdn) {
+    if(frm.doc.docstatus==1) {
+        if(frm.doc.status != 'Closed') {
+            frm.add_custom_button(
+                __('Production Order'),
+                function() { make_production_order(locals[cdt][cdn]) }, __("Make")
+            );
+        }
+    }
+});
 
 frappe.ui.form.on("BOM", "divan_modification", function (frm, cdt, cdn) {
     if(locals[cdt][cdn].divan_modification != "") {

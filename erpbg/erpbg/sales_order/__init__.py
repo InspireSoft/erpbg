@@ -40,12 +40,13 @@ def make_boms(items, sales_order, company):
         bom = frappe.get_doc(dict(
             doctype='BOM',
             production_item=i['item_code'],
-            qty=i['pending_qty'],
+            quantity=i['pending_qty'],
             company=company,
             sales_order=sales_order,
             fg_warehouse=i['warehouse']
         )).insert()
-    bom.set_production_order_operations()
+    bom.ignore_permissions = True
+    bom.flags.ignore_mandatory = True
     bom.save()
     out.append(bom)
 
