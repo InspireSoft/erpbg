@@ -1,22 +1,23 @@
 import frappe
+import json
 
 
 @frappe.whitelist()
-def get_bom_items(self):
+def get_bom_items(self, doc):
     '''Returns items with BOM that already do not have a linked production order'''
     items = []
 
-    for table in [self.items, self.packed_items]:
+    for table in [doc.items, doc.packed_items]:
         for i in table:
             bom = get_default_bom_item(i.item_code)
             if bom:
-                stock_qty = i.qty if i.doctype == 'Packed Item' else i.stock_qty
+                # stock_qty = i.qty if i.doctype == 'Packed Item' else i.stock_qty
                 items.append(dict(
                     item_code= i.item_code,
                     bom = bom,
                     warehouse = i.warehouse,
-                    pending_qty= stock_qty - flt(frappe.db.sql('''select sum(qty) from `tabProduction Order`
-                        where production_item=%s and sales_order=%s''', (i.item_code, self.name))[0][0])
+                    # pending_qty= stock_qty - flt(frappe.db.sql('''select sum(qty) from `tabBOM`
+                    #     where production_item=%s and sales_order=%s''', (i.item_code, doc.name))[0][0])
                 ))
 
     return items
