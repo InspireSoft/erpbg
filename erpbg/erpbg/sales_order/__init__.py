@@ -3,7 +3,7 @@ import json
 
 
 @frappe.whitelist()
-def get_bom_items(self, doc):
+def get_bom_items(doc):
     '''Returns items with BOM that already do not have a linked production order'''
     items = []
 
