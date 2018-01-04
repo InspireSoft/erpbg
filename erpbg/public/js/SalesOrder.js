@@ -22,17 +22,20 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
         if(frm.doc.status != 'Closed') {
             frm.add_custom_button(
                 __('BOM'),
-                function() { make_bom(frm) }, __("Make")
+                function() { make_bom(locals[cdt][cdn]) }, __("Make")
             );
         }
     }
 });
 
 
-function make_bom(frm) {
+function make_bom(doc) {
     frappe.call({
         method: 'erpbg.erpbg.sales_order.get_bomed_items',
-        args: { "doc": frm.doc },
+        args: {
+            "sales_order_items_string": doc.items,
+            "sales_order_name": doc.name
+        },
         callback: function(r) {
             if(r.message && !r.message.every( function(d) { return !!d.pending_qty } )) {
                 frappe.msgprint({
@@ -65,8 +68,8 @@ function make_bom(frm) {
                             method: 'erpbg.erpbg.sales_order.make_boms',
                             args: {
                                 items: data,
-                                company: frm.doc.company,
-                                sales_order: frm.docname
+                                company: doc.company,
+                                sales_order: doc.name
                             },
                             freeze: true,
                             callback: function(r) {
