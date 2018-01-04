@@ -18,9 +18,9 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
 
 
 frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
-    if(doc.docstatus==1) {
-        if(doc.status != 'Closed') {
-            this.frm.add_custom_button(
+    if(frm.doc.docstatus==1) {
+        if(frm.doc.status != 'Closed') {
+            frm.add_custom_button(
                 __('BOM'),
                 function() { make_bom(frm) }, __("Make")
             );
