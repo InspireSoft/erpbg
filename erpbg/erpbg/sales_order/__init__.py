@@ -10,9 +10,6 @@ def get_bomed_items(sales_order_items_string, sales_order_name):
     sales_order_items = ast.literal_eval(sales_order_items_string)
 
     for item in sales_order_items:
-        print ""
-        print item
-        print ""
         bom = get_default_bom_item_object(str(item["item_code"]))
         if bom:
             items.append(dict(
