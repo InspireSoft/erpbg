@@ -31,10 +31,10 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
 
 function make_bom(frm) {
     frappe.call({
-        method: 'erpbg.erpbg.sales_order.get_bom_items',
+        method: 'erpbg.erpbg.sales_order.get_bomed_items',
         args: { "doc": frm.doc },
         callback: function(r) {
-            if(!r.message.every(function(d) { return !!d.pending_qty })) {
+            if(r.message && !r.message.every( function(d) { return !!d.pending_qty } )) {
                 frappe.msgprint({
                     title: __('BOM not created'),
                     message: __('BOM already created for all items'),
@@ -44,14 +44,10 @@ function make_bom(frm) {
             } else {
                 var fields = [
                     {fieldtype:'Table', fieldname: 'items',
-                        description: __('Select BOM and Qty for Production'),
+                        description: __('Select items for BOMs'),
                         fields: [
                             {fieldtype:'Read Only', fieldname:'item_code',
                                 label: __('Item Code'), in_list_view:1},
-                            {fieldtype:'Link', fieldname:'bom', options: 'BOM', reqd: 1,
-                                label: __('Select BOM'), in_list_view:1, get_query: function(doc) {
-                                    return {filters: {item: doc.item_code}};
-                                }},
                             {fieldtype:'Float', fieldname:'pending_qty', reqd: 1,
                                 label: __('Qty'), in_list_view:1},
                         ],
@@ -69,9 +65,8 @@ function make_bom(frm) {
                             method: 'erpbg.erpbg.sales_order.make_boms',
                             args: {
                                 items: data,
-                                company: me.frm.doc.company,
-                                sales_order: me.frm.docname,
-                                project: me.frm.project
+                                company: frm.doc.company,
+                                sales_order: frm.docname
                             },
                             freeze: true,
                             callback: function(r) {

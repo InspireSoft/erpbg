@@ -3,21 +3,18 @@ import json
 
 
 @frappe.whitelist()
-def get_bom_items(doc):
-    '''Returns items with BOM that already do not have a linked production order'''
+def get_bomed_items(doc):
+    '''Returns items with BOM that already do not have a linked Sales Order'''
     items = []
 
-    for table in [doc.items, doc.packed_items]:
+    for table in [doc.items]:
         for i in table:
             bom = get_default_bom_item(i.item_code)
             if bom:
-                # stock_qty = i.qty if i.doctype == 'Packed Item' else i.stock_qty
                 items.append(dict(
                     item_code= i.item_code,
-                    bom = bom,
-                    warehouse = i.warehouse,
-                    # pending_qty= stock_qty - flt(frappe.db.sql('''select sum(qty) from `tabBOM`
-                    #     where production_item=%s and sales_order=%s''', (i.item_code, doc.name))[0][0])
+                    sales_order = doc.name,
+                    warehouse = i.warehouse
                 ))
 
     return items
@@ -32,7 +29,7 @@ def get_default_bom_item(item_code):
 	return bom
 
 @frappe.whitelist()
-def make_boms(items, sales_order, company, project=None):
+def make_boms(items, sales_order, company):
 	'''Make BOMs against the given Sales Order for the given `items`'''
 	items = json.loads(items).get('items')
 	out = []
@@ -44,11 +41,9 @@ def make_boms(items, sales_order, company, project=None):
 		bom = frappe.get_doc(dict(
 			doctype='BOM',
 			production_item=i['item_code'],
-			bom_no=i.get('bom'),
 			qty=i['pending_qty'],
 			company=company,
 			sales_order=sales_order,
-			project=project,
 			fg_warehouse=i['warehouse']
 		)).insert()
         bom.set_production_order_operations()
