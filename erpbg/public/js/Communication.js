@@ -13,5 +13,5 @@ frappe.ui.form.on("Communication", {
 });
 
 frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn) {
-    jQuerry('div[data-label="Make"]').css("display","none");
+    jQuery('div[data-label="Make"]').css("display","none");
 });
