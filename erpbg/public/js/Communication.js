@@ -13,7 +13,7 @@ frappe.ui.form.on("Communication", {
 });
 
 frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn) {
-    jQuery('div[data-label="Създаване"]').css("display","none");
+    console.log(jQuery('div[data-label="Създаване"]'))//.css("display","none");
     jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').html('Създаване <span class="caret"></span>');
     jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').addClass('btn-primary');
 });
