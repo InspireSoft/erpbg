@@ -16,10 +16,9 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
             args: { "item_name": doc.production_item, "sales_order": doc.sales_order },
             callback: function(r) {
                 if(r.message)  {
-                    console.log(r.message);
                     soi = r.message;
                     if(soi.type != doc.type) {
-                        set_values_from_item(soi);
+                        set_values_from_item(cdt, cdn, soi);
                     }
                 }
             }

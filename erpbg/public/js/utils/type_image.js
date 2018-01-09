@@ -1,7 +1,6 @@
 
 
 function type_image(item) {
-    console.log(item);
     if(!item.divan_modification || item.divan_modification=="") {
 
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").each(function() {
@@ -20,7 +19,7 @@ function type_image(item) {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").addClass("octicon-circle-slash");
         }
      } else {
-        console.log("url('/private/files/divan_"+(item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_"))+".png') no-repeat center center fixed");
+        //console.log("url('/private/files/divan_"+(item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_"))+".png') no-repeat center center fixed");
 
         var hasI = false;
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").each(function() {

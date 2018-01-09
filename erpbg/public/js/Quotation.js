@@ -14,7 +14,6 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
             }
         });
     });
-    console.log(frm.doc.letter_head);
     if(frm.doc.letter_head != "Dimela-Info-Head") {
         cur_frm.set_value("letter_head", "Dimela-Info-Head");
         cur_frm.set_value("taxes_and_charges", "Bulgaria VAT 20%");

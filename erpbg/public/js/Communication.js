@@ -8,6 +8,7 @@ frappe.ui.form.on("Communication", {
                     frappe.new_doc("Quotation")
                 })
             }, "Make");
+		    frm.page.set_inner_btn_group_as_primary(__("Make"));
 		}
 	},
 });
