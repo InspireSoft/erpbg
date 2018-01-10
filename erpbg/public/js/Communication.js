@@ -1,10 +1,11 @@
 
 function communication_make_button_fix() {
     if(chosen_language != "" && chosen_language != "en" &&jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').length) {
-        console.log("changing Make to bg for current language: "+chosen_language);
-        jQuery('div[data-label="Създаване"]').css('display','none');
-        jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').html('Създаване <span class="caret"></span>');
-        jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').addClass('btn-primary');
+        setTimeout(function(){
+            jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').html('Създаване <span class="caret"></span>');
+            jQuery('div[data-label="Make"] button[data-toggle="dropdown"]').addClass('btn-primary');
+            jQuery('div[data-label="Създаване"]').css("display","none");
+        }, 100);
     }
 }
 
