@@ -133,9 +133,25 @@
     "route": "/admissions", 
     "target": null, 
     "title": "Admission"
+   }, 
+   {
+    "enabled": 1, 
+    "reference_doctype": "Grant Application", 
+    "role": "Non Profit Portal User", 
+    "route": "/grant-application", 
+    "target": null, 
+    "title": "Grant Application"
+   }, 
+   {
+    "enabled": 1, 
+    "reference_doctype": "Chapter", 
+    "role": null, 
+    "route": "/chapters", 
+    "target": null, 
+    "title": "Chapter"
    }
   ], 
-  "modified": "2017-11-21 12:11:20.168495", 
+  "modified": "2018-01-10 13:22:34.485598", 
   "name": "Portal Settings"
  }
 ]
