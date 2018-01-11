@@ -22,14 +22,14 @@
   "name": "Dimela-Quotation-Head"
  }, 
  {
-  "content": "<div class=\"header-logo\">\n\t<img src=\"/files/Dimela_logo_.png\" class=\"header-logo\" title=\"\">\n</div>", 
+  "content": "<div class=\"header-logo\">\n\t<img src=\"/files/Dimela_logo_.png\" style=\"width: 20%;\" class=\"header-logo\" title=\"\">\n</div>", 
   "disabled": 0, 
   "docstatus": 0, 
   "doctype": "Letter Head", 
   "footer": "", 
   "is_default": 0, 
   "letter_head_name": "Dimela-Logo-Head", 
-  "modified": "2017-12-12 14:03:31.689367", 
+  "modified": "2018-01-10 14:42:32.494174", 
   "name": "Dimela-Logo-Head"
  }, 
  {
