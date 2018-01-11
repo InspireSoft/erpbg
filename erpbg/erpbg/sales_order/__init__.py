@@ -1,13 +1,12 @@
 import frappe
 import json
-import ast
 
 
 @frappe.whitelist()
-def get_bomed_items(sales_order_items_string, sales_order_name):
+def get_bomed_items(sales_order_name):
     '''Returns items with BOM that already do not have a linked Sales Order'''
     items = []
-    sales_order_items = ast.literal_eval(sales_order_items_string)
+    sales_order_items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s""", (sales_order_name), as_dict=True)
 
     for item in sales_order_items:
         bom = get_default_bom_item_object(str(item["item_code"]))

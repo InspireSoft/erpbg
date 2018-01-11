@@ -1,6 +1,13 @@
 /**
  * Created by Simeon on 21-Nov-17.
  */
+frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        cur_frm.set_df_property("quotation_attachment", "hidden", false);
+        return;
+    }
+}
+
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");

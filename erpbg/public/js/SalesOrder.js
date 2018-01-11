@@ -33,11 +33,12 @@ function make_bom(doc) {
     frappe.call({
         method: 'erpbg.erpbg.sales_order.get_bomed_items',
         args: {
-            "sales_order_items_string": doc.items,
             "sales_order_name": doc.name
         },
         callback: function(r) {
+            console.log("before");
             if(r.message && !r.message.every( function(d) { return !!d.pending_qty } )) {
+                console.log("if");
                 frappe.msgprint({
                     title: __('BOM not created'),
                     message: __('BOM already created for all items'),
@@ -45,6 +46,7 @@ function make_bom(doc) {
                 });
                 return;
             } else {
+                console.log("else");
                 var fields = [
                     {fieldtype:'Table', fieldname: 'items',
                         description: __('Select items for BOMs'),
@@ -59,11 +61,13 @@ function make_bom(doc) {
                         }
                     }
                 ]
+                console.log("make dialog");
                 var d = new frappe.ui.Dialog({
-                    title: __('Select Items to Manufacture'),
+                    title: __('Select Items to create BOMs'),
                     fields: fields,
                     primary_action: function() {
                         var data = d.get_values();
+                        console.log("primary action in dialog");
                         frappe.call({
                             method: 'erpbg.erpbg.sales_order.make_boms',
                             args: {
@@ -73,6 +77,7 @@ function make_bom(doc) {
                             },
                             freeze: true,
                             callback: function(r) {
+                                console.log("response in dialog");
                                 if(r.message) {
                                     frappe.msgprint({
                                         message: __('BOMs Created: {0}',
@@ -88,6 +93,7 @@ function make_bom(doc) {
                     },
                     primary_action_label: __('Make')
                 });
+                console.log("show dialog");
                 d.show();
             }
         }
