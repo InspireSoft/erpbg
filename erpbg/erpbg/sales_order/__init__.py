@@ -31,6 +31,11 @@ def make_boms(items, sales_order, company):
     '''Make BOMs against the given Sales Order for the given `items`'''
     items = json.loads(items).get('items')
     out = []
+    # print ""
+    # print ""
+    # print items
+    # print ""
+    # print ""
 
     for i in items:
         if not i.get("pending_qty"):

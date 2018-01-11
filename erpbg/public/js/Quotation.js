@@ -6,7 +6,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         cur_frm.set_df_property("quotation_attachment", "hidden", false);
         return;
     }
-}
+});
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
