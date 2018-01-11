@@ -36,9 +36,7 @@ function make_bom(doc) {
             "sales_order_name": doc.name
         },
         callback: function(r) {
-            console.log("before");
             if(r.message && !r.message.every( function(d) { return !!d.pending_qty } )) {
-                console.log("if");
                 frappe.msgprint({
                     title: __('BOM not created'),
                     message: __('BOM already created for all items'),
@@ -46,28 +44,55 @@ function make_bom(doc) {
                 });
                 return;
             } else {
-                console.log("else");
-                var fields = [
-                    {fieldtype:'Table', fieldname: 'items',
-                        description: __('Select items for BOMs'),
-                        fields: [
-                            {fieldtype:'Read Only', fieldname:'item_code',
-                                label: __('Item Code'), in_list_view:1},
-                            {fieldtype:'Float', fieldname:'pending_qty', reqd: 1,
-                                label: __('Qty'), in_list_view:1},
-                        ],
-                        get_data: function() {
-                            return r.message
-                        }
-                    }
-                ]
-                console.log("make dialog");
                 var d = new frappe.ui.Dialog({
                     title: __('Select Items to create BOMs'),
-                    fields: fields,
+                    fields: [{
+                        fieldtype:'Table',
+                        fieldname: 'items',
+                        description: __('Select Items and Qty for BOMs'),
+                        fields: [
+                            {
+                                fieldtype:'Read Only',
+                                fieldname:'item_code',
+                                label: __('Item Code'),
+                                in_list_view:1
+                            },
+                            {
+                                fieldtype:'Float',
+                                fieldname:'qty',
+                                reqd: 1,
+                                label: __('Qty'),
+                                in_list_view:1
+                            }
+                        ],
+                        get_data: function() {
+                            var items_without_bom = [];
+                            doc.items.forEach(function(entry) {
+                                if(!r.message) {
+                                    items_without_bom.push(entry);
+                                } else {
+                                    var hasBom = false;
+                                    r.message.forEach(function(bom_entry){
+                                        hasBom = hasBom || bom_entry.item_code == entry.item_code;
+                                    });
+                                    if(!hasBom) {
+                                        items_without_bom.push(entry);
+                                    }
+                                }
+                            });
+                            if(items_without_bom.lenght <= 0) {
+                                d.hide();
+                                frappe.msgprint({
+                                    title: __('BOM not created'),
+                                    message: __('No Items avaliable for BOM'),
+                                    indicator: 'orange'
+                                });
+                            }
+                            return items_without_bom
+                        }
+                    }],
                     primary_action: function() {
                         var data = d.get_values();
-                        console.log("primary action in dialog");
                         frappe.call({
                             method: 'erpbg.erpbg.sales_order.make_boms',
                             args: {
@@ -78,6 +103,7 @@ function make_bom(doc) {
                             freeze: true,
                             callback: function(r) {
                                 console.log("response in dialog");
+                                console.log(r);
                                 if(r.message) {
                                     frappe.msgprint({
                                         message: __('BOMs Created: {0}',
@@ -93,7 +119,6 @@ function make_bom(doc) {
                     },
                     primary_action_label: __('Make')
                 });
-                console.log("show dialog");
                 d.show();
             }
         }

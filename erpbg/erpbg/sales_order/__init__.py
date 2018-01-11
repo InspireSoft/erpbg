@@ -1,5 +1,6 @@
 import frappe
 import json
+from frappe import _
 
 
 @frappe.whitelist()
@@ -31,28 +32,31 @@ def make_boms(items, sales_order, company):
     '''Make BOMs against the given Sales Order for the given `items`'''
     items = json.loads(items).get('items')
     out = []
-    # print ""
-    # print ""
-    # print items
-    # print ""
-    # print ""
 
     for i in items:
-        if not i.get("pending_qty"):
+        if not i.get("qty"):
             frappe.throw(_("Please select Qty against item {0}").format(i.get("item_code")))
 
-        bom = frappe.get_doc(dict(
-            doctype='BOM',
-            production_item=i['item_code'],
-            quantity=i['pending_qty'],
-            company=company,
-            sales_order=sales_order,
-            fg_warehouse=i['warehouse']
-        )).insert()
-    bom.ignore_permissions = True
-    bom.flags.ignore_mandatory = True
-    bom.save()
-    out.append(bom)
+        bom = frappe.new_doc("BOM")
+        bom.item = i['item_code']
+        bom.quantity = i['qty']
+        bom.company = company
+        bom.sales_order = sales_order
+        bom.fg_warehouse = 'Stores - DD'
+        bom.append("items", {
+            'item_code': '-15',
+            'qty': 1,
+            'conversion_factor': 1.0,
+            'rate': 0.000001,
+            'amount': 1
+        })
+
+        bom.ignore_permissions = True
+        bom.insert()
+        bom.save()
+        bom.submit()
+
+        out.append(bom)
 
     return [p.name for p in out]
 
