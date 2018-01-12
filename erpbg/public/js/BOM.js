@@ -6,7 +6,7 @@ function make_call_for_soi(cdt, cdn) {
     frappe.call({
         method: "erpbg.erpbg.sales_order.get_sales_order_item",
         args: {
-            "item_name": locals[cdt][cdn].item,
+            "item_code": locals[cdt][cdn].item,
             "sales_order": locals[cdt][cdn].sales_order
         },
         callback: function(r) {
@@ -14,6 +14,7 @@ function make_call_for_soi(cdt, cdn) {
                 soi = r.message;
                 if(soi.type != locals[cdt][cdn].type) {
                     set_values_from_item(cdt, cdn, soi);
+                    frm.save();
                 }
             }
         }

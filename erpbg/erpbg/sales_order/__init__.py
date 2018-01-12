@@ -62,6 +62,25 @@ def make_boms(items, sales_order, company):
 
 
 @frappe.whitelist()
-def get_sales_order_item(item_name, sales_order):
-    soi = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `item_name`=%s AND `parent`=%s""", (item_name, sales_order), as_dict=True)
+def get_sales_order_item(item_code, sales_order):
+    soi = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `item_code`=%s AND `parent`=%s""", (item_code, sales_order), as_dict=True)
     return soi[0]
+
+
+@frappe.whitelist()
+def get_quotation_attachments(quotation_name, sales_order_name):
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s""", (sales_order_name), as_dict=True)
+    if len(existing_attachments) > 0:
+        return False
+
+    qattachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Quotation' AND `attached_to_name`=%s""", (quotation_name), as_dict=True)
+    sattachments = []
+    for qattachment in qattachments:
+        sattachment = frappe.new_doc("File")
+        sattachment.update(qattachment)
+        sattachment.attached_to_name = sales_order_name
+        sattachment.attached_to_doctype = "Sales Order"
+        sattachment.save(ignore_permissions=True)
+        sattachments.append(sattachment)
+        frappe.db.commit()
+    return sattachments

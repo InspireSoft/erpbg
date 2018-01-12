@@ -38,4 +38,5 @@ def generate_custom_number(qname, customer):
         if len(number) > 0:
             number += "-"
         number += str(customer.customer_cnumber)
+
     return number

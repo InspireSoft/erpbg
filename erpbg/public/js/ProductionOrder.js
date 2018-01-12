@@ -13,15 +13,37 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
     } else if(doc.sales_order) {
         frappe.call({
             method: "erpbg.erpbg.production_order.get_sales_order_item",
-            args: { "item_name": doc.production_item, "sales_order": doc.sales_order },
+            args: { "item_code": doc.production_item, "sales_order_name": doc.sales_order },
             callback: function(r) {
                 if(r.message)  {
                     soi = r.message;
                     if(soi.type != doc.type) {
                         set_values_from_item(cdt, cdn, soi);
+                        frm.save();
                     }
                 }
             }
         })
+    }
+
+    if(frm.doc.copied_attachments == 0) {
+        frappe.call({
+            method: 'erpbg.erpbg.production_order.get_sales_order_attachments',
+            args: {
+                "production_order_name": frm.doc.name,
+                "sales_order_name": frm.doc.sales_order
+            },
+            callback: function(r) {
+                console.log(r);
+                if(r.message) {
+                    r.message.forEach(function(attachment){
+                        frm.attachments.update_attachment(attachment);
+                    });
+                    frm.refresh();
+                }
+            }
+        });
+        frappe.model.set_value(cdt, cdn, "copied_attachments", 1);
+        frm.save();
     }
 });
