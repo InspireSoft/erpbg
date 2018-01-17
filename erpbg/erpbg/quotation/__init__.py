@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import frappe
 import datetime
 
 
 @frappe.whitelist()
 def generate_custom_number(qname, customer):
-
     number = ""
 
     if len(qname) > 0:
@@ -13,8 +15,11 @@ def generate_custom_number(qname, customer):
             return quotation.cnumber
         year_and_month = str(quotation.transaction_date)[0:7]
 
-    quotations = frappe.db.sql('''SELECT `name`,`transaction_date` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
-                               (customer, str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m"))+"%"), as_dict=True)
+    quotations = frappe.db.sql(
+        '''SELECT `name`,`transaction_date` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
+        (customer,
+         str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "%"),
+        as_dict=True)
 
     if len(quotations) > 0:
         year_and_month = str(quotations[0].transaction_date)[0:7]

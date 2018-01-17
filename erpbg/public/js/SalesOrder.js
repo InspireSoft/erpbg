@@ -145,3 +145,29 @@ function make_bom(doc) {
         }
     });
 }
+
+
+var custom_button_attached_handler = function(wrapper) {
+    if(frappe.pages["List/Sales Order"] !== undefined && frappe.pages["List/Sales Order"].list_view !== undefined && frappe.pages["List/Sales Order"].list_view.page !== undefined) {
+        frappe.pages["List/Sales Order"].list_view.page.add_menu_item(__("Make Report"), function() {
+            if(frappe.pages["List/Sales Order"].list_view.get_checked_items().length > 0) {
+                var me = frappe.pages["List/Sales Order"].list_view;
+                var url = "/?names=[";
+                var separator = false;
+                frappe.pages["List/Sales Order"].list_view.get_checked_items().forEach(function(doc){
+                    if(separator) {
+                        url += ",";
+                    }
+                    separator = true;
+                    url += "\""+doc.name+"\"";
+                });
+                url += "]&cmd=erpbg.erpbg.sales_order.make_report";
+                window.open(url);
+            } else {
+                frappe.msgprint(__("No selected Sales Orders to make Report!"));
+            }
+        });
+        jQuery(document).unbind("ajaxComplete", custom_button_attached_handler);
+    }
+};
+jQuery(document).bind("ajaxComplete", custom_button_attached_handler);
