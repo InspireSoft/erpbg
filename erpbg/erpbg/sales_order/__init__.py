@@ -89,31 +89,96 @@ def get_quotation_attachments(quotation_name, sales_order_name):
     return sattachments
 
 
-def collection(item, number):
+def divan_pillow_collection(item, number):
     html = ""
 
-    if item["name_" + str(number)]:
-        html += " " + item["name_" + str(number)]
-    if item["purpose_" + str(number)]:
-        html += u" (приложение - " + item["purpose_" + str(number)] + ")"
+    space = False
+    if item["divan_pcollection_" + str(number) + "_name"]:
+        html += " " + item["divan_pcollection_" + str(number) + "_name"]
+        space = True
+
+    if item["divan_pcollection_" + str(number) + "_name"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += "Размер " + item["divan_pcollection_" + str(number) + "_size"]
+
+    if item["divan_pcollection_" + str(number) + "_supplier"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += u", Доставчик: " + item["divan_pcollection_" + str(number) + "_supplier"]
+
     if item["color_" + str(number)]:
-        html += u", Цвят: " + item["color_" + str(number)]
-    if item["supplier_" + str(number)]:
-        html += u", Доставчик: " + item["supplier_" + str(number)]
-    if item["quantity_" + str(number)]:
-        html += ", " + item["quantity_" + str(number)] + u" броя"
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += u", Дамаска цвят: " + item["divan_pcollection_" + str(number) + "_damaska_color"]
+
+    if item["divan_pcollection_" + str(number) + "_quantity"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += u", Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"]
+
+    if item["divan_pcollection_" + str(number) + "_quantity"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += ", " + item["divan_pcollection_" + str(number) + "_number"] + u" броя"
 
     return html
 
 
-def koja_ili_damaska(item):
+def collection(item, number):
     html = ""
-    if item.collection_1:
-        html += collection(item, 1)
-    if item.collection_2:
-        html += collection(item, 2)
-    if item.collection_3:
-        html += collection(item, 3)
+
+    space = False
+    if item["name_" + str(number)]:
+        html += " " + item["name_" + str(number)]
+
+    if item["purpose_" + str(number)]:
+        if space:
+            html += " "
+        else:
+            html += " "
+            space = True
+        html += u"(приложение - " + item["purpose_" + str(number)] + ")"
+
+    if item["color_" + str(number)]:
+        if space:
+            html += " "
+        else:
+            html += " "
+            space = True
+        html += u", Цвят: " + item["color_" + str(number)]
+
+    if item["supplier_" + str(number)]:
+        if space:
+            html += " "
+        else:
+            html += " "
+            space = True
+        html += u", Доставчик: " + item["supplier_" + str(number)]
+
+    if item["quantity_" + str(number)]:
+        if space:
+            html += " "
+        else:
+            html += " "
+            space = True
+        html += ", " + item["quantity_" + str(number)] + u" броя"
+
     return html
 
 
@@ -143,7 +208,7 @@ def make_report(names):
             if not info:
                 html += " - "
             info = True
-            html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + ". "
+            html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + "г. "
         if doc.owner:
             if not info:
                 html += " - "
@@ -155,15 +220,44 @@ def make_report(names):
 
         for item in items:
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name
+
+            # koja section
+            koja = False
+            if item.estestvena_koja or item.eco_koja or item.damaska:
+                html += "<br/>"
             if item.estestvena_koja:
-                html += u", Естествена кожа"
-                html += koja_ili_damaska(item)
+                html += u"Естествена кожа"
+                koja = True
             if item.eco_koja:
-                html += u", Еко кожа"
-                html += koja_ili_damaska(item)
+                if koja:
+                    html += ", "
+                html += u"Еко кожа"
+                koja = True
             if item.damaska:
-                html += u", Дамаска"
-                html += koja_ili_damaska(item)
+                if koja:
+                    html += ", "
+                html += u"Дамаска"
+                koja = True
+            if koja:
+                html += ":<br/>"
+                if item.collection_1:
+                    html += u"Колекция: " + collection(item, 1) + "<br/>"
+                if item.collection_2:
+                    html += u"Колекция: " + collection(item, 2) + "<br/>"
+                if item.collection_3:
+                    html += u"Колекция: " + collection(item, 3) + "<br/>"
+
+            # pillow section
+            if item.divan_pillow_collection_1:
+                html += u"Колекция възглавници:"
+                html += divan_pillow_collection(item, 1) + "<br/>"
+            if item.divan_pillow_collection_2:
+                html += u"Колекция възглавници:"
+                html += divan_pillow_collection(item, 2) + "<br/>"
+            if item.divan_pillow_collection_3:
+                html += u"Колекция възглавници:"
+                html += divan_pillow_collection(item, 3) + "<br/>"
+
             html += "</div>"
 
         for file in attachments:
