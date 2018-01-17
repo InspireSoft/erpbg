@@ -103,7 +103,7 @@ def divan_pillow_collection(item, number):
         else:
             html += " "
             space = True
-        html += "Размер " + item["divan_pcollection_" + str(number) + "_size"]
+        html += u"Размер " + item["divan_pcollection_" + str(number) + "_size"]
 
     if item["divan_pcollection_" + str(number) + "_supplier"]:
         if space:
@@ -111,23 +111,15 @@ def divan_pillow_collection(item, number):
         else:
             html += " "
             space = True
-        html += u", Доставчик: " + item["divan_pcollection_" + str(number) + "_supplier"]
+        html += u"Доставчик: " + item["divan_pcollection_" + str(number) + "_supplier"]
 
-    if item["color_" + str(number)]:
+    if item["divan_pcollection_" + str(number) + "_damaska_color"]:
         if space:
             html += ", "
         else:
             html += " "
             space = True
-        html += u", Дамаска цвят: " + item["divan_pcollection_" + str(number) + "_damaska_color"]
-
-    if item["divan_pcollection_" + str(number) + "_quantity"]:
-        if space:
-            html += ", "
-        else:
-            html += " "
-            space = True
-        html += u", Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"]
+        html += u"Дамаска цвят: " + item["divan_pcollection_" + str(number) + "_damaska_color"]
 
     if item["divan_pcollection_" + str(number) + "_quantity"]:
         if space:
@@ -135,7 +127,15 @@ def divan_pillow_collection(item, number):
         else:
             html += " "
             space = True
-        html += ", " + item["divan_pcollection_" + str(number) + "_number"] + u" броя"
+        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"]
+
+    if item["divan_pcollection_" + str(number) + "_number"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += str(item["divan_pcollection_" + str(number) + "_number"]) + u" броя"
 
     return html
 
@@ -161,7 +161,7 @@ def collection(item, number):
         else:
             html += " "
             space = True
-        html += u", Цвят: " + item["color_" + str(number)]
+        html += u"Цвят: " + item["color_" + str(number)]
 
     if item["supplier_" + str(number)]:
         if space:
@@ -169,7 +169,7 @@ def collection(item, number):
         else:
             html += " "
             space = True
-        html += u", Доставчик: " + item["supplier_" + str(number)]
+        html += u"Доставчик: " + item["supplier_" + str(number)]
 
     if item["quantity_" + str(number)]:
         if space:
@@ -177,7 +177,7 @@ def collection(item, number):
         else:
             html += " "
             space = True
-        html += ", " + item["quantity_" + str(number)] + u" броя"
+        html += item["quantity_" + str(number)] + u" броя"
 
     return html
 
@@ -208,7 +208,7 @@ def make_report(names):
             if not info:
                 html += " - "
             info = True
-            html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + "г. "
+            html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + u"г. "
         if doc.owner:
             if not info:
                 html += " - "
@@ -249,14 +249,16 @@ def make_report(names):
 
             # pillow section
             if item.divan_pillow_collection_1:
-                html += u"Колекция възглавници:"
+                html += u"Колекция декоративнивъзглавници:"
                 html += divan_pillow_collection(item, 1) + "<br/>"
             if item.divan_pillow_collection_2:
-                html += u"Колекция възглавници:"
+                html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 2) + "<br/>"
             if item.divan_pillow_collection_3:
-                html += u"Колекция възглавници:"
+                html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 3) + "<br/>"
+
+            #
 
             html += "</div>"
 
