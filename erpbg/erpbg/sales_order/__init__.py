@@ -191,13 +191,21 @@ def make_report(names):
         names = json.loads(names)
 
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
-    for doc_name in names:
-        print doc_name
-        doc = frappe.db.get_values("Sales Order", doc_name, "*", as_dict=True)[0]
-        attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc_name), as_dict=True)
-        items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc_name), as_dict=True)
+    docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
 
-        html += u"<font style='font-weight: bold'>Заявка " + doc_name + "</font>"
+    html += u"<h1> Поръчки "
+    if len(docs)>0:
+        if docs[0].execution_date_limit:
+            html += u"от " + str(docs[0].execution_date_limit.strftime("%d") + "-" + docs[0].execution_date_limit.strftime("%m") + "-" + docs[0].execution_date_limit.strftime("%Y")) + u"г. "
+        if len(docs)>1 and docs[len(docs)-1].execution_date_limit:
+            html += u"до " + str(docs[len(docs)-1].execution_date_limit.strftime("%d") + "-" + docs[len(docs)-1].execution_date_limit.strftime("%m") + "-" + docs[len(docs)-1].execution_date_limit.strftime("%Y")) + u"г. "
+    html += "</h1><br/><br/>"
+
+    for doc in docs:
+        attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
+        items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
+
+        html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
 
         info = False
         if doc.execution_date_limit:
