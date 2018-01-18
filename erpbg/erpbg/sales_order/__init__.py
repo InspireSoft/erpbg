@@ -257,7 +257,7 @@ def make_report(names):
             if item.divan_modification:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 #
-                html += "<img src='/private/files/divan_" + item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_") + ".png" + item.divan_modification_image.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                html += "<img src='/private/files/divan_" + item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_") + ".png' alt='' style='vertical-align: top;max-height: 600px;' />"
                 html += "</div><br/>"
 
         # attachment images
