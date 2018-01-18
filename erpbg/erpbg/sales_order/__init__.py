@@ -190,7 +190,6 @@ def make_report(names):
     else:
         names = json.loads(names)
 
-    image = False
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     for doc_name in names:
         print doc_name
@@ -255,25 +254,18 @@ def make_report(names):
 
             # divan images
             html += "</div>"
-            if item.divan_modification_image:
+            if item.divan_modification:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
-                image = True
-            if item.divan_modification_image:
-                html += "<img src='" + item.divan_modification_image.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
-            if image:
-                html += "</div>"
-                image = False
-            html += "</div>"
+                #
+                html += "<img src='/private/files/divan_" + item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_") + ".png" + item.divan_modification_image.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                html += "</div><br/>"
 
         # attachment images
-        if len(attachments)>0:
+        if len(attachments) > 0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
-            image = True
-        for doc_file in attachments:
-            html += "<img src='" + doc_file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
-        if image:
+            for doc_file in attachments:
+                html += "<img src='" + doc_file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
             html += "</div><br/>"
-            image = False
         html += "<br/>"
 
     html += "</body></html>"
