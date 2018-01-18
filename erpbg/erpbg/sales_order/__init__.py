@@ -190,9 +190,7 @@ def make_report(names):
     else:
         names = json.loads(names)
 
-    print ""
-    print ""
-
+    image = False
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     for doc_name in names:
         print doc_name
@@ -214,8 +212,6 @@ def make_report(names):
             info = True
             html += doc.owner
         html += "<br/>"
-
-        image = False
 
         for item in items:
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name
@@ -257,23 +253,27 @@ def make_report(names):
                 html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 3) + "<br/>"
 
-            #
-
+            # divan images
             html += "</div>"
-            if not image and item.divan_modification_image:
+            if item.divan_modification_image:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 image = True
             if item.divan_modification_image:
                 html += "<img src='" + item.divan_modification_image.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+            if image:
+                html += "</div>"
+                image = False
+            html += "</div>"
 
-        if not image and len(attachments)>0:
+        # attachment images
+        if len(attachments)>0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
             image = True
-        for file in attachments:
-            html += "<img src='" + file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+        for doc_file in attachments:
+            html += "<img src='" + doc_file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
         if image:
-            html += "</div>"
             html += "</div><br/>"
+            image = False
         html += "<br/>"
 
     html += "</body></html>"
@@ -283,8 +283,5 @@ def make_report(names):
     response.mimetype = 'text/html'
     response.charset = 'utf-8'
     response.data = html
-
-    print ""
-    print ""
 
     return response
