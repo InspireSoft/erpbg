@@ -190,40 +190,50 @@ def make_report(names):
     else:
         names = json.loads(names)
 
+    # setup html tags
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
+    # get all docs
     docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
 
+    # header
     html += u"<h1 align=center> Поръчки "
-    if len(docs)>0:
+    if len(docs) > 0:
         if docs[0].execution_date_limit:
             html += u"от " + str(docs[0].execution_date_limit.strftime("%d") + "-" + docs[0].execution_date_limit.strftime("%m") + "-" + docs[0].execution_date_limit.strftime("%Y")) + u"г. "
-        if len(docs)>1 and docs[len(docs)-1].execution_date_limit:
-            html += u"до " + str(docs[len(docs)-1].execution_date_limit.strftime("%d") + "-" + docs[len(docs)-1].execution_date_limit.strftime("%m") + "-" + docs[len(docs)-1].execution_date_limit.strftime("%Y")) + u"г. "
+        if len(docs) > 1 and docs[len(docs) - 1].execution_date_limit:
+            html += u"до " + str(docs[len(docs) - 1].execution_date_limit.strftime("%d") + "-" + docs[len(docs) - 1].execution_date_limit.strftime("%m") + "-" + docs[len(docs) - 1].execution_date_limit.strftime("%Y")) + u"г. "
     html += "</h1><br/><br/>"
 
+    # doc info and attachments
     for doc in docs:
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
 
+        # doc name
         html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
 
+        # doc date
         info = False
         if doc.execution_date_limit:
             if not info:
                 html += " - "
             info = True
             html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + u"г. "
+
+        # doc owner name
         if doc.owner:
             if not info:
                 html += " - "
             info = True
             html += doc.owner
-        html += "<br/>"
 
+        # doc item info and type image
+        html += "<br/>"
         for item in items:
+            # doc item name
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name
 
-            # koja section
+            # doc item koja section
             koja = False
             if item.estestvena_koja or item.eco_koja or item.damaska:
                 html += u" с "
@@ -249,7 +259,7 @@ def make_report(names):
                 if item.collection_3:
                     html += u"Колекция: " + collection(item, 3) + "<br/>"
 
-            # pillow section
+            # doc item pillow section
             if item.divan_pillow_collection_1:
                 html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 1) + "<br/>"
@@ -260,7 +270,7 @@ def make_report(names):
                 html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 3) + "<br/>"
 
-            # divan images
+            # doc item type image
             html += "</div>"
             if item.divan_modification:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
@@ -268,7 +278,7 @@ def make_report(names):
                 html += "<img src='/private/files/divan_" + item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_") + ".png' alt='' style='vertical-align: top;max-height: 600px;' />"
                 html += "</div><br/>"
 
-        # attachment images
+        # doc attachment images
         if len(attachments) > 0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
             for doc_file in attachments:
@@ -276,6 +286,7 @@ def make_report(names):
             html += "</div><br/>"
         html += "<br/>"
 
+    # html end tags
     html += "</body></html>"
 
     from werkzeug.wrappers import Response
