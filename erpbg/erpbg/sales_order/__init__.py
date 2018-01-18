@@ -265,15 +265,15 @@ def make_report(names):
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 image = True
             if item.divan_modification_image:
-                html += "<div style='align:left;'><img src='" + item.divan_modification_image + "' alt='' style='max-height: 600px;' /></div>"
+                html += "<img src='" + item.divan_modification_image + "' alt='' style='vertical-align: top;max-height: 600px;' />"
 
         if not image and len(attachments)>0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
             image = True
         for file in attachments:
-            html += "<div style='align:left;'><img src='" + file.file_url + "' alt='' style='max-height: 600px;' /></div>"
+            html += "<img src='" + file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
         if image:
-            html += "<div style='clear:both;'></div></div>"
+            html += "</div>"
             html += "</div><br/>"
         html += "<br/>"
 
