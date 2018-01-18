@@ -50,7 +50,7 @@ def make_boms(items, sales_order, company):
             'item_code': '-15',
             'qty': 1,
             'conversion_factor': 1.0,
-            'rate': 0.000001,
+            'rate': 0.01,
             'amount': 1
         })
 
