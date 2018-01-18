@@ -11,19 +11,21 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
     if(doc.divan_modification != "") {
         type_image(doc);
     } else if(doc.sales_order) {
-        frappe.call({
-            method: "erpbg.erpbg.production_order.get_sales_order_item",
-            args: { "item_code": doc.production_item, "sales_order_name": doc.sales_order },
-            callback: function(r) {
-                if(r.message)  {
-                    soi = r.message;
-                    if(soi.type != doc.type) {
-                        set_values_from_item(cdt, cdn, soi);
-                        frm.save();
+        if(!frm.doc.__islocal || frm.doc.__islocal == 0 || frm.doc.docstatus == 0) {
+            frappe.call({
+                method: "erpbg.erpbg.production_order.get_sales_order_item",
+                args: { "item_code": doc.production_item, "sales_order_name": doc.sales_order },
+                callback: function(r) {
+                    if(r.message)  {
+                        soi = r.message;
+                        if(soi.type != doc.type) {
+                            set_values_from_item(cdt, cdn, soi);
+                            frm.save();
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 
     if(frm.doc.copied_attachments == 0) {
@@ -44,6 +46,8 @@ frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, 
             }
         });
         frappe.model.set_value(cdt, cdn, "copied_attachments", 1);
-        frm.save();
+        if(!frm.doc.__islocal || frm.doc.__islocal == 0 || frm.doc.docstatus == 0) {
+            frm.save();
+        }
     }
 });
