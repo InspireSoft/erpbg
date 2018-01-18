@@ -157,7 +157,7 @@ def collection(item, number):
 
     if item["color_" + str(number)]:
         if space:
-            html += " "
+            html += ", "
         else:
             html += " "
             space = True
@@ -165,7 +165,7 @@ def collection(item, number):
 
     if item["supplier_" + str(number)]:
         if space:
-            html += " "
+            html += ", "
         else:
             html += " "
             space = True
@@ -173,7 +173,7 @@ def collection(item, number):
 
     if item["quantity_" + str(number)]:
         if space:
-            html += " "
+            html += ", "
         else:
             html += " "
             space = True
@@ -216,7 +216,7 @@ def make_report(names):
             html += doc.owner
         html += "<br/>"
 
-        print items
+        image = False
 
         for item in items:
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name
@@ -224,7 +224,7 @@ def make_report(names):
             # koja section
             koja = False
             if item.estestvena_koja or item.eco_koja or item.damaska:
-                html += "<br/>"
+                html += u" с "
             if item.estestvena_koja:
                 html += u"Естествена кожа"
                 koja = True
@@ -239,7 +239,7 @@ def make_report(names):
                 html += u"Дамаска"
                 koja = True
             if koja:
-                html += ":<br/>"
+                html += u" от:<br/>"
                 if item.collection_1:
                     html += u"Колекция: " + collection(item, 1) + "<br/>"
                 if item.collection_2:
@@ -249,7 +249,7 @@ def make_report(names):
 
             # pillow section
             if item.divan_pillow_collection_1:
-                html += u"Колекция декоративнивъзглавници:"
+                html += u"Колекция декоративни възглавници:"
                 html += divan_pillow_collection(item, 1) + "<br/>"
             if item.divan_pillow_collection_2:
                 html += u"Колекция декоративни възглавници:"
@@ -261,12 +261,21 @@ def make_report(names):
             #
 
             html += "</div>"
+            if not image and item.divan_modification_image:
+                html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
+                image = True
+            if item.divan_modification_image:
+                html += "<div style='align:left;'><img src='" + item.divan_modification_image + "' alt='' style='max-height: 600px;' /></div>"
 
-        for file in attachments:
+        if not image and len(attachments)>0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
-            html += "<img src='" + file.file_url + "' alt='' style='max-height: 600px;' />"
-            html += "</div>"
-        html += "</div><br/><br/>"
+            image = True
+        for file in attachments:
+            html += "<div style='align:left;'><img src='" + file.file_url + "' alt='' style='max-height: 600px;' /></div>"
+        if image:
+            html += "<div style='clear:both;'></div></div>"
+            html += "</div><br/>"
+        html += "<br/>"
 
     html += "</body></html>"
 
