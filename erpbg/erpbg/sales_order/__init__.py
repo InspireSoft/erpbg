@@ -200,7 +200,6 @@ def make_report(names):
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc_name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc_name), as_dict=True)
 
-        html += "<div style='width:100%;'>"
         html += u"<font style='font-weight: bold'>Заявка " + doc_name + "</font>"
 
         info = False
