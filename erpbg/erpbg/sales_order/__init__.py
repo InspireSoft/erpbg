@@ -193,7 +193,7 @@ def make_report(names):
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
 
-    html += u"<h1> Поръчки "
+    html += u"<h1 align=center> Поръчки "
     if len(docs)>0:
         if docs[0].execution_date_limit:
             html += u"от " + str(docs[0].execution_date_limit.strftime("%d") + "-" + docs[0].execution_date_limit.strftime("%m") + "-" + docs[0].execution_date_limit.strftime("%Y")) + u"г. "
