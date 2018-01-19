@@ -1,0 +1,39 @@
+
+div div div div input[data-fieldname="sub_item"] {
+    margin-top: -3px !important;
+}
+
+div#page-desktop div#icon-grid div[data-name="Delivery Note"] div.app-icon i:before {
+    content: '\f005';
+}
+
+div#page-desktop div#icon-grid div[data-name="Item"] div.app-icon i:before {
+    content: '\f000';
+}
+div#page-desktop div#icon-grid div[data-name="Customer"] div.app-icon i:before {
+    content: '\f018';
+}
+
+div#page-desktop div#icon-grid div[data-name="Supplier"] div.app-icon i:before {
+    content: '\f062';
+}
+
+div#page-desktop div#icon-grid div[data-name="Projects"] div.app-icon i:before {
+    content: '\f039';
+}
+
+div#page-desktop div#icon-grid div[data-name="Manufacturing"] div.app-icon i:before {
+    content: '\f064';
+}
+
+div#page-desktop div#icon-grid div[data-name="Quotation"] div.app-icon i:before {
+    content: '\f017';
+}
+
+div#page-desktop div#icon-grid div[data-name="Sales Order"] div.app-icon i:before {
+    content: '\f011';
+}
+
+div.page-head div.page-title span.indicator {
+    white-space:nowrap;
+}
