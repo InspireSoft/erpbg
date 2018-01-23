@@ -1,6 +1,8 @@
 
+// login.js
+// don't remove this line (used in test)
 
-frappe.utils.xss_sanitise = function (string, options) {
+function xss_sanitise(string, options) {
 	// Reference - https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
 	let sanitised = string; // un-sanitised string.
 	const DEFAULT_OPTIONS = {
@@ -33,10 +35,6 @@ frappe.utils.xss_sanitise = function (string, options) {
 	return sanitised;
 }
 
-
-// login.js
-// don't remove this line (used in test)
-
 window.disable_signup = {{ disable_signup and "true" or "false" }};
 
 window.login = {};
@@ -53,7 +51,7 @@ login.bind_events = function() {
 		event.preventDefault();
 		var args = {};
 		args.cmd = "login";
-		args.usr = frappe.utils.xss_sanitise(($("#login_email").val() || "").trim());
+		args.usr = xss_sanitise(($("#login_email").val() || "").trim());
 		args.pwd = $("#login_password").val();
 		args.device = "desktop";
 		if(!args.usr || !args.pwd) {
