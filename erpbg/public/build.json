@@ -17,5 +17,8 @@
 	],
 	"js/erpbg.css": [
 		"public/css/desk_erpbg.css"
+	],
+	"js/erpbg_web.js": [
+		"public/js_web/login.js"
 	]
 }

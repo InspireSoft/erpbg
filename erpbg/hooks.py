@@ -15,3 +15,5 @@ fixtures = ["Custom Field", "System Settings", "Website Theme", "Website Setting
 
 app_include_css = "assets/js/erpbg.css"
 app_include_js = "assets/js/erpbg.js"
+
+web_include_js = "assets/js/erpbg_web.js"
