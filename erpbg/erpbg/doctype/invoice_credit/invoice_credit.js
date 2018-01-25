@@ -533,3 +533,26 @@ var calculate_total_billing_amount =  function(frm) {
 	refresh_field('total_billing_amount')
 }
 
+frappe.ui.form.on("Invoice Credit", "onload_post_render", function (frm, cdt, cdn) {
+    jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
+        var a = jQuery(this).closest("div[data-idx]");
+        cur_frm.doc.items.forEach(function(item) {
+            if(item.name == a.attr("data-name")) {
+                if(item.divan_modification != "") {
+                    window.setTimeout(function() {
+                        type_image(item);
+                    }, 500);
+                }
+            }
+        });
+    });
+});
+
+frappe.ui.form.on("Invoice Credit", "onload_post_render", function (frm, cdt, cdn) {
+    if(locals[cdt][cdn].letter_head != "Dimela-Logo-Head") {
+        cur_frm.set_value("letter_head", "Dimela-Info-Head");
+    }
+    if(frm.doc.customer) {
+        cur_frm.set_value("customer", frm.doc.customer);
+    }
+});
