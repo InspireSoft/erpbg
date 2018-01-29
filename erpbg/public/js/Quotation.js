@@ -23,7 +23,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     });
     if(frm.doc.letter_head != "Dimela-Info-Head") {
         cur_frm.set_value("letter_head", "Dimela-Info-Head");
-        cur_frm.set_value("taxes_and_charges", "Bulgaria VAT 20%");
+        cur_frm.set_value("taxes_and_charges", "ДДС 20%");
     }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
