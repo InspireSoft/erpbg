@@ -35,10 +35,11 @@ def generate_custom_number(qname, customer):
     number += str(number_of_quotations_that_month).zfill(2) + that_month_number
 
     customer = frappe.db.get_values("Customer", customer, "*")[0]
+    number += "-"
     if customer.customer_commision > 0:
-        if len(number) > 0:
-            number += "-"
-        number += "00" + str(customer.customer_commision)
+        number += "90" + str(customer.customer_commision)
+    elif customer.customer_commision <= 0:
+        number += "01"
     if customer.customer_cnumber:
         if len(number) > 0:
             number += "-"
