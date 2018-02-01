@@ -8,6 +8,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     }
 });
 
+
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
@@ -16,6 +17,18 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
                 if(item.divan_modification != "") {
                     window.setTimeout(function() {
                         type_image(item);
+                    }, 500);
+                }
+            }
+        });
+    });
+    jQuery("div[data-fieldname='quotation_attachment'] span.octicon-triangle-down").click(function() {
+        var a = jQuery(this).closest("div[data-idx]");
+        cur_frm.doc.quotation_attachment.forEach(function(attachment) {
+            if(attachment.name == a.attr("data-name")) {
+                if(attachment.attachment != "") {
+                    window.setTimeout(function() {
+                        imageEditor(attachment);
                     }, 500);
                 }
             }
