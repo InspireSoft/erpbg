@@ -76,7 +76,7 @@ var bgletters_entranslation = {
     "В": "V",
     "Г": "G",
     "Д": "D",
-    "E": "Е",
+    "Е": "E",
     "Ж": "Dz",
     "З": "Z",
     "И": "I",
