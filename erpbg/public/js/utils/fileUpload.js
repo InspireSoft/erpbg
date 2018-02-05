@@ -136,7 +136,8 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
     };
     file.name = namefile;
     filename = namefile;
-    console.log("!!!!!!!!!!!!!! File ("+namefile+") !!!!!!!!!!!!!!!!");
+    console.log("!!!!!!!!!!!!!! File ("+filename+") !!!!!!!!!!!!!!!!");
+    console.log(file);
 
     this.reader.onload = () => {
         frappe.socketio.socket.emit('upload-accept-slice', {
