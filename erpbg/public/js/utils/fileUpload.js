@@ -1,20 +1,32 @@
 
-frappe.socketio.SocketIOUploader.prototype.keep_alive = function() {
-    if (this.next_check) {
-        clearTimeout (this.next_check);
+//frappe.socketio.SocketIOUploader.prototype.keep_alive = function() {
+//    if (this.next_check) {
+//        clearTimeout (this.next_check);
+//    }
+//    this.next_check = setTimeout (() => {
+//        if (!this.started) {
+//            // upload never started, so try fallback
+//            if (this.fallback) {
+//                this.fallback();
+//            } else {
+//                this.disconnect();
+//            }
+//        }
+//        this.disconnect(false);
+//    }, 3000);
+//}
+
+
+
+frappe.socketio.socket.on('upload-end', (data) => {
+    console.log(data);
+    this.reader = null;
+    this.file = null;
+    if (data.file_url.substr(0, 7)==='/public') {
+        data.file_url = data.file_url.substr(7);
     }
-    this.next_check = setTimeout (() => {
-        if (!this.started) {
-            // upload never started, so try fallback
-            if (this.fallback) {
-                this.fallback();
-            } else {
-                this.disconnect();
-            }
-        }
-        this.disconnect(false);
-    }, 3000);
-}
+    this.callback(data);
+});
 
 
 
