@@ -70,6 +70,40 @@
 //}
 
 
+var bgletters_entranslation = {
+    "А": "A",
+    "Б": "B",
+    "В": "V",
+    "Г": "G",
+    "Д": "D",
+    "E": "Е",
+    "Ж": "Dz",
+    "З": "Z",
+    "И": "I",
+    "Й": "I",
+    "К": "K",
+    "Л": "L",
+    "М": "M",
+    "Н": "N",
+    "О": "O",
+    "П": "P",
+    "Р": "R",
+    "С": "S",
+    "Т": "T",
+    "У": "Y",
+    "Ф": "F",
+    "Х": "H",
+    "Ц": "Tc",
+    "Ч": "Ch",
+    "Ш": "Sh",
+    "Щ": "Sht",
+    "Ъ": "U",
+    "Ь": "U",
+    "Ю": "IY",
+    "Я": "Q",
+    " ": "_"
+};
+
 frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_private=0, filename='', callback=null, on_progress=null,
     chunk_size=24576, fallback=null} = {}) {
 
@@ -94,48 +128,13 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
     this.fallback = fallback;
     this.started = false;
 
-    var letters = {
-    	"А": "A",
-    	"Б": "B",
-    	"В": "V",
-    	"Г": "G",
-    	"Д": "D",
-    	"E": "Е",
-    	"Ж": "Dz",
-    	"З": "Z",
-    	"И": "I",
-    	"Й": "I",
-    	"К": "K",
-    	"Л": "L",
-    	"М": "M",
-    	"Н": "N",
-    	"О": "O",
-    	"П": "P",
-    	"Р": "R",
-    	"С": "S",
-    	"Т": "T",
-    	"У": "Y",
-    	"Ф": "F",
-    	"Х": "H",
-    	"Ц": "Tc",
-        "Ч": "Ch",
-        "Ш": "Sh",
-        "Щ": "Sht",
-        "Ъ": "U",
-        "Ь": "U",
-        "Ю": "IY",
-        "Я": "Q",
-        " ": "_"
-    };
-    var namefile = file.name;
-    for (var key in letters) {
-        namefile = namefile.replace(new RegExp(key,  'g'), letters[key]);
+    for (var key in bgletters_entranslation) {
+        filename = filename.replace(new RegExp(key,  'g'), bgletters_entranslation[key]);
         if(key != " ") {
-            namefile = namefile.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
+            filename = filename.replace(new RegExp(key.toLowerCase(),  'g'), bgletters_entranslation[key].toLowerCase());
         }
     };
-    file.name = namefile;
-    filename = namefile;
+    file.name = filename;
     console.log("!!!!!!!!!!!!!! File ("+filename+") !!!!!!!!!!!!!!!!");
     console.log(file);
 
