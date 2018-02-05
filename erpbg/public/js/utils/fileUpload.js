@@ -38,6 +38,8 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
     this.file = file;
     console.log(" !!!!!!!!!!!!!! FILE "+filename+" !!!!!!!!!!!!! ");
     console.log(file);
+    file.name = "Test_1.png"
+    filename = "Test_1.png"
     this.chunk_size = chunk_size;
     this.callback = callback;
     this.on_progress = on_progress;
