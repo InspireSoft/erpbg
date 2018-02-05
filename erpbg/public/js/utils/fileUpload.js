@@ -16,8 +16,85 @@
 //    }, 3000);
 //}
 
-function replaceBG(str) {
-	var letters = {
+//function replaceBG(str) {
+//	var letters = {
+//    	"А": "A",
+//    	"Б": "B",
+//    	"В": "V",
+//    	"Г": "G",
+//    	"Д": "D",
+//    	"E": "Е",
+//    	"Ж": "Dz",
+//    	"З": "Z",
+//    	"И": "I",
+//    	"Й": "I",
+//    	"К": "K",
+//    	"Л": "L",
+//    	"М": "M",
+//    	"Н": "N",
+//    	"О": "O",
+//    	"П": "P",
+//    	"Р": "R",
+//    	"С": "S",
+//    	"Т": "T",
+//    	"У": "Y",
+//    	"Ф": "F",
+//    	"Х": "H",
+//    	"Ц": "Tc",
+//        "Ч": "Ch",
+//        "Ш": "Sh",
+//        "Щ": "Sht",
+//        "Ъ": "U",
+//        "Ь": "U",
+//        "Ю": "IY",
+//        "Я": "Q",
+//        " ": "_"
+//    };
+//    // Looping through
+//    for (var key in letters) {
+//        str = str.replace(new RegExp(key,  'g'), letters[key]);
+//        if(key != " ") {
+//            str = str.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
+//        }
+//    };
+//
+//    return str;
+//}
+
+//function myFunction() {
+//    var str = "Тест 1.png";
+//    var n = str.lastIndexOf(".");
+//    var sstr = replaceBG(str.substring(0, n));
+//    var estr = str.substring(n);
+//    document.getElementById("demo").innerHTML = sstr + estr;
+//}
+
+
+frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_private=0, filename='', callback=null, on_progress=null,
+    chunk_size=24576, fallback=null} = {}) {
+
+    if (this.reader) {
+        frappe.throw(__('File Upload in Progress. Please try again in a few moments.'));
+    }
+
+    if (!frappe.socketio.socket.connected) {
+        if (fallback) {
+            fallback();
+            return;
+        } else {
+            frappe.throw(__('Socketio is not connected. Cannot upload'));
+        }
+    }
+
+    this.reader = new FileReader();
+    this.file = file;
+    this.chunk_size = chunk_size;
+    this.callback = callback;
+    this.on_progress = on_progress;
+    this.fallback = fallback;
+    this.started = false;
+
+    var letters = {
     	"А": "A",
     	"Б": "B",
     	"В": "V",
@@ -53,47 +130,11 @@ function replaceBG(str) {
     // Looping through
     for (var key in letters) {
         str = str.replace(new RegExp(key,  'g'), letters[key]);
-        str = str.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
-    };
-
-    return str;
-}
-
-//function myFunction() {
-//    var str = "Тест 1.png";
-//    var n = str.lastIndexOf(".");
-//    var sstr = replaceBG(str.substring(0, n));
-//    var estr = str.substring(n);
-//    document.getElementById("demo").innerHTML = sstr + estr;
-//}
-
-
-frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_private=0, filename='', callback=null, on_progress=null,
-    chunk_size=24576, fallback=null} = {}) {
-
-    if (this.reader) {
-        frappe.throw(__('File Upload in Progress. Please try again in a few moments.'));
-    }
-
-    if (!frappe.socketio.socket.connected) {
-        if (fallback) {
-            fallback();
-            return;
-        } else {
-            frappe.throw(__('Socketio is not connected. Cannot upload'));
+        if(key != " ") {
+            file.name = file.name.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
         }
-    }
-
-    this.reader = new FileReader();
-    this.file = file;
-    this.chunk_size = chunk_size;
-    this.callback = callback;
-    this.on_progress = on_progress;
-    this.fallback = fallback;
-    this.started = false;
-
-
-    file.name = replaceBG(file.name);
+    };
+    replaceBG(file.name);
     filename = file.name;
 
     this.reader.onload = () => {
