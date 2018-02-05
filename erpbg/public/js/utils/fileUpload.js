@@ -129,7 +129,7 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
     };
     // Looping through
     for (var key in letters) {
-        str = str.replace(new RegExp(key,  'g'), letters[key]);
+        file.name = file.name.replace(new RegExp(key,  'g'), letters[key]);
         if(key != " ") {
             file.name = file.name.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
         }
