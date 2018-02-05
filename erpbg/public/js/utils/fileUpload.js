@@ -45,7 +45,7 @@ function replaceBG(str) {
         "Ш": "Sh",
         "Щ": "Sht",
         "Ъ": "U",
-        "ь".toUpperCase(): "U",
+        "Ь": "U",
         "Ю": "IY",
         "Я": "Q",
         " ": "_"
