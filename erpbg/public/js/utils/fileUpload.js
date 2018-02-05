@@ -134,7 +134,6 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
             file.name = file.name.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
         }
     };
-    replaceBG(file.name);
     filename = file.name;
 
     this.reader.onload = () => {
