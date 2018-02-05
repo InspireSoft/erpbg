@@ -127,14 +127,16 @@ frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_priva
         "Я": "Q",
         " ": "_"
     };
-    // Looping through
+    var namefile = file.name;
     for (var key in letters) {
-        file.name = file.name.replace(new RegExp(key,  'g'), letters[key]);
+        namefile = namefile.replace(new RegExp(key,  'g'), letters[key]);
         if(key != " ") {
-            file.name = file.name.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
+            namefile = namefile.replace(new RegExp(key.toLowerCase(),  'g'), letters[key].toLowerCase());
         }
     };
-    filename = file.name;
+    file.name = namefile;
+    filename = namefile;
+    console.log("!!!!!!!!!!!!!! File ("+namefile+") !!!!!!!!!!!!!!!!");
 
     this.reader.onload = () => {
         frappe.socketio.socket.emit('upload-accept-slice', {
