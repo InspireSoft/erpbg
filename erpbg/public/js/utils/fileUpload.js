@@ -18,15 +18,46 @@
 
 
 
-frappe.socketio.socket.on('upload-end', (data) => {
-    console.log(data);
-    this.reader = null;
-    this.file = null;
-    if (data.file_url.substr(0, 7)==='/public') {
-        data.file_url = data.file_url.substr(7);
+frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_private=0, filename='', callback=null, on_progress=null,
+    chunk_size=24576, fallback=null} = {}) {
+
+    if (this.reader) {
+        frappe.throw(__('File Upload in Progress. Please try again in a few moments.'));
     }
-    this.callback(data);
-});
+
+    if (!frappe.socketio.socket.connected) {
+        if (fallback) {
+            fallback();
+            return;
+        } else {
+            frappe.throw(__('Socketio is not connected. Cannot upload'));
+        }
+    }
+
+    this.reader = new FileReader();
+    this.file = file;
+    console.log(" !!!!!!!!!!!!!! FILE "+filename+" !!!!!!!!!!!!! ");
+    console.log(file);
+    this.chunk_size = chunk_size;
+    this.callback = callback;
+    this.on_progress = on_progress;
+    this.fallback = fallback;
+    this.started = false;
+
+    this.reader.onload = () => {
+        frappe.socketio.socket.emit('upload-accept-slice', {
+            is_private: is_private,
+            name: filename,
+            type: this.file.type,
+            size: this.file.size,
+            data: this.reader.result
+        });
+        this.keep_alive();
+    };
+
+    var slice = file.slice(0, this.chunk_size);
+    this.reader.readAsArrayBuffer(slice);
+}
 
 
 
