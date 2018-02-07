@@ -7,6 +7,8 @@ import datetime
 
 @frappe.whitelist()
 def generate_custom_number(qname, customer):
+    if not customer:
+        return
     number = ""
 
     if len(qname) > 0:

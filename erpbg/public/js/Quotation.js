@@ -36,6 +36,8 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     });
     if(frm.doc.letter_head != "Dimela-Info-Head") {
         cur_frm.set_value("letter_head", "Dimela-Info-Head");
+    }
+    if(frm.doc.taxes_and_charges != "ДДС 20%") {
         cur_frm.set_value("taxes_and_charges", "ДДС 20%");
     }
 
