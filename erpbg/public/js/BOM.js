@@ -53,14 +53,14 @@ frappe.ui.form.on("BOM", "onload_post_render", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("BOM", "divan_modification", function (frm, cdt, cdn) {
     if(locals[cdt][cdn].divan_modification != "") {
-        type_image(locals[cdt][cdn]);
+        modification_image(locals[cdt][cdn]);
     }
 });
 
 frappe.ui.form.on("BOM", "onload_post_render", function (frm, cdt, cdn) {
     doc = locals[cdt][cdn];
     if(doc.divan_modification != "") {
-        type_image(doc);
+        modification_image(locals[cdt][cdn]);
     } else if(doc.sales_order) {
         make_call_for_soi(cdt, cdn);
     }

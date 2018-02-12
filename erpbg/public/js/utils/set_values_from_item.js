@@ -2,6 +2,7 @@
 
 function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "type", soi.type);
+    frappe.model.set_value(cdt, cdn, "divan_modification_link", soi.divan_modification_link);
     frappe.model.set_value(cdt, cdn, "divan_modification", soi.divan_modification);
     frappe.model.set_value(cdt, cdn, "divan_modification_image", soi.divan_modification_image);
     frappe.model.set_value(cdt, cdn, "pulnej", soi.pulnej);
@@ -89,8 +90,9 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_damaska_color", soi.divan_pcollection_3_damaska_color);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_quantity", soi.divan_pcollection_3_quantity);
 
-    frappe.model.set_value(cdt, cdn, "divan_legs_color", soi.divan_legs_color);
     frappe.model.set_value(cdt, cdn, "divan_legs_number", soi.divan_legs_number);
+    frappe.model.set_value(cdt, cdn, "legs_size", soi.legs_size);
+    frappe.model.set_value(cdt, cdn, "divan_legs_color", soi.divan_legs_color);
     frappe.model.set_value(cdt, cdn, "divan_legs_other", soi.divan_legs_other);
     frappe.model.set_value(cdt, cdn, "divan_mechanic", soi.divan_mechanic);
     frappe.model.set_value(cdt, cdn, "divan_mechanics_others", soi.divan_mechanics_others);

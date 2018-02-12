@@ -11,7 +11,7 @@ frappe.ui.form.on("Material Request", "onload_post_render", function (frm, cdt, 
             if(item.name == a.attr("data-name")) {
                 if(item.divan_modification != "") {
                     window.setTimeout(function() {
-                        type_image(item);
+                        modification_image(locals[cdt][cdn]);
                     }, 500);
                 }
             }

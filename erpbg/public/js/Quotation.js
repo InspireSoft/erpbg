@@ -16,7 +16,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
             if(item.name == a.attr("data-name")) {
                 if(item.divan_modification != "") {
                     window.setTimeout(function() {
-                        type_image(item);
+                        modification_image(locals[cdt][cdn]);
                     }, 500);
                 }
             }
