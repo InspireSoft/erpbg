@@ -12,8 +12,8 @@ class Itemmodification(Document):
 
 
 @frappe.whitelist()
-def get_modification(name):
-    mod = frappe.db.sql("""SELECT * FROM `tabItem modification` WHERE `name1`=%s""", (name), as_dict=True)
-    if len(mod) <= 0:
+def get_modification_image(name):
+    image = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Item modification' AND `attached_to_name`=%s""", (name), as_dict=True)
+    if len(image) <= 0:
         return {}
-    return mod[0]
+    return image[0]
