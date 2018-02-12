@@ -9,12 +9,14 @@ function modification_image(item) {
             },
             callback: function(r) {
                 if(r.message)  {
-                    item.divan_modification_image = r.message;
+                    cur_frm.set_df_property('divan_modification_image', 'options', [r.message.file_url]);
+                    cur_frm.set_df_property("divan_modification_image", "hidden", false);
+                    cur_frm.refresh_field('divan_modification_image');
                 }
             }
         })
-        cur_frm.set_df_property("divan_modification_image", "hidden", false);
     } else {
         cur_frm.set_df_property("divan_modification_image", "hidden", true);
+        cur_frm.refresh_field('divan_modification_image');
     }
 }
