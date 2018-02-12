@@ -1,14 +1,14 @@
 /**
  * Created by Simeon on 21-Nov-17.
  */
-frappe.ui.form.on("Production Order", "divan_modification", function (frm, cdt, cdn) {
-    if(locals[cdt][cdn].divan_modification != "") {
+frappe.ui.form.on("Production Order", "divan_modification_link", function (frm, cdt, cdn) {
+    if(locals[cdt][cdn].divan_modification_link != "") {
         modification_image(locals[cdt][cdn]);
     }
 });
 frappe.ui.form.on("Production Order", "onload_post_render", function (frm, cdt, cdn) {
     doc = locals[cdt][cdn];
-    if(doc.divan_modification != "") {
+    if(doc.divan_modification_link != "") {
         modification_image(locals[cdt][cdn]);
     } else if(doc.sales_order) {
         if(!frm.doc.__islocal || frm.doc.__islocal == 0 || frm.doc.docstatus == 0) {

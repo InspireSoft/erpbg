@@ -3,7 +3,6 @@
 function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "type", soi.type);
     frappe.model.set_value(cdt, cdn, "divan_modification_link", soi.divan_modification_link);
-    frappe.model.set_value(cdt, cdn, "divan_modification", soi.divan_modification);
     frappe.model.set_value(cdt, cdn, "divan_modification_image", soi.divan_modification_image);
     frappe.model.set_value(cdt, cdn, "pulnej", soi.pulnej);
     frappe.model.set_value(cdt, cdn, "dulbo4ina_sedalka", soi.dulbo4ina_sedalka);

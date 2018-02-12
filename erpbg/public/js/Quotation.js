@@ -14,7 +14,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {
             if(item.name == a.attr("data-name")) {
-                if(item.divan_modification != "") {
+                if(item.divan_modification_link != "") {
                     window.setTimeout(function() {
                         modification_image(locals[cdt][cdn]);
                     }, 500);
