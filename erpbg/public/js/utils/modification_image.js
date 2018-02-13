@@ -20,6 +20,7 @@ function modification_image(item) {
 
 
 function type_image(url) {
+    console.log("type_image url: "+url);
     if(url=="") {
         jQuery("div[data-fieldname='divan_modification_image']").css("display", "none");
      } else {
@@ -43,6 +44,6 @@ function type_image(url) {
         if(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").hasClass("octicon-circle-slash")) {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").removeClass("octicon-circle-slash");
         }
-        jQuery("div[data-fieldname='divan_modification_image']").css("display", "auto");
+        jQuery("div[data-fieldname='divan_modification_image']").css("display", "inherit");
     }
 }
