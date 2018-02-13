@@ -20,9 +20,8 @@ function modification_image(item) {
 
 
 function type_image(url) {
-    var df = frappe.meta.get_docfield("items", "divan_modification_image", cur_frm.doc.name);
     if(url=="") {
-        df.hidden = 1;
+        jQuery("div[data-fieldname='divan_modification_image']").css("display", "none");
      } else {
         var hasI = false;
         jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").each(function() {
@@ -44,7 +43,6 @@ function type_image(url) {
         if(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").hasClass("octicon-circle-slash")) {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image i").removeClass("octicon-circle-slash");
         }
-        df.hidden = 0;
+        jQuery("div[data-fieldname='divan_modification_image']").css("display", "auto");
     }
-    cur_frm.refresh_field('divan_modification_image');
 }
