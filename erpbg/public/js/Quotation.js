@@ -59,6 +59,9 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
     var name = "";
+    if(!locals[cdt][cdn].name) {
+        return;
+    }
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         name = locals[cdt][cdn].name;
     }
