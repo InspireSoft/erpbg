@@ -12,3 +12,4 @@ frappe.ui.form.on("Item", "divan_modification_link", function (frm, cdt, cdn) {
         modification_image(locals[cdt][cdn]);
     }
 });
+console.log(_shout);
