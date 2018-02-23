@@ -79,14 +79,4 @@ frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
             }
         }
     });
-
-    if(!frm.doc.letter_head && frm.doc.letter_head != "Dimela-Info-Head") {
-        frm.doc.letter_head = "Dimela-Info-Head"
-        cur_frm.set_value("letter_head", "Dimela-Info-Head");
-    }
-    if(!frm.doc.taxes_and_charges && frm.doc.taxes_and_charges != "ДДС 20%") {
-        frm.doc.taxes_and_charges = "ДДС 20%";
-        cur_frm.set_value("taxes_and_charges", "ДДС 20%");
-    }
-    frm.refresh();
 });
