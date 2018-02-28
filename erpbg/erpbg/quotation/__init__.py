@@ -47,3 +47,63 @@ def generate_custom_number(qname, customer):
         number += str(customer.customer_cnumber)
 
     return number
+
+
+@frappe.whitelist()
+def make_quick_quotation(customer_name, contact_name, email, communication):
+
+    # type check and bug fix
+    if isinstance(customer_name, tuple):
+        customer_name = customer_name[0]
+    if isinstance(contact_name, tuple):
+        contact_name = contact_name[0]
+    if isinstance(email, tuple):
+        email = email[0]
+    if isinstance(communication, tuple):
+        communication = communication[0]
+
+    # check for existing customer
+    customer = frappe.db.sql('''SELECT `name` FROM `tabCustomer` WHERE `name`=%s;''', (customer_name), as_dict=True)
+    if customer:
+        return "The client <b><a href='#Form/Contact/"+customer[0].name+"'>"+customer[0].name+"</a></b> is already created. As such, can not be created again."
+
+    # create customer
+    customer = frappe.new_doc("Customer")
+    customer.docname = customer_name
+    customer.customer_name = customer_name
+    customer.save()
+
+    # create contact
+    contact = frappe.new_doc("Contact")
+    contact.name = contact_name + "-" + customer_name
+    contact.first_name = contact_name
+    contact.last_name = ""
+    contact.email_id = email
+    contact.save()
+
+    # link contact to customer
+    link = frappe.get_doc(dict(
+        doctype = "Dynamic Link",
+        parentfield = "links",
+        parenttype = "Contact",
+        parent = contact.name,
+        link_doctype = "Customer",
+        link_name = customer.name
+    ))
+    link.flags.ignore_permissions = True
+    link.save()
+
+    # create quotation
+    quotation = frappe.new_doc("Quotation")
+    quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
+    quotation.flags.ignore_mandatory = True
+    quotation.flags.ignore_permissions = True
+    quotation.save()
+
+    quotation.cnumber = generate_custom_number(quotation.name, customer.name)
+    quotation.customer = customer.name
+    quotation.save()
+
+    frappe.db.commit()
+
+    return [quotation.name, customer.name, contact.name]
