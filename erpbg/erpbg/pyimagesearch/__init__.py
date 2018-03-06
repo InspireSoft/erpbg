@@ -21,12 +21,21 @@ def update_dataset():
 
     # use glob to grab the image paths and loop over them
     for imagePath in glob.glob(pyimagesearch["dataset1"] + "/*.png"):
-    # extract the image ID (i.e. the unique filename) from the image
-    # path and load the image itself
+        # extract the image ID (i.e. the unique filename) from the image
+        # path and load the image itself
         imageID = imagePath[imagePath.rfind("/") + 1:]
+    # use glob to grab the image paths and loop over them
     for imagePath in glob.glob(pyimagesearch["dataset2"] + "/*.png"):
-    # extract the image ID (i.e. the unique filename) from the image
-    # path and load the image itself
+        # extract the image ID (i.e. the unique filename) from the image
+        # path and load the image itself
+        imageID = imagePath[imagePath.rfind("/") + 1:]
+    for imagePath in glob.glob(pyimagesearch["dataset1"] + "/*.jpg"):
+        # extract the image ID (i.e. the unique filename) from the image
+        # path and load the image itself
+        imageID = imagePath[imagePath.rfind("/") + 1:]
+    for imagePath in glob.glob(pyimagesearch["dataset2"] + "/*.jpg"):
+        # extract the image ID (i.e. the unique filename) from the image
+        # path and load the image itself
         imageID = imagePath[imagePath.rfind("/") + 1:]
     image = cv2.imread(imagePath)
 
@@ -57,10 +66,13 @@ def search_dataset(doctype, docname, attached_imgname):
     searcher = Searcher(pyimagesearch["index"])
     results = searcher.search(features)
 
+    finalResults = []
+
     # loop over the results
     for (score, resultID) in results:
         # TODO: build result page from example code bellow
-
-        # load the result image and display it
-        result = cv2.imread(pyimagesearch["result_path"] + "/" + resultID)
-        cv2.imshow("Result", result)
+        finalResults.append(resultID)
+        #    # load the result image and display it
+        # result = cv2.imread(pyimagesearch["result_path"] + "/" + resultID)
+        # cv2.imshow("Result", result)
+    return '<br/>'.join(finalResults)
