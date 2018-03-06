@@ -182,10 +182,18 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                     "fieldname": "file" ,
                     "label": __("Select uploaded file"),
                     "options": "File",
-                    set_query: function(doc) {
+//                    set_query: function(doc) {
+//                        return {
+//                            'folder': "Home/Attachments",
+//                            'is_folder': "0"
+//                        }
+//                    },
+                    get_query: function(doc) {
                         return {
-                            'folder': "Home/Attachments",
-                            'is_folder': "0"
+                            filters: [
+                                ['File', 'folder', '=', "Home/Attachments"],
+                                ['File', 'is_folder', '=', "Home/Attachments"]
+                            ]
                         }
                     },
                     onchange: function() {
