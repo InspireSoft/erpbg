@@ -52,16 +52,6 @@ def generate_custom_number(qname, customer):
 @frappe.whitelist()
 def make_quick_quotation(customer_name, contact_name, email, communication):
 
-    # type check and bug fix
-    if isinstance(customer_name, tuple):
-        customer_name = customer_name[0]
-    if isinstance(contact_name, tuple):
-        contact_name = contact_name[0]
-    if isinstance(email, tuple):
-        email = email[0]
-    if isinstance(communication, tuple):
-        communication = communication[0]
-
     # check for existing customer
     customer = frappe.db.sql('''SELECT `name` FROM `tabCustomer` WHERE `name`=%s;''', (customer_name), as_dict=True)
     if customer:
@@ -95,6 +85,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
 
     # create quotation
     quotation = frappe.new_doc("Quotation")
+    quotation.communicationlink = communication
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
@@ -107,3 +98,24 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     frappe.db.commit()
 
     return [quotation.name, customer.name, contact.name]
+
+
+@frappe.whitelist()
+def copy_attachments(qname, communicationlink):
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Quotation' AND `attached_to_name`=%s""", (qname), as_dict=True)
+    if len(existing_attachments) > 0:
+        return False
+
+    cattachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Communication' AND `attached_to_name`=%s""", (communicationlink), as_dict=True)
+    if len(cattachments)<=0:
+        return "None"
+    qattachments = []
+    for cattachment in cattachments:
+        qattachment = frappe.new_doc("File")
+        qattachment.update(cattachment)
+        qattachment.attached_to_name = qname
+        qattachment.attached_to_doctype = "Quotation"
+        qattachment.save(ignore_permissions=True)
+        qattachments.append(qattachment)
+        frappe.db.commit()
+    return qattachments

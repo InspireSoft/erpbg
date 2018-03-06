@@ -1,7 +1,30 @@
 /**
  * Created by Simeon on 21-Nov-17.
  */
+
+function check_for_communication_images(frm) {
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && frm.doc.status == 0 && && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
+        frappe.call({
+            method: "erpbg.erpbg.quotation.copy_attachments",
+            args: { "qname": frm.doc.name, "communicationlink": frm.doc.communicationlink },
+            callback: function (r) {
+                if (r.message == "None") {
+                    frm.doc.imagecopy = 1;
+                    frm.refresh();
+                } else if (r.message !== undefined) {
+                    r.message.forEach(function(attachment){
+                        frm.attachments.update_attachment(attachment);
+                    });
+                    frm.doc.imagecopy = 1;
+                    frm.save();
+                }
+            }
+        });
+    }
+}
+
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
+    check_for_communication_images(frm);
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         cur_frm.set_df_property("quotation_attachment", "hidden", false);
         return;
@@ -10,6 +33,11 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
+    if(Quotation_From_Communication != null) {
+        frm.doc.communicationlink = Quotation_From_Communication;
+        Quotation_From_Communication = null;
+    }
+    check_for_communication_images(frm);
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {

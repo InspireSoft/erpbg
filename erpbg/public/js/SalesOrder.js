@@ -15,7 +15,7 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
         });
     });
 
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || frm.doc.docstatus == 0) {
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.docstatus == 0) {
         if(frm.doc.copied_attachments == 0 && frm.doc.items && frm.doc.items.length > 0 && frm.doc.items[0].prevdoc_docname) {
             frappe.call({
                 method: 'erpbg.erpbg.sales_order.get_quotation_attachments',

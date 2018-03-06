@@ -23,11 +23,13 @@ function get_chosen_language(user, callback) {
     });
 }
 
+var Quotation_From_Communication = null;
 frappe.ui.form.on("Communication", {
 	refresh: (frm) => {
 		// setup custom Make button only if Communication is Email
 		if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
             frm.add_custom_button(__("Quotation"), () => {
+                Quotation_From_Communication = frm.doc.name;
                 frappe.new_doc("Quotation")
             }, "Make");
             frm.add_custom_button(__("Quick Quotation"), () => {
