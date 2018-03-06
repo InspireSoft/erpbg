@@ -4,7 +4,8 @@
 
 function check_for_communication_images(frm) {
     console.log("check for attachments");
-    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && frm.doc.status && frm.doc.status == 0 && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
+    console.log(frm.doc);
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.status && frm.doc.status == 0 && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
 
         console.log("check for attachments 2");
         frappe.call({
