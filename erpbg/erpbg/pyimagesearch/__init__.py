@@ -52,14 +52,11 @@ def update_dataset():
 
 @frappe.whitelist()
 def search_dataset(doctype, docname, attached_imgname):
-    # get path to file:
-    pyimagesearch["query"] = "" #???
-
     # initialize the image descriptor
     cd = ColorDescriptor((8, 12, 3))
 
     # load the query image and describe it
-    query = cv2.imread(pyimagesearch["query"])
+    query = cv2.imread(attached_imgname)
     features = cd.describe(query)
 
     # perform the search
@@ -72,6 +69,31 @@ def search_dataset(doctype, docname, attached_imgname):
     for (score, resultID) in results:
         # TODO: build result page from example code bellow
         finalResults.append(resultID)
+        #    # load the result image and display it
+        # result = cv2.imread(pyimagesearch["result_path"] + "/" + resultID)
+        # cv2.imshow("Result", result)
+    return '<br/>'.join(finalResults)
+
+
+@frappe.whitelist()
+def search_test_dataset():
+    # initialize the image descriptor
+    cd = ColorDescriptor((8, 12, 3))
+
+    # load the query image and describe it
+    query = cv2.imread("http://sys.dimeladesign.com:8003/private/files/Adv.%20dogovor%20.jpg")
+    features = cd.describe(query)
+
+    # perform the search
+    searcher = Searcher(pyimagesearch["index"])
+    results = searcher.search(features)
+
+    finalResults = []
+
+    # loop over the results
+    for (score, resultID) in results:
+        # TODO: build result page from example code bellow
+        finalResults.append("private/files/"+resultID)
         #    # load the result image and display it
         # result = cv2.imread(pyimagesearch["result_path"] + "/" + resultID)
         # cv2.imshow("Result", result)
