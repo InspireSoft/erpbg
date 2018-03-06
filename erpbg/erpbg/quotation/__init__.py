@@ -87,6 +87,10 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation = frappe.new_doc("Quotation")
     quotation.communicationlink = communication
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
+    quotation.selling_price_list = "Standard Selling"
+    quotation.taxes_and_charges = u"ДДС 20%"
+    quotation.letter_head = "Dimela-Info-Head"
+    quotation.price_list_currency = "BGN"
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
     quotation.save()
