@@ -3,25 +3,17 @@
  */
 
 function check_for_communication_images(frm) {
-    console.log("check for attachments");
-    console.log(frm.doc);
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.status && (frm.doc.status == 0 || frm.doc.status == "Draft")&& frm.doc.communicationlink && frm.doc.imagecopy == 0) {
-
-        console.log("check for attachments 2");
+        frm.doc.imagecopy = 1;
         frappe.call({
             method: "erpbg.erpbg.quotation.copy_attachments",
             args: { "qname": frm.doc.name, "communicationlink": frm.doc.communicationlink },
             callback: function (r) {
                 if (r.message == "None") {
-                    console.log("check for attachments 3 - no attachments");
-                    frm.doc.imagecopy = 1;
-                    frm.refresh();
                 } else if (r.message !== undefined) {
-                    console.log("check for attachments 3 - got attachments");
                     r.message.forEach(function(attachment){
                         frm.attachments.update_attachment(attachment);
                     });
-                    frm.doc.imagecopy = 1;
                     frm.save();
                 }
             }
