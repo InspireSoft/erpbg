@@ -3,7 +3,7 @@
  */
 
 function check_for_communication_images(frm) {
-    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && frm.doc.status == 0 && && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && frm.doc.status == 0 && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
         frappe.call({
             method: "erpbg.erpbg.quotation.copy_attachments",
             args: { "qname": frm.doc.name, "communicationlink": frm.doc.communicationlink },
