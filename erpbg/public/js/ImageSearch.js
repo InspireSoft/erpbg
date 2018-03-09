@@ -18,7 +18,7 @@ frappe.ui.form.on("Image Search", "refresh", function(frm, cdt, cdn){
 });
 
 frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
-    if(frm.doc.searching_image) {
+    if(frm.doc.searching_image && frm.doc.searching_image.slice(-4) == ".jpg" && frm.doc.searching_image.slice(-4) == ".png") {
         var url_addon = "";
         if(frm.doc.searching_image.indexOf("/private/")!=-1) {
             url_addon = "private/";

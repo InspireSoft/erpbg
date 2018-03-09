@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import frappe
-# import sys
-#
-# sys.path.append('/home/dev1/opencv/build/lib')
-# sys.path.append('/usr/local/lib/python2.7/site-packages')
+import sys
+# sys.path.append('/home/dev1/opencv/lib/')
+sys.path.append('/usr/local/lib/python2.7/site-packages')
+# sys.path.append('/home/frappe/frappe-bench-dimela/env/lib/python2.7/site-packages')
 import numpy as np
 import cv2
 import csv
