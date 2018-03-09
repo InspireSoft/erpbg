@@ -1,7 +1,7 @@
 
 var imageSearchResultElementBody = "";
 frappe.ui.form.on("Image Search", "onload_post_render", function (frm, cdt, cdn) {
-    frappe.call({method: "erpbg.erpbg.pyimagesearch.update_dataset",callback: function (r) {}});
+//    frappe.call({method: "erpbg.erpbg.pyimagesearch.update_dataset",callback: function (r) {}});
     frm.fields_dict.searching_image.clear_attachment();
 
     console.log(jQuery("div.form-page").find("h6.form-section-heading").filter(function(){ return jQuery(this).html() == "Result" ;}).parent().parent().html());
