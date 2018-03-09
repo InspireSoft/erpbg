@@ -18,6 +18,7 @@ frappe.ui.form.on("Image Search", "refresh", function(frm, cdt, cdn){
 });
 
 frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
+    console.log(frm.doc.searching_image.slice(-4));
     if(frm.doc.searching_image && frm.doc.searching_image.slice(-4) == ".jpg" && frm.doc.searching_image.slice(-4) == ".png") {
         var url_addon = "";
         if(frm.doc.searching_image.indexOf("/private/")!=-1) {
@@ -31,8 +32,8 @@ frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
             method: "erpbg.erpbg.pyimagesearch.search_result",
             args: { "file_name": file_name, "url_addon": url_addon },
             callback: function (r) {
+                console.log(r);
                 if(r.message) {
-                    console.log(r.message);
                     if(imageSearchResultElementBody.parent().hasClass("hide-control") || !imageSearchResultElementBody.parent().hasClass("visible-section")) {
                         imageSearchResultElementBody = imageSearchResultElementBody.parent().removeClass("hide-control").removeClass("empty-section").addClass("visible-section").children("div.section-body");
                     }
