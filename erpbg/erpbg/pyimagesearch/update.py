@@ -118,7 +118,6 @@ class ColorDescriptor:
         return hist
 
 
-@frappe.whitelist()
 def get_data():
     pyimagesearch = {}
     pyimagesearch["dataset1"] = "/home/frappe/frappe-bench-dimela/sites/dimela/public/files"
