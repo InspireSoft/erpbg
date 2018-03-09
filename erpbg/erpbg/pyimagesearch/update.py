@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import frappe
 import sys
 # sys.path.append('/home/dev1/opencv/lib/')
 sys.path.append('/usr/local/lib/python2.7/site-packages')
