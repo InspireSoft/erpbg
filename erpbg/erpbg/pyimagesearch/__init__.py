@@ -122,10 +122,10 @@ class ColorDescriptor:
 @frappe.whitelist()
 def get_data():
     pyimagesearch = {}
-    pyimagesearch["dataset1"] = "/home/frappe/frappe-bench-dimela/sites/dimela/public/files"
-    pyimagesearch["dataset2"] = "/home/frappe/frappe-bench-dimela/sites/dimela/private/files"
-    pyimagesearch["index"] = "/home/frappe/frappe-bench-dimela/sites/dimela/dataset.csv"
-    pyimagesearch["result_path"] = "/home/frappe/frappe-bench-dimela/sites/dimela/private/files"
+    pyimagesearch["dataset1"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/public/files"
+    pyimagesearch["dataset2"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/private/files"
+    pyimagesearch["index"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/dataset.csv"
+    pyimagesearch["result_path"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/private/files"
     return pyimagesearch
 
 
@@ -176,7 +176,7 @@ def search_dataset(attached_imgname, url_addon):
         cd = ColorDescriptor((8, 12, 3))
 
         # load the query image and describe it
-        query = cv2.imread("/home/frappe/frappe-bench-dimela/sites/dimela/" + str(url_addon) + "files/" + attached_imgname)
+        query = cv2.imread("/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/" + str(url_addon) + "files/" + attached_imgname)
         features = cd.describe(query)
 
         # perform the search
@@ -201,15 +201,13 @@ def search_dataset(attached_imgname, url_addon):
 
 @frappe.whitelist()
 def search_result(file_name, url_addon):
-    file_name = "14.jpg"
-    url_addon = "private/"
     results = search_dataset(file_name, url_addon)
 
     finalResults = []
 
     # loop over the results
     for data in results:
-        cell = "<div style='float:left'>"
+        cell = "<div style='float:left;height'>"
         cell += "<img src='" + data["file_url"] + "' alt='' style='width:200px' />"
         cell += "</div>"
         cell += "<div style='float:left;padding-left: 10px;'>"
