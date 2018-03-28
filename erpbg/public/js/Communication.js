@@ -76,7 +76,7 @@ function quick_quotation(frm) {
                             message: __('Documents Created:<br/><br/> {0}',
                                 [
                                     __("Quotation: ") + repl('<b><a href="#Form/Quotation/%(name)s">%(name)s</a></b>', {name:r.message[0]}) + "<br/>" +
-                                    __("Client: ") +    repl('<b><a href="#Form/Client/%(name)s">%(name)s</a></b>',    {name:r.message[1]}) + "<br/>" +
+                                    __("Client: ") +    repl('<b><a href="#Form/Customer/%(name)s">%(name)s</a></b>',    {name:r.message[1]}) + "<br/>" +
                                     __("Contact: ") +   repl('<b><a href="#Form/Contact/%(name)s">%(name)s</a></b>',   {name:r.message[2]})
                                 ]),
                             indicator: 'green'
