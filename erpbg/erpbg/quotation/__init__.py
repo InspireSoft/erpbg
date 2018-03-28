@@ -16,6 +16,10 @@ def generate_custom_number(qname, customer):
         if quotation.customer == customer:
             return quotation.cnumber
 
+    return generate_cnumber(customer, len(qname) > 0)
+
+
+def generate_cnumber(customer, generatedQuotation):
     quotations = frappe.db.sql(
         '''SELECT `name`,`transaction_date` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
         (customer,
@@ -28,7 +32,7 @@ def generate_custom_number(qname, customer):
         year_and_month = datetime.datetime.now().strftime("%Y-%m")
 
     number_of_quotations_that_month = len(quotations) + 1
-    if len(qname) > 0:
+    if generatedQuotation:
         number_of_quotations_that_month -= 1
         that_month_number = str(datetime.datetime.now().strftime("%m"))
     else:
@@ -105,12 +109,10 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation = frappe.new_doc("Quotation")
     quotation.communicationlink = communication
     quotation.customer = customer.name
+    quotation.cnumber = generate_cnumber(customer.name, False)
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
-    quotation.save()
-
-    quotation.cnumber = generate_custom_number(quotation.name, customer.name)
     quotation.save()
 
     frappe.db.commit()
