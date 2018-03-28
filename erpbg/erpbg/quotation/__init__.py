@@ -52,45 +52,42 @@ def generate_custom_number(qname, customer):
 @frappe.whitelist()
 def make_quick_quotation(customer_name, contact_name, email, communication):
 
+    # check for existing contact
+    contact = frappe.db.sql('''SELECT `name` FROM `tabContact` WHERE `name`=%s;''', (contact_name), as_dict=True)
+
     # check for existing customer
     customer = frappe.db.sql('''SELECT `name` FROM `tabCustomer` WHERE `name`=%s;''', (customer_name), as_dict=True)
-    if customer:
-        return "The client <b><a href='#Form/Contact/"+customer[0].name+"'>"+customer[0].name+"</a></b> is already created. As such, can not be created again."
-
-    # create customer
-    customer = frappe.new_doc("Customer")
-    customer.docname = customer_name
-    customer.customer_name = customer_name
-    customer.save()
-
-    # create contact
-    contact = frappe.new_doc("Contact")
-    contact.name = contact_name + "-" + customer_name
-    contact.first_name = contact_name
-    contact.last_name = ""
-    contact.email_id = email
-    contact.save()
-
-    # link contact to customer
-    link = frappe.get_doc(dict(
-        doctype = "Dynamic Link",
-        parentfield = "links",
-        parenttype = "Contact",
-        parent = contact.name,
-        link_doctype = "Customer",
-        link_name = customer.name
-    ))
-    link.flags.ignore_permissions = True
-    link.save()
+    if not customer:
+        # create customer
+        customer = frappe.new_doc("Customer")
+        customer.docname = customer_name
+        customer.customer_name = customer_name
+        customer.save()
+    elif not contact:
+        # create contact
+        contact = frappe.new_doc("Contact")
+        contact.name = contact_name + "-" + customer_name
+        contact.first_name = contact_name
+        contact.last_name = ""
+        contact.email_id = email
+        contact.save()
+    if not customer or not contact:
+        # link contact to customer
+        link = frappe.get_doc(dict(
+            doctype = "Dynamic Link",
+            parentfield = "links",
+            parenttype = "Contact",
+            parent = contact.name,
+            link_doctype = "Customer",
+            link_name = customer.name
+        ))
+        link.flags.ignore_permissions = True
+        link.save()
 
     # create quotation
     quotation = frappe.new_doc("Quotation")
     quotation.communicationlink = communication
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
-    quotation.selling_price_list = "Standard Selling"
-    quotation.taxes_and_charges = u"ДДС 20%"
-    quotation.letter_head = "Dimela-Info-Head"
-    quotation.price_list_currency = "BGN"
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
     quotation.save()
