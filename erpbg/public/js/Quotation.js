@@ -109,5 +109,5 @@ frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
 
 frappe.ui.form.on("Quotation", "cnumber", function(frm, cdt, cdn){
     console.log(frm.doc);
-    frm.doc.docname = frm.doc.cnumber;
+    frm.doc.title = frm.doc.cnumber;
 });

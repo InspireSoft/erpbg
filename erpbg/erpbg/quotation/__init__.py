@@ -110,7 +110,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation.communicationlink = communication
     quotation.customer = customer.name
     quotation.cnumber = generate_cnumber(customer.name, False)
-    quotation.docname = quotation.cnumber
+    quotation.title = quotation.cnumber
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
