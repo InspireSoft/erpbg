@@ -111,12 +111,6 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                     "fieldname": "file" ,
                     "label": __("Select uploaded file"),
                     "options": "File",
-//                    set_query: function(doc) {
-//                        return {
-//                            'folder': "Home/Attachments",
-//                            'is_folder': "0"
-//                        }
-//                    },
                     get_query: function(doc) {
                         return {
                             filters: [
@@ -136,8 +130,6 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 }
                             },
                             callback: function(r){
-                            console.log("HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-                            console.log(r);
                                 if(!r.message) {
                                     me.dialog.$wrapper.find('[name="file_url"]').val("");
                                     return;

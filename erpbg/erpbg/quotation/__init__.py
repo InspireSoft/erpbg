@@ -110,6 +110,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation.save()
 
     quotation.cnumber = generate_custom_number(quotation.name, customer.name)
+    quotation.name = quotation.cnumber
     quotation.customer = customer.name
     quotation.save()
 

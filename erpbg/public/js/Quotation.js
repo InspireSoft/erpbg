@@ -106,3 +106,7 @@ frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
         }
     });
 });
+
+frappe.ui.form.on("Quotation", "cnumber", function(frm, cdt, cdn){
+    frm.doc.name = r.message;
+});
