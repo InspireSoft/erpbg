@@ -105,6 +105,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
         link.flags.ignore_permissions = True
         link.save()
 
+
     # create quotation
     quotation = frappe.new_doc("Quotation")
     quotation.communicationlink = communication
@@ -115,6 +116,13 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
     quotation.save()
+
+    taxes = frappe.new_doc("Sales Taxes and Charges")
+    taxes.parent = quotation.name
+    taxes.charge_type = "On Net Total"
+    taxes.account_head = "ДДС 20% - DD"
+    taxes.save()
+
 
     frappe.db.commit()
 
