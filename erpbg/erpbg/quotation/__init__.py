@@ -9,7 +9,6 @@ import datetime
 def generate_custom_number(qname, customer):
     if not customer:
         return
-    number = ""
 
     if len(qname) > 0:
         quotation = frappe.db.get_values("Quotation", qname, "*", as_dict=True)[0]
@@ -20,6 +19,7 @@ def generate_custom_number(qname, customer):
 
 
 def generate_cnumber(customer, generatedQuotation):
+    number = ""
     quotations = frappe.db.sql(
         '''SELECT `name`,`transaction_date` FROM `tabQuotation` WHERE `customer`=%s AND `transaction_date` LIKE %s;''',
         (customer,
