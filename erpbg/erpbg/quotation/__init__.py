@@ -126,8 +126,40 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     taxes.parenttype = "Quotation"
     taxes.idx = 1
     taxes.description = u"ДДС 20%"
+    taxes.rate = 20.000000
     taxes.save()
 
+    payment1 = frappe.new_doc("Payment ways")
+    payment2 = frappe.new_doc("Payment ways")
+    payment3 = frappe.new_doc("Payment ways")
+
+    payment1.idx = 1
+    payment2.idx = 2
+    payment3.idx = 3
+
+    payment1.docstatus = 0
+    payment2.docstatus = 0
+    payment3.docstatus = 0
+
+    payment1.parent = quotation.name
+    payment2.parent = quotation.name
+    payment3.parent = quotation.name
+
+    payment1.parentfield = "payment_ways"
+    payment2.parentfield = "payment_ways"
+    payment3.parentfield = "payment_ways"
+
+    payment1.parenttype = "Quotation"
+    payment2.parenttype = "Quotation"
+    payment3.parenttype = "Quotation"
+
+    payment1.description = u"50% авансово плащане"
+    payment2.description = u"50% при издаване на готово изделие"
+    payment3.description = u"Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360"
+
+    payment1.save()
+    payment2.save()
+    payment3.save()
 
     frappe.db.commit()
 
