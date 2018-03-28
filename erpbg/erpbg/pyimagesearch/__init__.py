@@ -202,8 +202,8 @@ def search_dataset(attached_imgname, url_addon):
 @frappe.whitelist()
 def search_result(file_name, url_addon):
     results = search_dataset(file_name, url_addon)
-    if "_debug_messages" in results:
-        return results.message
+    if isinstance(results, basestring):
+        return results
 
     finalResults = []
 
