@@ -136,6 +136,8 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 }
                             },
                             callback: function(r){
+                            console.log("HEYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                            console.log(r);
                                 if(!r.message) {
                                     me.dialog.$wrapper.find('[name="file_url"]').val("");
                                     return;
