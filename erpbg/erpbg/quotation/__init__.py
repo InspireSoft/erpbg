@@ -121,6 +121,11 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     taxes.parent = quotation.name
     taxes.charge_type = "On Net Total"
     taxes.account_head = "ДДС 20% - DD"
+    taxes.docstatus = 0
+    taxes.parentfield = "taxes"
+    taxes.parenttype = "Quotation"
+    taxes.idx = 1
+    
     taxes.save()
 
 
