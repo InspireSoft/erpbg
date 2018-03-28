@@ -57,6 +57,15 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
 
     # check for existing customer
     customer = frappe.db.sql('''SELECT `name` FROM `tabCustomer` WHERE `name`=%s;''', (customer_name), as_dict=True)
+
+    if customer:
+        has_customer = True
+    else:
+        has_customer = False
+    if contact:
+        has_contact = True
+    else:
+        has_contact = False
     if not customer:
         # create customer
         customer = frappe.new_doc("Customer")
@@ -71,7 +80,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
         contact.last_name = ""
         contact.email_id = email
         contact.save()
-    if not customer or not contact:
+    if not has_contact or not has_customer:
         # link contact to customer
         link = frappe.get_doc(dict(
             doctype = "Dynamic Link",
