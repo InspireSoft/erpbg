@@ -51,7 +51,7 @@ frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
                         if(!jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().hasClass("collapsed")) {
                             jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().click();
                         }
-                        var html = "<font color='red'><b>Error in image file, can not process!>/b></font><br/><br/>" + r.message;
+                        var html = "<b><font color='red'>Error in image file, can not process!</font><br/><br/>" + r.message + "</b>";
                         console.log("adding result to ");
                         console.log(imageSearchResultElementBody);
                         imageSearchResultElementBody.html(html);
