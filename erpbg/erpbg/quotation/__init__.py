@@ -163,7 +163,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
 
     frappe.db.commit()
 
-    return [quotation.name, customer.name, contact.name]
+    return [quotation.title, customer.name, contact.name]
 
 
 @frappe.whitelist()
