@@ -142,7 +142,7 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 }
                                 me.dialog.$wrapper.find('[name="file_url"]').val(r.message.file_url);
                                 me.dialog.$wrapper.find('.private-file input').prop('checked', r.message.is_private);
-                                opts.args.filename = r.message.file_name;
+                                //opts.args.filename = r.message.file_name;
                             }
                         });
                     }
