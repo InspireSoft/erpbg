@@ -1294,5 +1294,14 @@
   "name": "c1721b7136", 
   "source_name": "Quick Quotation", 
   "target_name": "\u0411\u044a\u0440\u0437\u0430 \u041e\u0444\u0435\u0440\u0442\u0430"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Translation", 
+  "language": "bg", 
+  "modified": "2018-03-28 12:36:50.061921", 
+  "name": "638c8e585b", 
+  "source_name": "Client", 
+  "target_name": "\u0424\u0438\u0440\u043c\u0430"
  }
 ]
