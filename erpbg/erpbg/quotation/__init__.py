@@ -104,14 +104,13 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     # create quotation
     quotation = frappe.new_doc("Quotation")
     quotation.communicationlink = communication
+    quotation.customer = customer.name
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
     quotation.save()
 
     quotation.cnumber = generate_custom_number(quotation.name, customer.name)
-    quotation.name = quotation.cnumber
-    quotation.customer = customer.name
     quotation.save()
 
     frappe.db.commit()
