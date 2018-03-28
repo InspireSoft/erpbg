@@ -120,12 +120,12 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     taxes = frappe.new_doc("Sales Taxes and Charges")
     taxes.parent = quotation.name
     taxes.charge_type = "On Net Total"
-    taxes.account_head = "ДДС 20% - DD"
+    taxes.account_head = u"ДДС 20% - DD"
     taxes.docstatus = 0
     taxes.parentfield = "taxes"
     taxes.parenttype = "Quotation"
     taxes.idx = 1
-    
+    taxes.description = u"ДДС 20%"
     taxes.save()
 
 
