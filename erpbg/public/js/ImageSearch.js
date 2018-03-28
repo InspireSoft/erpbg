@@ -43,6 +43,20 @@ frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
                 callback: function (r) {
                     console.log("got result for the search");
                     console.log(r);
+                    if(typeof r.message === "string") {
+                        console.log("found error in response");
+                        if(imageSearchResultElementBody.parent().hasClass("hide-control") || imageSearchResultElementBody.parent().hasClass("empty-section") || !imageSearchResultElementBody.parent().hasClass("visible-section")) {
+                            imageSearchResultElementBody = imageSearchResultElementBody.parent().removeClass("hide-control").removeClass("empty-section").addClass("visible-section").children("div.section-body");
+                        }
+                        if(!jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().hasClass("collapsed")) {
+                            jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().click();
+                        }
+                        var html = r.message;
+                        console.log("adding result to ");
+                        console.log(imageSearchResultElementBody);
+                        imageSearchResultElementBody.html(html);
+                        return;
+                    }
                     if(r.message) {
                         console.log("found message in response");
                         if(imageSearchResultElementBody.parent().hasClass("hide-control") || imageSearchResultElementBody.parent().hasClass("empty-section") || !imageSearchResultElementBody.parent().hasClass("visible-section")) {
