@@ -185,3 +185,14 @@ def copy_attachments(qname, communicationlink):
         qattachments.append(qattachment)
         frappe.db.commit()
     return qattachments
+
+
+@frappe.whitelist()
+def get_item_note(item_code):
+    item = frappe.db.sql("""SELECT * FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
+    if len(item) > 1:
+        item = item[0]
+    if not "note" in item:
+        return ""
+    return item.note
+

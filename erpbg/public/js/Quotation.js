@@ -21,8 +21,19 @@ function check_for_communication_images(frm) {
     }
 }
 
-frappe.ui.form.on("Quotation Item", "note", function (frm, cdt, cdn) {
-    cur_frm.set_value("note", frm.doc.note + "\n" + locals[cdt][cdn].note);
+frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
+    if(cur_frm.doctype != "Quotation" || !locals[cdt][cdn].item_code) {
+        return;
+    }
+    frappe.call({
+        method: "erpbg.erpbg.quotation.get_item_note",
+        args: { "item_code": locals[cdt][cdn].item_code },
+        callback: function (r) {
+            if (r.message !== undefined && r.message!=="") {
+                cur_frm.set_value("note", frm.doc.note + "\n" + r.message);
+            }
+        }
+    });
 });
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
