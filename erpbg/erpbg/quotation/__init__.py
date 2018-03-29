@@ -192,6 +192,7 @@ def get_item_note(item_code):
     item = frappe.db.sql("""SELECT `note` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
     if len(item) > 1:
         item = item[0]
+    return item
     if "note" not in item:
         return "none"
     return item.note
