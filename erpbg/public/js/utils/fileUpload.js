@@ -44,6 +44,18 @@ frappe.upload.upload_file = function(fileobj, args, opts) {
         return;
     }
 
+    filename = fileobj.name;
+
+    for (var key in bgletters_entranslation) {
+        filename = filename.replace(new RegExp(key,  'g'), bgletters_entranslation[key]);
+        if(key != " ") {
+            filename = filename.replace(new RegExp(key.toLowerCase(),  'g'), bgletters_entranslation[key].toLowerCase());
+        }
+    };
+
+    fileobj.name = args.filename = filename;
+    args.file_url = (args.is_private ? "/private" : "") + "/files/" + filename;
+
     console.error(fileobj);
     console.error(args);
     console.error(opts);
@@ -55,7 +67,6 @@ frappe.upload.upload_file = function(fileobj, args, opts) {
         frappe.upload._upload_file(fileobj, args, opts);
     }
 }
-
 
 
 
