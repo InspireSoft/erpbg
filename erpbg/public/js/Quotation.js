@@ -11,10 +11,10 @@ function check_for_communication_images(frm) {
             callback: function (r) {
                 if (r.message == "None") {
                 } else if (r.message !== undefined) {
-                    console.error(r.message);
                     r.message.forEach(function(attachment){
                         frm.attachments.update_attachment(attachment);
                     });
+                    frm.save();
                 }
             }
         });

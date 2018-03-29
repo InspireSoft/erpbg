@@ -33,54 +33,7 @@ var bgletters_entranslation = {
     " ": "_"
 };
 
-frappe.socketio.SocketIOUploader.prototype.start = function({file=null, is_private=0, filename='', callback=null, on_progress=null,
-    chunk_size=24576, fallback=null} = {}) {
-
-    if (this.reader) {
-        frappe.throw(__('File Upload in Progress. Please try again in a few moments.'));
-    }
-
-    if (!frappe.socketio.socket.connected) {
-        if (fallback) {
-            fallback();
-            return;
-        } else {
-            frappe.throw(__('Socketio is not connected. Cannot upload'));
-        }
-    }
-
-    this.reader = new FileReader();
-    this.file = file;
-    this.chunk_size = chunk_size;
-    this.callback = callback;
-    this.on_progress = on_progress;
-    this.fallback = fallback;
-    this.started = false;
-
-    for (var key in bgletters_entranslation) {
-        filename = filename.replace(new RegExp(key,  'g'), bgletters_entranslation[key]);
-        if(key != " ") {
-            filename = filename.replace(new RegExp(key.toLowerCase(),  'g'), bgletters_entranslation[key].toLowerCase());
-        }
-    };
-    file.name = filename;
-    console.log("!!!!!!!!!!!!!! File ("+filename+") !!!!!!!!!!!!!!!!");
-    console.log(file);
-
-    this.reader.onload = () => {
-        frappe.socketio.socket.emit('upload-accept-slice', {
-            is_private: is_private,
-            name: filename,
-            type: this.file.type,
-            size: this.file.size,
-            data: this.reader.result
-        });
-        this.keep_alive();
-    };
-
-    var slice = file.slice(0, this.chunk_size);
-    this.reader.readAsArrayBuffer(slice);
-}
+console.error(frappe.upload);
 
 
 
@@ -111,12 +64,6 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                     "fieldname": "file" ,
                     "label": __("Select uploaded file"),
                     "options": "File",
-//                    set_query: function(doc) {
-//                        return {
-//                            'folder': "Home/Attachments",
-//                            'is_folder': "0"
-//                        }
-//                    },
                     get_query: function(doc) {
                         return {
                             filters: [
