@@ -32,7 +32,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         callback: function (r) {
             console.error(r);
             if (r.message !== undefined && r.message!=="") {
-                cur_frm.set_value("note", frm.doc.note + "\n" + r.message);
+                cur_frm.set_value("note", frm.doc.note + "\n" + r.message["note"]);
             }
         }
     });
