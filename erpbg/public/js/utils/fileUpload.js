@@ -111,6 +111,12 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                     "fieldname": "file" ,
                     "label": __("Select uploaded file"),
                     "options": "File",
+//                    set_query: function(doc) {
+//                        return {
+//                            'folder': "Home/Attachments",
+//                            'is_folder': "0"
+//                        }
+//                    },
                     get_query: function(doc) {
                         return {
                             filters: [
@@ -144,11 +150,11 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
             ]
         });
     }
+//    this.dialog.get_field("file").toggle(true);
 
     this.dialog.show();
 
     this.dialog.get_field("upload_area").$wrapper.empty();
-    this.dialog.get_field("file").toggle(true);
 
     // select from existing attachments
     var attachments = this.frm && this.frm.attachments.get_attachments() || [];
