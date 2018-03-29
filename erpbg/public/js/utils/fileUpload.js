@@ -1,73 +1,73 @@
-
-var bgletters_entranslation = {
-    "А": "A",
-    "Б": "B",
-    "В": "V",
-    "Г": "G",
-    "Д": "D",
-    "Е": "E",
-    "Ж": "Dz",
-    "З": "Z",
-    "И": "I",
-    "Й": "I",
-    "К": "K",
-    "Л": "L",
-    "М": "M",
-    "Н": "N",
-    "О": "O",
-    "П": "P",
-    "Р": "R",
-    "С": "S",
-    "Т": "T",
-    "У": "Y",
-    "Ф": "F",
-    "Х": "H",
-    "Ц": "Tc",
-    "Ч": "Ch",
-    "Ш": "Sh",
-    "Щ": "Sht",
-    "Ъ": "U",
-    "Ь": "U",
-    "Ю": "IY",
-    "Я": "Q",
-    " ": "_"
-};
-
-console.error(frappe.upload);
-frappe.upload.upload_file = function(fileobj, args, opts) {
-    if(!fileobj && !args.file_url) {
-        if(opts.on_no_attach) {
-            opts.on_no_attach();
-        } else {
-            frappe.msgprint(__("Please attach a file or set a URL"));
-        }
-        return;
-    }
-
-    filename = fileobj.name;
-
-    for (var key in bgletters_entranslation) {
-        filename = filename.replace(new RegExp(key,  'g'), bgletters_entranslation[key]);
-        if(key != " ") {
-            filename = filename.replace(new RegExp(key.toLowerCase(),  'g'), bgletters_entranslation[key].toLowerCase());
-        }
-    };
-
-    fileobj.name = filename;
-    args.filename = filename;
-    args.file_url = (args.is_private ? "/private" : "") + "/files/" + filename;
-
-    console.error(fileobj);
-    console.error(args);
-    console.error(opts);
-
-    if(fileobj) {
-        frappe.upload.read_file(fileobj, args, opts);
-    } else {
-        // with file_url
-        frappe.upload._upload_file(fileobj, args, opts);
-    }
-}
+//
+//var bgletters_entranslation = {
+//    "А": "A",
+//    "Б": "B",
+//    "В": "V",
+//    "Г": "G",
+//    "Д": "D",
+//    "Е": "E",
+//    "Ж": "Dz",
+//    "З": "Z",
+//    "И": "I",
+//    "Й": "I",
+//    "К": "K",
+//    "Л": "L",
+//    "М": "M",
+//    "Н": "N",
+//    "О": "O",
+//    "П": "P",
+//    "Р": "R",
+//    "С": "S",
+//    "Т": "T",
+//    "У": "Y",
+//    "Ф": "F",
+//    "Х": "H",
+//    "Ц": "Tc",
+//    "Ч": "Ch",
+//    "Ш": "Sh",
+//    "Щ": "Sht",
+//    "Ъ": "U",
+//    "Ь": "U",
+//    "Ю": "IY",
+//    "Я": "Q",
+//    " ": "_"
+//};
+//
+//frappe.upload.upload_file = function(fileobj, args, opts) {
+//    if(!fileobj && !args.file_url) {
+//        if(opts.on_no_attach) {
+//            opts.on_no_attach();
+//        } else {
+//            frappe.msgprint(__("Please attach a file or set a URL"));
+//        }
+//        return;
+//    }
+//
+//    filename = fileobj.name;
+//
+//    for (var key in bgletters_entranslation) {
+//        filename = filename.replace(new RegExp(key,  'g'), bgletters_entranslation[key]);
+//        if(key != " ") {
+//            filename = filename.replace(new RegExp(key.toLowerCase(),  'g'), bgletters_entranslation[key].toLowerCase());
+//        }
+//    };
+//
+//    fileobj.name = filename;
+//    args.filename = filename;
+//    args.file_url = (args.is_private ? "/private" : "") + "/files/" + filename;
+//
+//    console.error(fileobj.name);
+//    console.error(args.filename);
+//    console.error(args.file_url);
+//    opt.args = args;
+//
+//    if(fileobj) {
+//        frappe.upload.read_file(fileobj, args, opts);
+//    } else {
+//        // with file_url
+//        frappe.upload._upload_file(fileobj, args, opts);
+//    }
+//}
 
 
 
