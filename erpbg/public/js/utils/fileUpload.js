@@ -33,7 +33,7 @@ var bgletters_entranslation = {
     " ": "_"
 };
 
-frappe.upload.prototype.upload_file: function(fileobj, args, opts) {
+frappe.upload.prototype.upload_file = function(fileobj, args, opts) {
     if(!fileobj && !args.file_url) {
         if(opts.on_no_attach) {
             opts.on_no_attach();
