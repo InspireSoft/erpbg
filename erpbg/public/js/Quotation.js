@@ -22,7 +22,6 @@ function check_for_communication_images(frm) {
 }
 
 frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
-    console.error("on item code: " + locals[cdt][cdn].item_code);
     if(cur_frm.doctype != "Quotation" || !locals[cdt][cdn].item_code) {
         return;
     }
@@ -30,9 +29,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         method: "erpbg.erpbg.quotation.get_item_note",
         args: { "item_code": locals[cdt][cdn].item_code },
         callback: function (r) {
-            console.error(r);
             if (r.message !== undefined && r.message!=="") {
-                cur_frm.set_value("note", frm.doc.note + "\n" + r.message[0]["note"]);
+                cur_frm.set_value("note", frm.doc.note + "\n" + (r.message[0]["note"].replace("<br>","\n")));
             }
         }
     });
