@@ -21,6 +21,10 @@ function check_for_communication_images(frm) {
     }
 }
 
+frappe.ui.form.on("Quotation Item", "note", function (frm, cdt, cdn) {
+    cur_frm.set_value("note", frm.doc.note + "\n" + locals[cdt][cdn].note);
+});
+
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     check_for_communication_images(frm);
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {

@@ -75,9 +75,9 @@ function quick_quotation(frm) {
                         frappe.msgprint({
                             message: __('Documents Created:<br/><br/> {0}',
                                 [
-                                    __("Quotation: ") + repl('<b><a href="#Form/Quotation/%(name)s">%(name)s</a></b>', {name:r.message[0]}) + "<br/>" +
-                                    __("Client: ") +    repl('<b><a href="#Form/Customer/%(name)s">%(name)s</a></b>',    {name:r.message[1]}) + "<br/>" +
-                                    __("Contact: ") +   repl('<b><a href="#Form/Contact/%(name)s">%(name)s</a></b>',   {name:r.message[2]})
+                                    __("Quotation: ") + repl('<b><a href="#Form/Quotation/%(name)s">%(title)s</a></b>', {title:r.message[1], name:r.message[0]}) + "<br/>" +
+                                    __("Client: ") +    repl('<b><a href="#Form/Customer/%(name)s">%(name)s</a></b>',    {name:r.message[2]}) + "<br/>" +
+                                    __("Contact: ") +   repl('<b><a href="#Form/Contact/%(name)s">%(name)s</a></b>',   {name:r.message[3]})
                                 ]),
                             indicator: 'green'
                         })
