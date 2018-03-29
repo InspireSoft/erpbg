@@ -33,7 +33,28 @@ var bgletters_entranslation = {
     " ": "_"
 };
 
-console.error(frappe.upload);
+frappe.upload.prototype.upload_file: function(fileobj, args, opts) {
+    if(!fileobj && !args.file_url) {
+        if(opts.on_no_attach) {
+            opts.on_no_attach();
+        } else {
+            frappe.msgprint(__("Please attach a file or set a URL"));
+        }
+        return;
+    }
+
+    console.error(fileobj);
+    console.error(args);
+    console.error(opts);
+
+    if(fileobj) {
+        frappe.upload.read_file(fileobj, args, opts);
+    } else {
+        // with file_url
+        frappe.upload._upload_file(fileobj, args, opts);
+    }
+}
+
 
 
 
