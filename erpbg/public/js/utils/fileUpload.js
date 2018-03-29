@@ -53,7 +53,8 @@ frappe.upload.upload_file = function(fileobj, args, opts) {
         }
     };
 
-    fileobj.name = args.filename = filename;
+    fileobj.name = filename;
+    args.filename = filename;
     args.file_url = (args.is_private ? "/private" : "") + "/files/" + filename;
 
     console.error(fileobj);
