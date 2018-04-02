@@ -17,7 +17,7 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
     if(locals[cdt][cdn].name && locals[cdt][cdn].standard_rate) {
         frappe.call({
             method: "erpbg.erpbg.item.update_price_list",
-            args: { "iname": locals[cdt][cdn].name, "price": locals[cdt][cdn].standard_rate },
+            args: { "iname": locals[cdt][cdn].name, "iprice": locals[cdt][cdn].standard_rate },
             callback: function (r) {}
         });
     }
