@@ -11,7 +11,7 @@ def update_price_list(iname, iprice):
         price_check = price_check[0]
         price_check.rate = iprice
         price_check.save()
-    elif:
+    else:
         price = frappe.new_doc("Item Price")
         price.currency = "BGN"
         price.item_name = iname
