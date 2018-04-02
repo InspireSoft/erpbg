@@ -9,8 +9,8 @@ def update_price_list(iname, iprice):
     price_check = frappe.db.sql("""SELECT * FROM `tabItem Price` WHERE `price_list`='Standard Selling' AND `item_code`=%s""", (item.item_code), as_dict=True)
     if price_check and price_check[0]:
         price_check = price_check[0]
-        price_check.rate = iprice
-        price_check.save()
+        frappe.db.sql("""UPDATE `tabItem Price` SET `rate`=%s WHERE `price_list`='Standard Selling' AND `name`=%s""",
+                      (iprice, price_check.name))
     else:
         price = frappe.new_doc("Item Price")
         price.currency = "BGN"
