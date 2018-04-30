@@ -123,7 +123,10 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 }
                                 me.dialog.$wrapper.find('[name="file_url"]').val(r.message.file_url);
                                 me.dialog.$wrapper.find('.private-file input').prop('checked', r.message.is_private);
-                                //opts.args.filename = r.message.file_name;
+                                me.parse_validate_and_set_in_model(r.message.file_url);
+                                me.refresh();
+                                me.frm.attachments.update_attachment(r.message);
+                                me.frm.doc.docstatus == 1 ? this.frm.save('Update') : this.frm.save();
                             }
                         });
                     }
