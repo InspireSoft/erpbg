@@ -27,3 +27,12 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
     }
 });
 
+
+frappe.ui.form.on("Quotation Item", "cdescription", function (frm, cdt, cdn) {
+    locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
+});
+
+
+frappe.ui.form.on("Quotation Item", "refresh", function (frm, cdt, cdn) {
+    locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
+});

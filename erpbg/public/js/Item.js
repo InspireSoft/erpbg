@@ -22,3 +22,11 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
         });
     }
 });
+
+frappe.ui.form.on("Item", "cdescription", function (frm, cdt, cdn) {
+    locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
+});
+
+frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
+    locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
+});
