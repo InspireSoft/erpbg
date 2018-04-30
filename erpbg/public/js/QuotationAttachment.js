@@ -33,3 +33,7 @@ function imageEditor(attachment) {
 //frappe.ui.form.on("Quotation Attachment", "x_end", function (frm, cdt, cdn) {
 //    imageEditor(frm[cdt][cdn]);
 //}
+
+frappe.ui.form.on("Quotation", "quotation_attachment_add", function(frm){
+    frm.save();
+});
