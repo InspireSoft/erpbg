@@ -123,30 +123,6 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 }
                                 me.dialog.$wrapper.find('[name="file_url"]').val(r.message.file_url);
                                 me.dialog.$wrapper.find('.private-file input').prop('checked', r.message.is_private);
-
-                                me.dialog.get_field("upload_area").$wrapper.empty();
-
-                                // select from existing attachments
-                                var attachments = me.frm && me.frm.attachments.get_attachments() || [];
-                                var select = me.dialog.get_field("select");
-                                if(attachments.length) {
-                                    attachments = $.map(attachments, function(o) { return o.file_url; });
-                                    select.df.options = [""].concat(attachments);
-                                    select.toggle(true);
-                                    me.dialog.get_field("or_attach").toggle(true);
-                                    select.refresh();
-                                } else {
-                                    me.dialog.get_field("or_attach").toggle(false);
-                                    select.toggle(false);
-                                }
-                                select.$input.val("");
-
-                                // show button if attachment exists
-                                me.dialog.get_field('clear').$wrapper.toggle(me.get_model_value() ? true : false);
-
-                                me.set_upload_options();
-                                frappe.upload.make(me.upload_options);
-                                me.dialog.hide();
                             }
                         });
                     }
