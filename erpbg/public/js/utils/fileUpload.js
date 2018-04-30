@@ -126,7 +126,7 @@ frappe.ui.form.ControlAttach.prototype.onclick = function() {
                                 me.parse_validate_and_set_in_model(r.message.file_url);
                                 me.refresh();
                                 me.frm.attachments.update_attachment(r.message);
-                                me.frm.doc.docstatus == 1 ? this.frm.save('Update') : this.frm.save();
+                                me.dialog.hide();
                             }
                         });
                     }
