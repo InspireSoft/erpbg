@@ -3,10 +3,6 @@ function imageEditor(attachment) {
 
 }
 
-frappe.ui.form.on("Quotation Attachment", "attachment", function (frm, cdt, cdn) {
-    frm.doc.filename = frm.doc.attachment.replace(/^.*[\\\/]/, '');
-});
-
-frappe.ui.form.on("Quotation", "quotation_attachment_add", function (frm, cdt, cdn) {
-    frm.save();
+frappe.ui.form.on("Quotation Attachment", "refresh", function (frm, cdt, cdn) {
+    frm.set_df_property("has_file", "hidden", true);
 });
