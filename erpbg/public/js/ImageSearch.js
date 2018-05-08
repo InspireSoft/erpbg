@@ -23,8 +23,9 @@ frappe.ui.form.on("Image Search", "refresh", function(frm, cdt, cdn){
 frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
     console.log("change in image");
     if(frm.doc.searching_image) {
-        if(frm.doc.searching_image.substring(frm.doc.searching_image.length -4) != ".jpg" && frm.doc.searching_image.slice(frm.doc.searching_image.length -4) != ".png") {
+        if(frm.doc.searching_image.substring(frm.doc.searching_image.length -4).toLowerCase() != ".jpg" && frm.doc.searching_image.slice(frm.doc.searching_image.length -4).toLowerCase() != ".png") {
             imageSearchResultElementBody.html("");
+            imageSearchResultElementBody.html("extention not supported " + frm.doc.searching_image.substring(frm.doc.searching_image.length -4));
             console.log("extention not supported");
             console.log(frm.doc.searching_image.substring(frm.doc.searching_image.length -4));
         } else {

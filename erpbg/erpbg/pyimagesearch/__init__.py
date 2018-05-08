@@ -162,6 +162,11 @@ def update_dataset():
     loopDir(pyimagesearch["dataset1"], "jpg", output, cd)
     loopDir(pyimagesearch["dataset2"], "jpg", output, cd)
 
+    loopDir(pyimagesearch["dataset1"], "PNG", output, cd)
+    loopDir(pyimagesearch["dataset2"], "PNG", output, cd)
+    loopDir(pyimagesearch["dataset1"], "JPG", output, cd)
+    loopDir(pyimagesearch["dataset2"], "JPG", output, cd)
+
     # close the index file
     output.close()
 
