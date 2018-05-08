@@ -30,7 +30,11 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         args: { "item_code": locals[cdt][cdn].item_code },
         callback: function (r) {
             if (r.message !== undefined && r.message!=="") {
-                cur_frm.set_value("note", frm.doc.note + "\n" + (r.message[0]["note"].replace("<br>","\n")));
+                if(!frm.doc.note) {
+                    cur_frm.set_value("note", r.message[0]["note"]);
+                } else {
+                    cur_frm.set_value("note", frm.doc.note + "<br/>" + r.message[0]["note"]);
+                }
             }
         }
     });
