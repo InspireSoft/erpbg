@@ -50,6 +50,11 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
+
+    if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
+        jQuery("input[data-fieldname='customer']").focus();
+    }
+
     if(Quotation_From_Communication != null) {
         frm.doc.communicationlink = Quotation_From_Communication;
         Quotation_From_Communication = null;
