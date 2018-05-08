@@ -24,3 +24,7 @@ frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn
         cur_frm.set_value("customer", frm.doc.customer);
     }
 });
+
+frappe.ui.form.on("Sales Invoice", "refresh", function (frm, cdt, cdn) {
+    cur_frm.set_df_property("naming_series", "hidden", true);
+});
