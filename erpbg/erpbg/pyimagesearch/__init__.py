@@ -176,7 +176,10 @@ def search_dataset(attached_imgname, url_addon):
         cd = ColorDescriptor((8, 12, 3))
 
         # load the query image and describe it
-        query = cv2.imread("/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/" + str(url_addon) + "files/" + attached_imgname)
+        filepath = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/" + str(url_addon) + "files/" + attached_imgname
+        if not os.path.isfile(filepath):
+            raise Exeption("invalid path to file: "+filepath)
+        query = cv2.imread(filepath)
         features = cd.describe(query)
 
         # perform the search
