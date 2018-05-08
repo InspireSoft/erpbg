@@ -32,7 +32,7 @@ frappe.ui.form.on("Image Search", "searching_image", function (frm, cdt, cdn) {
             var url_addon = "";
             if(frm.doc.searching_image.indexOf("/private/")!=-1) {
                 url_addon = "private/";
-            } else if(frm.doc.searching_image.indexOf("/public/")!=-1) {
+            } else {
                 url_addon = "public/";
             }
             var file_name = frm.doc.searching_image.substr(frm.doc.searching_image.lastIndexOf('/') + 1);
