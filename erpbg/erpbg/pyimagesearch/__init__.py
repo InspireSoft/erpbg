@@ -184,7 +184,7 @@ def search_dataset(attached_imgname, url_addon):
         # load the query image and describe it
         filepath = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/" + str(url_addon) + "files/" + attached_imgname
         if not os.path.isfile(filepath):
-            raise Exeption("invalid path to file: "+filepath)
+            raise Exception("invalid path to file: "+filepath)
         query = cv2.imread(filepath)
         features = cd.describe(query)
 
