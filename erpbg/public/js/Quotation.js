@@ -41,6 +41,10 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 });
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
+
+    if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
+        cur_frm.get_field("customer").$input.focus();
+    }
     check_for_communication_images(frm);
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         cur_frm.set_df_property("quotation_attachment", "hidden", false);
@@ -50,10 +54,6 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
-
-    if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
-        jQuery("input[data-fieldname='customer']").focus();
-    }
 
     if(Quotation_From_Communication != null) {
         frm.doc.communicationlink = Quotation_From_Communication;
