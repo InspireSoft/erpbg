@@ -219,7 +219,7 @@ def search_result(file_name, url_addon):
     # loop over the results
     for data in results:
         cell = "<div style='float:left;height'>"
-        cell += "<img src='" + data["file_url"] + "' alt='' style='width:200px' />"
+        cell += "<img src='" + data["file_url"] + "' alt='' style='width:200px;min-height: 20px;' />"
         cell += "</div>"
         cell += "<div style='float:left;padding-left: 10px;'>"
         if "docs" in data:

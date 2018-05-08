@@ -12,8 +12,8 @@ frappe.ui.form.on("Image Search", "onload_post_render", function (frm, cdt, cdn)
 });
 
 frappe.ui.form.on("Image Search", "refresh", function(frm, cdt, cdn){
-    if(jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().hasClass("collapsed")) {
-        jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == "Searching Image" ;}).parent().click();
+    if(jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == __("Searching Image");}).parent().hasClass("collapsed")) {
+        jQuery('.section-head').find("a").filter(function(){ return jQuery(this).text() == __("Searching Image");}).parent().click();
     }
     if(imageSearchResultElementBody && (imageSearchResultElementBody.parent().hasClass("hide-control") || imageSearchResultElementBody.parent().hasClass("empty-section") || !imageSearchResultElementBody.parent().hasClass("visible-section") || !imageSearchResultElementBody.parent().hasClass("shaded-section"))) {
         imageSearchResultElementBody = imageSearchResultElementBody.parent().removeClass("hide-control").removeClass("empty-section").addClass("visible-section").addClass("shaded-section").children("div.section-body");
