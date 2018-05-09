@@ -48,6 +48,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0 {
         cur_frm.doc.items.forEach(function(item) {
+            console.error(item);
             if(item.image) {
                 var skip = false;
                 cur_frm.doc.quotation_attachment.forEach(function(attachment) {

@@ -35,6 +35,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 }
             },
             callback: function(r) {
+                console.error(r);
                 if(r.image) {
                     var skip = false;
                     cur_frm.doc.quotation_attachment.forEach(function(qa) {
