@@ -37,8 +37,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
             callback: function(r) {
                 if(r.image) {
                     var skip = false;
-                    cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-                        if(attachment.name == r.image.name) {
+                    cur_frm.doc.quotation_attachment.forEach(function(qa) {
+                        if(qa.attachment.name == r.image.name) {
                             skip = true;
                         }
                     });
@@ -61,19 +61,4 @@ frappe.ui.form.on("Quotation Item", "cdescription", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation Item", "refresh", function (frm, cdt, cdn) {
     locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0) {
-        if(locals[cdt][cdn].image) {
-            var skip = false;
-            cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-                if(attachment.name == locals[cdt][cdn].image.name) {
-                    skip = true;
-                }
-            });
-            if(!skip) {
-                var child = cur_frm.add_child("quotation_attachment");
-                frappe.model.set_value(child.doctype, child.name, "attachment", locals[cdt][cdn].image);
-                cur_frm.refresh();
-            }
-        }
-    }
 });
