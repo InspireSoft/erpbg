@@ -35,17 +35,16 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 }
             },
             callback: function(r) {
-                console.error(r);
-                if(r.image) {
+                if(r.message.image) {
                     var skip = false;
                     cur_frm.doc.quotation_attachment.forEach(function(qa) {
-                        if(qa.attachment.name == r.image.name) {
+                        if(qa.attachment.name == r.message.image.name) {
                             skip = true;
                         }
                     });
                     if(!skip) {
                         var child = cur_frm.add_child("quotation_attachment");
-                        frappe.model.set_value(child.doctype, child.name, "attachment", r.image);
+                        frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
                         cur_frm.refresh();
                     }
                 }
