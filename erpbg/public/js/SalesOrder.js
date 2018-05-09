@@ -37,6 +37,12 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
             frm.save();
         }
     }
+
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        cur_frm.set_df_property("sales_order_attachment", "hidden", false);
+    } else {
+        cur_frm.set_df_property("sales_order_attachment", "hidden", true);
+    }
 });
 
 
@@ -48,6 +54,29 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                 function() { make_bom(locals[cdt][cdn]) }, __("Make")
             );
         }
+    }
+
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
+        cur_frm.doc.items.forEach(function(item) {
+            if(item.image) {
+                var skip = false;
+                cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
+                    if(attachment.name == item.image.name) {
+                        skip = true;
+                    }
+                });
+                if(!skip) {
+                    var child = cur_frm.add_child("sales_order_attachment");
+                    frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
+                    cur_frm.refresh();
+                }
+            }
+        });
+        cur_frm.set_value("itemimagecopy", 1);
+    }
+
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        cur_frm.set_df_property("sales_order_attachment", "hidden", false);
     }
 });
 
