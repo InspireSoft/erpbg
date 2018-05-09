@@ -26,17 +26,28 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         });
     }
     if(locals[cdt][cdn].image) {
-        var skip = false;
-        cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-            if(attachment.name == locals[cdt][cdn].image.name) {
-                skip = true;
+        frappe.call({
+            method: "frappe.client.get",
+            args: {
+                doctype: "Item",
+                filters: {
+                    item_code: locals[cdt][cdn].item_code
+                }
+            },
+            callback: function(r) {
+                var skip = false;
+                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
+                    if(attachment.name == r.image.name) {
+                        skip = true;
+                    }
+                });
+                if(!skip) {
+                    var child = cur_frm.add_child("quotation_attachment");
+                    frappe.model.set_value(child.doctype, child.name, "attachment", r.image);
+                    cur_frm.refresh();
+                }
             }
         });
-        if(!skip) {
-            var child = cur_frm.add_child("quotation_attachment");
-            frappe.model.set_value(child.doctype, child.name, "attachment", locals[cdt][cdn].image);
-            cur_frm.refresh();
-        }
     }
 });
 
