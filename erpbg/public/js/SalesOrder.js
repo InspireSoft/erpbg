@@ -57,6 +57,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
     }
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
+        var added = [];
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
                 var skip = false;
@@ -65,7 +66,13 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                         skip = true;
                     }
                 });
+                added.forEach(function(added){
+                    if(added.name == item.image.name) {
+                        skip = true;
+                    }
+                });
                 if(!skip) {
+                    added.push(item.image);
                     var child = cur_frm.add_child("sales_order_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
                     cur_frm.refresh();
