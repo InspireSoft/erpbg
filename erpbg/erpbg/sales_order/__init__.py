@@ -130,7 +130,7 @@ def divan_pillow_collection(item, number):
         else:
             html += " "
             space = True
-        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"] + " л.м."
+        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"] + u" л.м."
 
     if item["divan_pcollection_" + str(number) + "_number"]:
         if space:
