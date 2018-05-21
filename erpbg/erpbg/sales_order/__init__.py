@@ -130,7 +130,7 @@ def divan_pillow_collection(item, number):
         else:
             html += " "
             space = True
-        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"]
+        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"] + " л.м."
 
     if item["divan_pcollection_" + str(number) + "_number"]:
         if space:
@@ -235,12 +235,11 @@ def make_report(names):
         html += "<br/>"
         for item in items:
             # doc item name
-            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "; "
+            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "<br/>"
+            image = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `name`='%s';""", (item.name), as_dict=True)
 
             # doc item koja section
             koja = False
-            if item.estestvena_koja or item.eco_koja or item.damaska:
-                html += u" С "
             if item.estestvena_koja:
                 html += u"Естествена кожа"
                 koja = True
@@ -257,11 +256,53 @@ def make_report(names):
             if koja:
                 html += u" от:<br/>"
                 if item.collection_1:
-                    html += u"Колекция: " + collection(item, 1) + "<br/>"
+                    koja = False
+                    html += u"Колекция: "
+                    if item.estestvena_koja:
+                        html += u"Естествена кожа"
+                        koja = True
+                    if item.eco_koja:
+                        if koja:
+                            html += ", "
+                        html += u"Еко кожа"
+                        koja = True
+                    if item.damaska:
+                        if koja:
+                            html += ", "
+                        html += u"Дамаска"
+                    html += " " + collection(item, 1) + "<br/>"
                 if item.collection_2:
-                    html += u"Колекция: " + collection(item, 2) + "<br/>"
+                    koja = False
+                    html += u"Колекция: "
+                    if item.estestvena_koja:
+                        html += u"Естествена кожа"
+                        koja = True
+                    if item.eco_koja:
+                        if koja:
+                            html += ", "
+                        html += u"Еко кожа"
+                        koja = True
+                    if item.damaska:
+                        if koja:
+                            html += ", "
+                        html += u"Дамаска"
+                    html += " " + collection(item, 2) + "<br/>"
                 if item.collection_3:
-                    html += u"Колекция: " + collection(item, 3) + "<br/>"
+                    koja = False
+                    html += u"Колекция: "
+                    if item.estestvena_koja:
+                        html += u"Естествена кожа"
+                        koja = True
+                    if item.eco_koja:
+                        if koja:
+                            html += ", "
+                        html += u"Еко кожа"
+                        koja = True
+                    if item.damaska:
+                        if koja:
+                            html += ", "
+                        html += u"Дамаска"
+                    html += " " + collection(item, 3) + "<br/>"
 
             # doc item pillow section
             if item.divan_pillow_collection_1:
@@ -276,10 +317,12 @@ def make_report(names):
 
             # doc item type image
             html += "</div>"
-            if item.divan_modification:
+            if item.divan_modification or image:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
-                #
-                html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                if item.divan_modification:
+                    html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                if image:
+                    html += "<img src='/private/files/divan_" + item.image + "' alt='' style='vertical-align: top;max-height: 600px;' />"
                 html += "</div><br/>"
 
         # doc attachment images
