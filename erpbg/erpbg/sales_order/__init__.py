@@ -194,7 +194,6 @@ def make_report(names):
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     # get all docs
     docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
-    return docs
 
     # header
     html += u"<h1 align=center> Поръчки "
@@ -209,6 +208,7 @@ def make_report(names):
     for doc in docs:
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
+        return items
 
         # doc name
         html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
