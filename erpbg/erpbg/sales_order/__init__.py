@@ -316,11 +316,11 @@ def make_report(names):
 
             # doc item type image
             html += "</div>"
-            if item.divan_modification or image:
+            if item.divan_modification or item.image:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 if item.divan_modification:
                     html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 600px;' />"
-                if image:
+                if item.image:
                     html += "<img src='/private/files/divan_" + item.image + "' alt='' style='vertical-align: top;max-height: 600px;' />"
                 html += "</div><br/>"
 
