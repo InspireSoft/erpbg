@@ -194,6 +194,7 @@ def make_report(names):
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     # get all docs
     docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
+    return docs
 
     # header
     html += u"<h1 align=center> Поръчки "

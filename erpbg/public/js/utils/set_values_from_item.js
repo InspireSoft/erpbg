@@ -51,7 +51,7 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_name", soi.divan_pcollection_1_name);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_damaska_color", soi.divan_pcollection_1_damaska_color);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_number", soi.divan_pcollection_1_number);
-    frappe.model.set_value(cdt, cdn, "divan_pcollection_1_purpose", soi.divan_pcollection_1_purpose);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_1_design", soi.divan_pcollection_1_purpose);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_quantity", soi.divan_pcollection_1_quantity);
 
     frappe.model.set_value(cdt, cdn, "divan_pillow_collection_2", soi.divan_pillow_collection_2);
@@ -59,7 +59,7 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_name", soi.divan_pcollection_2_name);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_damaska_color", soi.divan_pcollection_2_damaska_color);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_number", soi.divan_pcollection_2_number);
-    frappe.model.set_value(cdt, cdn, "divan_pcollection_2_purpose", soi.divan_pcollection_2_purpose);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_2_design", soi.divan_pcollection_2_purpose);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_quantity", soi.divan_pcollection_2_quantity);
 
     frappe.model.set_value(cdt, cdn, "divan_pillow_collection_3", soi.divan_pillow_collection_3);
@@ -67,7 +67,7 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_name", soi.divan_pcollection_3_name);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_damaska_color", soi.divan_pcollection_3_damaska_color);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_number", soi.divan_pcollection_3_number);
-    frappe.model.set_value(cdt, cdn, "divan_pcollection_3_purpose", soi.divan_pcollection_3_purpose);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_3_design", soi.divan_pcollection_3_purpose);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_quantity", soi.divan_pcollection_3_quantity);
 
     // legs
@@ -75,6 +75,9 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "legs_model", soi.legs_model);
     frappe.model.set_value(cdt, cdn, "legs_size", soi.legs_size);
     frappe.model.set_value(cdt, cdn, "divan_legs_number", soi.divan_legs_number);
+    frappe.model.set_value(cdt, cdn, "legs_color", soi.divan_legs_number);
+    frappe.model.set_value(cdt, cdn, "legs_supplier", soi.divan_legs_number);
+    frappe.model.set_value(cdt, cdn, "legs_image", soi.divan_legs_number);
     frappe.model.set_value(cdt, cdn, "divan_legs_other", soi.divan_legs_other);
 
     // Bed
@@ -128,7 +131,22 @@ function set_values_from_item(cdt, cdn, soi) {
 
     // pillow_or_pane
 
+    frappe.model.set_value(cdt, cdn, "pptype", soi.pp_lenght);
+    frappe.model.set_value(cdt, cdn, "ppmodel", soi.pp_height);
+    frappe.model.set_value(cdt, cdn, "bodna", soi.pp_thickness);
+
+    // pillow_or_pane_size
+
     frappe.model.set_value(cdt, cdn, "pp_lenght", soi.pp_lenght);
     frappe.model.set_value(cdt, cdn, "pp_height", soi.pp_height);
     frappe.model.set_value(cdt, cdn, "pp_thickness", soi.pp_thickness);
+
+    // tabla
+
+    frappe.model.set_value(cdt, cdn, "tabla_attachable", soi.pp_lenght);
+    frappe.model.set_value(cdt, cdn, "tabla_depth", soi.pp_height);
+    frappe.model.set_value(cdt, cdn, "tabla_height", soi.pp_thickness);
+    frappe.model.set_value(cdt, cdn, "tabla_model", soi.pp_thickness);
+    frappe.model.set_value(cdt, cdn, "tabla_seeable_back", soi.pp_thickness);
+    frappe.model.set_value(cdt, cdn, "tabla_width", soi.pp_thickness);
 }
