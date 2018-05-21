@@ -236,7 +236,6 @@ def make_report(names):
         for item in items:
             # doc item name
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "<br/>"
-            image = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `name`='%s';""", (item.name), as_dict=True)
 
             # doc item koja section
             koja = False
