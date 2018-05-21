@@ -91,27 +91,30 @@ def get_quotation_attachments(quotation_name, sales_order_name):
 
 def divan_pillow_collection(item, number):
     html = ""
-    print number
     space = False
-    if item["divan_pcollection_" + str(number) + "_name"]:
-        html += " " + item["divan_pcollection_" + str(number) + "_name"]
-        space = True
-
-    if item["divan_pcollection_" + str(number) + "_name"]:
-        if space:
-            html += ", "
-        else:
-            html += " "
-            space = True
-        html += u"Размер " + item["divan_pcollection_" + str(number) + "_size"]
-
     if item["divan_pcollection_" + str(number) + "_supplier"]:
         if space:
             html += ", "
         else:
             html += " "
             space = True
-        html += u"Доставчик: " + item["divan_pcollection_" + str(number) + "_supplier"]
+        html += u"Доставчик " + item["divan_pcollection_" + str(number) + "_supplier"]
+
+    if item["divan_pcollection_" + str(number) + "_design"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += u"Дезайн " + item["divan_pcollection_" + str(number) + "_design"]
+
+    if item["divan_pcollection_" + str(number) + "_name"]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
+        html += " " + item["divan_pcollection_" + str(number) + "_name"]
 
     if item["divan_pcollection_" + str(number) + "_damaska_color"]:
         if space:
@@ -208,8 +211,7 @@ def make_report(names):
     for doc in docs:
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
-        return items[1]
-
+        
         # doc name
         html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
 
