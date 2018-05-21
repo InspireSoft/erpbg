@@ -217,12 +217,12 @@ def make_report(names):
 
         # doc date
         info = False
-        if doc.execution_date_limit:
+        if doc.delivery_date:
             if not info:
                 html += " - "
             info = True
             html += u"Срок "
-            date = str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y"))
+            date = str(doc.delivery_date.strftime("%d") + "-" + doc.delivery_date.strftime("%m") + "-" + doc.delivery_date.strftime("%Y"))
             import datetime
             d = datetime.now()
             now = '-'.join(str(x) for x in (d.day, d.month, d.year))
