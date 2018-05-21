@@ -153,7 +153,7 @@ def collection(item, number):
             html += ", "
         else:
             space = True
-        html += item["quantity_" + str(number)] + (u" брой" if item["quantity_" + str(number)] == 1 else u" броя")
+        html += item["quantity_" + str(number)] + u" л.м."
 
     if item["name_" + str(number)]:
         if space:
