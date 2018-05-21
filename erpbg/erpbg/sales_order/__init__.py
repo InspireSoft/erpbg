@@ -243,22 +243,7 @@ def make_report(names):
             html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "<br/>"
 
             # doc item koja section
-            koja = False
-            if item.estestvena_koja:
-                html += u"Естествена кожа"
-                koja = True
-            if item.eco_koja:
-                if koja:
-                    html += ", "
-                html += u"Еко кожа"
-                koja = True
-            if item.damaska:
-                if koja:
-                    html += ", "
-                html += u"Дамаска"
-                koja = True
-            if koja:
-                html += u" от:<br/>"
+            if item.estestvena_koja or item.eco_koja or item.damaska:
                 if item.collection_1:
                     koja = False
                     html += u"Колекция: "
