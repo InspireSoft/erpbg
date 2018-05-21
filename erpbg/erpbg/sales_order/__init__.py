@@ -227,7 +227,7 @@ def make_report(names):
             d = datetime.datetime.now()
             now = '-'.join(str(x) for x in (d.day, d.month, d.year))
             html += "<font"
-            if datetime.strptime(now, "%d/%m/%Y") >= datetime.strptime(date, "%d/%m/%Y"):
+            if datetime.datetime.strptime(now, "%d/%m/%Y") >= datetime.datetime.strptime(date, "%d/%m/%Y"):
                 html += " color='red'"
             html += ">"+date + u"г. </font>"
 
