@@ -235,7 +235,7 @@ def make_report(names):
         html += "<br/>"
         for item in items:
             # doc item name
-            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + "; описание: " + item.cdescription + "; "
+            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "; "
 
             # doc item koja section
             koja = False
