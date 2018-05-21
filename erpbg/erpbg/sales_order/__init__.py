@@ -211,9 +211,9 @@ def make_report(names):
     for doc in docs:
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
-        
+
         # doc name
-        html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
+        html += "<font style='font-weight: bold'>" + doc.title + "</font>"
 
         # doc date
         info = False
@@ -221,25 +221,26 @@ def make_report(names):
             if not info:
                 html += " - "
             info = True
-            html += u"Срок " + str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y")) + u"г. "
-
-        # doc owner name
-        if doc.owner:
-            if not info:
-                html += " - "
-            info = True
-            html += doc.owner
+            html += u"Срок "
+            date = str(doc.execution_date_limit.strftime("%d") + "-" + doc.execution_date_limit.strftime("%m") + "-" + doc.execution_date_limit.strftime("%Y"))
+            import datetime
+            d = datetime.now()
+            now = '-'.join(str(x) for x in (d.day, d.month, d.year))
+            html += "<font"
+            if datetime.strptime(now, "%d/%m/%Y") >= datetime.strptime(date, "%d/%m/%Y"):
+                html += " color='red'"
+            html += ">"+date + u"г. </font>"
 
         # doc item info and type image
         html += "<br/>"
         for item in items:
             # doc item name
-            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name
+            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + "; описание: " + item.cdescription + "; "
 
             # doc item koja section
             koja = False
             if item.estestvena_koja or item.eco_koja or item.damaska:
-                html += u" с "
+                html += u" С "
             if item.estestvena_koja:
                 html += u"Естествена кожа"
                 koja = True
@@ -278,7 +279,7 @@ def make_report(names):
             if item.divan_modification:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 #
-                html += "<img src='/private/files/divan_" + item.divan_modification.replace("L/20","L20").replace("R/20","R20").replace(" ","_").replace(" ","_") + ".png' alt='' style='vertical-align: top;max-height: 600px;' />"
+                html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 600px;' />"
                 html += "</div><br/>"
 
         # doc attachment images
