@@ -208,7 +208,7 @@ def make_report(names):
     for doc in docs:
         attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s;""", (doc.name), as_dict=True)
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
-        return divan_pillow_collection(items[1], 1)
+        return items[1]
 
         # doc name
         html += u"<font style='font-weight: bold'>Заявка " + doc.name + "</font>"
