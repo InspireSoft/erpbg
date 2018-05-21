@@ -224,7 +224,7 @@ def make_report(names):
             html += u"Срок "
             date = str(doc.delivery_date.strftime("%d") + "-" + doc.delivery_date.strftime("%m") + "-" + doc.delivery_date.strftime("%Y"))
             import datetime
-            d = datetime.now()
+            d = datetime.datetime.now()
             now = '-'.join(str(x) for x in (d.day, d.month, d.year))
             html += "<font"
             if datetime.strptime(now, "%d/%m/%Y") >= datetime.strptime(date, "%d/%m/%Y"):
