@@ -201,15 +201,15 @@ def make_report(names):
     # setup html tags
     html = "<html><head><title>Print Report</title></head><body style='margin: 0; padding-left: 100px; padding-right: 100px;'>"
     # get all docs
-    docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="execution_date_limit")
+    docs = frappe.db.get_values("Sales Order", {"name":("in", names)}, "*", as_dict=True, order_by="delivery_date")
 
     # header
     html += u"<h1 align=center> Поръчки "
     if len(docs) > 0:
-        if docs[0].execution_date_limit:
-            html += u"от " + str(docs[0].execution_date_limit.strftime("%d") + "-" + docs[0].execution_date_limit.strftime("%m") + "-" + docs[0].execution_date_limit.strftime("%Y")) + u"г. "
-        if len(docs) > 1 and docs[len(docs) - 1].execution_date_limit:
-            html += u"до " + str(docs[len(docs) - 1].execution_date_limit.strftime("%d") + "-" + docs[len(docs) - 1].execution_date_limit.strftime("%m") + "-" + docs[len(docs) - 1].execution_date_limit.strftime("%Y")) + u"г. "
+        if docs[0].delivery_date:
+            html += u"от " + str(docs[0].delivery_date.strftime("%d") + "-" + docs[0].delivery_date.strftime("%m") + "-" + docs[0].delivery_date.strftime("%Y")) + u"г. "
+        if len(docs) > 1 and docs[len(docs) - 1].delivery_date:
+            html += u"до " + str(docs[len(docs) - 1].delivery_date.strftime("%d") + "-" + docs[len(docs) - 1].delivery_date.strftime("%m") + "-" + docs[len(docs) - 1].delivery_date.strftime("%Y")) + u"г. "
     html += "</h1><br/><br/>"
 
     # doc info and attachments
