@@ -92,6 +92,14 @@ def get_quotation_attachments(quotation_name, sales_order_name):
 def divan_pillow_collection(item, number):
     html = ""
     space = False
+
+    if item["divan_pcollection_" + str(number) + "_number"]:
+        if space:
+            html += ", "
+        else:
+            space = True
+        html += str(item["divan_pcollection_" + str(number) + "_number"]) + (u" брой" if item["divan_pcollection_" + str(number) + "_number"] == 1 else u" броя")
+
     if item["divan_pcollection_" + str(number) + "_supplier"]:
         if space:
             html += ", "
@@ -132,14 +140,6 @@ def divan_pillow_collection(item, number):
             space = True
         html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"] + u" л.м."
 
-    if item["divan_pcollection_" + str(number) + "_number"]:
-        if space:
-            html += ", "
-        else:
-            html += " "
-            space = True
-        html += str(item["divan_pcollection_" + str(number) + "_number"]) + u" броя"
-
     return html
 
 
@@ -147,7 +147,20 @@ def collection(item, number):
     html = ""
 
     space = False
+
+    if item["quantity_" + str(number)]:
+        if space:
+            html += ", "
+        else:
+            space = True
+        html += item["quantity_" + str(number)] + (u" брой" if item["quantity_" + str(number)] == 1 else u" броя")
+
     if item["name_" + str(number)]:
+        if space:
+            html += ", "
+        else:
+            html += " "
+            space = True
         html += " " + item["name_" + str(number)]
 
     if item["purpose_" + str(number)]:
@@ -173,14 +186,6 @@ def collection(item, number):
             html += " "
             space = True
         html += u"Доставчик: " + item["supplier_" + str(number)]
-
-    if item["quantity_" + str(number)]:
-        if space:
-            html += ", "
-        else:
-            html += " "
-            space = True
-        html += item["quantity_" + str(number)] + u" броя"
 
     return html
 
