@@ -209,6 +209,8 @@ def make_report(names):
         if docs[0].delivery_date:
             if len(docs) > 1 and docs[len(docs) - 1].delivery_date:
                 html += u"от "
+            else:
+                html += u"за ";
             html += str(docs[0].delivery_date.strftime("%d") + "-" + docs[0].delivery_date.strftime("%m") + "-" + docs[0].delivery_date.strftime("%Y")) + u"г. "
         if len(docs) > 1 and docs[len(docs) - 1].delivery_date:
             html += u"до " + str(docs[len(docs) - 1].delivery_date.strftime("%d") + "-" + docs[len(docs) - 1].delivery_date.strftime("%m") + "-" + docs[len(docs) - 1].delivery_date.strftime("%Y")) + u"г. "
