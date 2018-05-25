@@ -34,7 +34,7 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
         frappe.call({
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
-                console.log(r);
+                console.error(r);
                 locals[cdt][cdn].item_code = r.message;
                 cur_frm.set_value("item_code", r.message);
             }
@@ -49,7 +49,7 @@ frappe.ui.form.on("Item", "onload_post_render", function (frm, cdt, cdn) {
         frappe.call({
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
-                console.log(r);
+                console.error(r);
                 locals[cdt][cdn].item_code = r.message;
                 cur_frm.set_value("item_code", r.message);
             }
