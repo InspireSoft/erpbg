@@ -30,11 +30,13 @@ frappe.ui.form.on("Item", "cdescription", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
     locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
-    if((frm.doc.__islocal || frm.doc.__islocal == 0) && locals[cdt][cdn].item_code) {
+    if((frm.doc.__islocal || frm.doc.__islocal == 0) && !locals[cdt][cdn].item_code) {
         frappe.call({
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
+                console.log(r);
                 locals[cdt][cdn].item_code = r.message;
+                cur_frm.set_value("item_code", r.message);
             }
         });
     }
@@ -43,11 +45,12 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Item", "onload_post_render", function (frm, cdt, cdn) {
     cur_frm.set_df_property("quotation_attachment", "hidden", true);
-    if(frm.doc.__islocal || frm.doc.__islocal == 0) {
+    if((frm.doc.__islocal || frm.doc.__islocal == 0) && !locals[cdt][cdn].item_code) {
         frappe.call({
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
                 console.log(r);
+                locals[cdt][cdn].item_code = r.message;
                 cur_frm.set_value("item_code", r.message);
             }
         });
