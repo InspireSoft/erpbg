@@ -27,7 +27,7 @@ def update_price_list(iname, iprice):
 def generate_code():
     import random
     code = 0
-    free = false
+    free = False
     while not free:
         code = random.randint(1, 9999999999999)
         item = frappe.db.sql("""SELECT * FROM `tabItem` WHERE `item_code`=%s""", (code), as_dict=True)
