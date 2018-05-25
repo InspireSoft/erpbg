@@ -21,3 +21,15 @@ def update_price_list(iname, iprice):
         price.item_description = item.description
         price.price_list_rate = iprice
         price.save()
+
+
+@frappe.whitelist()
+def generate_code():
+    import random
+    code = 0
+    free = false
+    while not free:
+        code = random.randint(1, 9999999999999)
+        item = frappe.db.sql("""SELECT * FROM `tabItem` WHERE `item_code`=%s""", (code), as_dict=True)
+        free = item and len(item) <= 0
+    return code
