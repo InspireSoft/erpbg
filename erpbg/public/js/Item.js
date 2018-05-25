@@ -36,7 +36,8 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
                 if(r.message) {
-                    doc.item_code = r.message;
+                    cur_frm.set_value("item_code", r.message);
+                    cur_frm.set_value("item_name", r.message);
                 }
             }
         });
@@ -52,7 +53,8 @@ frappe.ui.form.on("Item", "onload_post_render", function (frm, cdt, cdn) {
             method: "erpbg.erpbg.item.generate_code",
             callback: function (r) {
                 if(r.message) {
-                    doc.item_code = r.message;
+                    cur_frm.set_value("item_code", r.message);
+                    cur_frm.set_value("item_name", r.message);
                 }
             }
         });
