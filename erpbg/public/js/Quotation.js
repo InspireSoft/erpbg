@@ -101,6 +101,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     // set modification_image on Quotation item open window
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
+        console.error(cur_frm.doc.items);
         cur_frm.doc.items.forEach(function(item) {
             console.error(item);
             console.error(a.attr("data-name"));
