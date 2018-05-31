@@ -71,7 +71,7 @@ def get_sales_order_item(item_code, sales_order):
 
 
 @frappe.whitelist()
-def get_quotation_attachments(quotation_name, sales_order_name):
+def get_attachments_of_quotation(quotation_name, sales_order_name):
     existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Sales Order' AND `attached_to_name`=%s""", (sales_order_name), as_dict=True)
     if len(existing_attachments) > 0:
         return False
@@ -81,12 +81,33 @@ def get_quotation_attachments(quotation_name, sales_order_name):
     for qattachment in qattachments:
         sattachment = frappe.new_doc("File")
         sattachment.update(qattachment)
+        sattachment.name = None
         sattachment.attached_to_name = sales_order_name
         sattachment.attached_to_doctype = "Sales Order"
         sattachment.save(ignore_permissions=True)
         sattachments.append(sattachment)
         frappe.db.commit()
     return sattachments
+
+
+@frappe.whitelist()
+def copy_quotation_attachments(quotation_name, sales_order_name):
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabSales Order Attachment` WHERE `parent`=%s""", (sales_order_name), as_dict=True)
+    if len(existing_attachments) > 0:
+        return False
+
+    qattachments = frappe.db.sql("""SELECT * FROM `tabQuotation Attachment` WHERE `parent`=%s""", (quotation_name), as_dict=True)
+    sattachments = []
+    for qattachment in qattachments:
+        sattachment = frappe.new_doc("Sales Order Attachment")
+        sattachment.update(qattachment)
+        sattachment.name = None
+        sattachment.parent = sales_order_name
+        sattachment.parenttype = "Sales Order"
+        sattachment.save(ignore_permissions=True)
+        sattachments.append(sattachment)
+        frappe.db.commit()
+    return True
 
 
 def divan_pillow_collection(item, number):

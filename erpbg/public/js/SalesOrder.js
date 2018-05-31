@@ -14,27 +14,32 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
             }
         });
     });
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
-        cur_frm.set_df_property("sales_order_attachment", "hidden", false);
-        return;
-    }
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.docstatus == 0) {
         if(frm.doc.copied_attachments == 0 && frm.doc.items && frm.doc.items.length > 0 && frm.doc.items[0].prevdoc_docname) {
             frappe.call({
-                method: 'erpbg.erpbg.sales_order.get_quotation_attachments',
+                method: 'erpbg.erpbg.sales_order.get_attachments_of_quotation',
                 args: {
                     "quotation_name": frm.doc.items[0].prevdoc_docname,
                     "sales_order_name": frm.doc.name
                 },
                 callback: function(r) {
-                    console.log(r);
                     if(r.message) {
                         r.message.forEach(function(attachment){
                             frm.attachments.update_attachment(attachment);
                         });
                         frm.refresh();
                     }
+                }
+            });
+            frappe.call({
+                method: 'erpbg.erpbg.sales_order.copy_quotation_attachments',
+                args: {
+                    "quotation_name": frm.doc.items[0].prevdoc_docname,
+                    "sales_order_name": frm.doc.name
+                },
+                callback: function(r) {
+                    frm.refresh();
                 }
             });
             frappe.model.set_value(cdt, cdn, "copied_attachments", 1);
