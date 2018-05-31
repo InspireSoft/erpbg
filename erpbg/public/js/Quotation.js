@@ -87,18 +87,18 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         Quotation_From_Communication = null;
     }
     check_for_communication_images(frm);
-    jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
-        var a = jQuery(this).closest("div[data-idx]");
-        cur_frm.doc.items.forEach(function(item) {
-            if(item.name == a.attr("data-name")) {
-                if(item.divan_modification_link != "") {
-                    window.setTimeout(function() {
-                        modification_image(locals[cdt][cdn]);
-                    }, 500);
-                }
-            }
-        });
-    });
+    // jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
+    //     var a = jQuery(this).closest("div[data-idx]");
+    //     cur_frm.doc.items.forEach(function(item) {
+    //         if(item.name == a.attr("data-name")) {
+    //             if(item.divan_modification_link) {
+    //                 window.setTimeout(function() {
+    //                     modification_image(locals[cdt][cdn]);
+    //                 }, 500);
+    //             }
+    //         }
+    //     });
+    // });
     jQuery("div[data-fieldname='quotation_attachment'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.quotation_attachment.forEach(function(attachment) {

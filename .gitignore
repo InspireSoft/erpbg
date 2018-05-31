@@ -93,3 +93,9 @@ ENV/
 logply/config.py
 _build/
 MANIFEST
+.idea/workspace.xml
+.idea/erpbg.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/modules.xml
