@@ -16,7 +16,7 @@ function modification_image(item) {
             }
         })
     } else {
-        // type_image("");
+        type_image("");
     }
 }
 

@@ -105,7 +105,8 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
             if(item.name == a.attr("data-name")) {
                 if(item.divan_modification_link) {
                     window.setTimeout(function() {
-                        modification_image(locals[cdt][cdn]);
+                        // modification_image(locals[cdt][cdn]);
+                        console.error("modification_image");
                     }, 500);
                 }
             }
