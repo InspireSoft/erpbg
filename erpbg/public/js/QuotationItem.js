@@ -8,7 +8,7 @@
 // });
 //
 frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
-    if(locals[cdt][cdn].type) {
+    if(!locals[cdt][cdn].type) {
         frappe.call({
             method: "frappe.client.get",
             args: {
