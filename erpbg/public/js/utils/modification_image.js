@@ -9,8 +9,6 @@ function modification_image(item) {
             },
             callback: function(r) {
                 if(r.message)  {
-                    console.error("divan_modification file");
-                    console.error(r.message);
                     type_image(r.message.file_url);
                 }
             }
