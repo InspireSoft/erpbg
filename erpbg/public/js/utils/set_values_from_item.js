@@ -75,9 +75,9 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "legs_model", soi.legs_model);
     frappe.model.set_value(cdt, cdn, "legs_size", soi.legs_size);
     frappe.model.set_value(cdt, cdn, "divan_legs_number", soi.divan_legs_number);
-    frappe.model.set_value(cdt, cdn, "legs_color", soi.divan_legs_number);
-    frappe.model.set_value(cdt, cdn, "legs_supplier", soi.divan_legs_number);
-    frappe.model.set_value(cdt, cdn, "legs_image", soi.divan_legs_number);
+    frappe.model.set_value(cdt, cdn, "legs_color", soi.legs_color);
+    frappe.model.set_value(cdt, cdn, "legs_supplier", soi.legs_supplier);
+    frappe.model.set_value(cdt, cdn, "legs_image", soi.legs_image);
     frappe.model.set_value(cdt, cdn, "divan_legs_other", soi.divan_legs_other);
 
     // Bed
