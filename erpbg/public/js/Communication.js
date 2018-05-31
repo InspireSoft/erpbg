@@ -46,6 +46,13 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
     } else {
         communication_make_button_fix();
     }
+    frappe.call({
+        method: "erpbg.erpbg.communication.mark_as_seen",
+        args: { "cname": locals[cdt][cdn].name },
+        callback: function (r) {
+            frm.refresh();
+        }
+    });
 });
 
 
