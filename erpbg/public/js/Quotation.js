@@ -99,31 +99,32 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     check_for_communication_images(frm);
 
     // set modification_image on Quotation item open window
-    // jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
-    //     var a = jQuery(this).closest("div[data-idx]");
-    //     cur_frm.doc.items.forEach(function(item) {
-    //         if(item.name == a.attr("data-name")) {
-    //             if(item.divan_modification_link) {
-    //                 window.setTimeout(function() {
-    //                     modification_image(locals[cdt][cdn]);
-    //                 }, 500);
-    //             }
-    //         }
-    //     });
-    // });
+    jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
+        var a = jQuery(this).closest("div[data-idx]");
+        cur_frm.doc.items.forEach(function(item) {
+            if(item.name == a.attr("data-name")) {
+                if(item.divan_modification_link) {
+                    window.setTimeout(function() {
+                        modification_image(locals[cdt][cdn]);
+                    }, 500);
+                }
+            }
+        });
+    });
 
-    // jQuery("div[data-fieldname='quotation_attachment'] span.octicon-triangle-down").click(function() {
-    //     var a = jQuery(this).closest("div[data-idx]");
-    //     cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-    //         if(attachment.name == a.attr("data-name")) {
-    //             if(attachment.attachment != "") {
-    //                 window.setTimeout(function() {
-    //                     imageEditor(attachment);
-    //                 }, 500);
-    //             }
-    //         }
-    //     });
-    // });
+    // image editor (cropper):
+    jQuery("div[data-fieldname='quotation_attachment'] span.octicon-triangle-down").click(function() {
+        var a = jQuery(this).closest("div[data-idx]");
+        cur_frm.doc.quotation_attachment.forEach(function(attachment) {
+            if(attachment.name == a.attr("data-name")) {
+                if(attachment.attachment != "") {
+                    window.setTimeout(function() {
+                        imageEditor(attachment);
+                    }, 500);
+                }
+            }
+        });
+    });
 
     // hide attachments for unsaved documents:
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {

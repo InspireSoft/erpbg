@@ -3,7 +3,7 @@
 function set_values_from_item(cdt, cdn, soi) {
 
     // headers
-console.error("copy headers");
+
     frappe.model.set_value(cdt, cdn, "type", soi.type);
     frappe.model.set_value(cdt, cdn, "divan_modification_link", soi.divan_modification_link);
     frappe.model.set_value(cdt, cdn, "divan_modification_image", soi.divan_modification_image);
@@ -14,7 +14,7 @@ console.error("copy headers");
     frappe.model.set_value(cdt, cdn, "item_private_calculations", soi.item_private_calculations);
 
     // damaska / eko koja / estestvena koja
-console.error("copy damaska / eko koja / estestvena koja");
+
     frappe.model.set_value(cdt, cdn, "damaska", soi.damaska);
     frappe.model.set_value(cdt, cdn, "seeable_back", soi.seeable_back);
     frappe.model.set_value(cdt, cdn, "estestvena_koja", soi.estestvena_koja);
@@ -45,7 +45,7 @@ console.error("copy damaska / eko koja / estestvena koja");
     frappe.model.set_value(cdt, cdn, "quantity_3", soi.quantity_3);
 
     // pillows
-console.error("copy pillows");
+
     frappe.model.set_value(cdt, cdn, "divan_pillow_collection_1", soi.divan_pillow_collection_1);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_supplier", soi.divan_pcollection_1_supplier);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_name", soi.divan_pcollection_1_name);
@@ -71,7 +71,7 @@ console.error("copy pillows");
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_quantity", soi.divan_pcollection_3_quantity);
 
     // legs
-console.error("copy legs");
+
     frappe.model.set_value(cdt, cdn, "legs_model", soi.legs_model);
     frappe.model.set_value(cdt, cdn, "legs_size", soi.legs_size);
     frappe.model.set_value(cdt, cdn, "divan_legs_number", soi.divan_legs_number);
@@ -81,42 +81,42 @@ console.error("copy legs");
     frappe.model.set_value(cdt, cdn, "divan_legs_other", soi.divan_legs_other);
 
     // Bed
-console.error("copy Bed");
+
     frappe.model.set_value(cdt, cdn, "bed_model", soi.bed_model);
     frappe.model.set_value(cdt, cdn, "bed_lenth", soi.bed_lenth);
     frappe.model.set_value(cdt, cdn, "bed_height", soi.bed_height);
     frappe.model.set_value(cdt, cdn, "bed_depth", soi.bed_depth);
 
     // cargi
-console.error("copy cargi");
+
     frappe.model.set_value(cdt, cdn, "cargi_model", soi.cargi_model);
     frappe.model.set_value(cdt, cdn, "cargi_design", soi.cargi_design);
     frappe.model.set_value(cdt, cdn, "cargi_height", soi.cargi_height);
     frappe.model.set_value(cdt, cdn, "cargi_weight", soi.cargi_weight);
 
     // matrac
-console.error("copy matrac");
+
     frappe.model.set_value(cdt, cdn, "matrac_lenght", soi.matrac_lenght);
     frappe.model.set_value(cdt, cdn, "matrac_width", soi.matrac_width);
     frappe.model.set_value(cdt, cdn, "matrac_weight", soi.matrac_weight);
 
     // sitting_height
-console.error("copy sitting_height");
+
     frappe.model.set_value(cdt, cdn, "sit_height", soi.sit_height);
 
     // sitting_depth_matrac
-console.error("copy sitting_depth_matrac");
+
     frappe.model.set_value(cdt, cdn, "matrac_sitting_depth", soi.matrac_sitting_depth);
 
     // inner_construction
-console.error("copy inner_construction");
+
     frappe.model.set_value(cdt, cdn, "from_dimela", soi.from_dimela);
     frappe.model.set_value(cdt, cdn, "inner_construction_material", soi.inner_construction_material);
     frappe.model.set_value(cdt, cdn, "inner_construction_bottom", soi.inner_construction_bottom);
     frappe.model.set_value(cdt, cdn, "inner_construction_mechanic", soi.inner_construction_mechanic);
 
     // undermatric_frame
-console.error("copy undermatric_frame");
+
     frappe.model.set_value(cdt, cdn, "undermatric_frame_from_dimela", soi.undermatric_frame_from_dimela);
     frappe.model.set_value(cdt, cdn, "undermatric_order", soi.undermatric_order);
     frappe.model.set_value(cdt, cdn, "undermatric_metal", soi.undermatric_metal);
@@ -125,24 +125,24 @@ console.error("copy undermatric_frame");
     frappe.model.set_value(cdt, cdn, "undermatric_no_mechanic", soi.undermatric_no_mechanic);
 
     // mechanic
-console.error("copy mechanic");
+
     frappe.model.set_value(cdt, cdn, "name_or_catalog_number", soi.name_or_catalog_number);
     frappe.model.set_value(cdt, cdn, "mechanic_supplier", soi.mechanic_supplier);
 
     // pillow_or_pane
-console.error("copy pillow_or_pane");
+
     frappe.model.set_value(cdt, cdn, "pptype", soi.pp_lenght);
     frappe.model.set_value(cdt, cdn, "ppmodel", soi.pp_height);
     frappe.model.set_value(cdt, cdn, "bodna", soi.pp_thickness);
 
     // pillow_or_pane_size
-console.error("copy pillow_or_pane_size");
+
     frappe.model.set_value(cdt, cdn, "pp_lenght", soi.pp_lenght);
     frappe.model.set_value(cdt, cdn, "pp_height", soi.pp_height);
     frappe.model.set_value(cdt, cdn, "pp_thickness", soi.pp_thickness);
 
     // tabla
-console.error("copy tabla");
+
     frappe.model.set_value(cdt, cdn, "tabla_attachable", soi.pp_lenght);
     frappe.model.set_value(cdt, cdn, "tabla_depth", soi.pp_height);
     frappe.model.set_value(cdt, cdn, "tabla_height", soi.pp_thickness);
