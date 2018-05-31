@@ -7,24 +7,24 @@
 //     }
 // });
 //
-// frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
-//     if(locals[cdt][cdn].type) {
-//         frappe.call({
-//             method: "frappe.client.get",
-//             args: {
-//                 doctype: "Item",
-//                 filters: {
-//                     item_code: locals[cdt][cdn].item_code
-//                 }
-//             },
-//             callback: function(r) {
-//                 set_values_from_item(cdt, cdn, r.message);
-//                 if(r.divan_modification_link != "") {
-//                     modification_image(locals[cdt][cdn]);
-//                 }
-//             }
-//         });
-//     }
+frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
+    if(locals[cdt][cdn].type) {
+        frappe.call({
+            method: "frappe.client.get",
+            args: {
+                doctype: "Item",
+                filters: {
+                    item_code: locals[cdt][cdn].item_code
+                }
+            },
+            callback: function(r) {
+                set_values_from_item(cdt, cdn, r.message);
+                if(r.divan_modification_link != "") {
+                    modification_image(locals[cdt][cdn]);
+                }
+            }
+        });
+    }
 //     if(!frm.doc.__islocal || frm.doc.__islocal == 0) {
 //         frappe.call({
 //             method: "frappe.client.get",
@@ -51,7 +51,7 @@
 //             }
 //         });
 //     }
-// });
+});
 //
 //
 // frappe.ui.form.on("Quotation Item", "cdescription", function (frm, cdt, cdn) {
