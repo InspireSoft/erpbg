@@ -27,6 +27,8 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "color_1", soi.color_1);
     frappe.model.set_value(cdt, cdn, "purpose_1", soi.purpose_1);
     frappe.model.set_value(cdt, cdn, "quantity_1", soi.quantity_1);
+    frappe.model.set_value(cdt, cdn, "ordered_on_1", soi.ordered_on_1);
+    frappe.model.set_value(cdt, cdn, "arraiving_on_1", soi.arraiving_on_1);
 
     frappe.model.set_value(cdt, cdn, "collection_2", soi.collection_2);
     frappe.model.set_value(cdt, cdn, "supplier_2", soi.supplier_2);
@@ -35,6 +37,8 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "color_2", soi.color_2);
     frappe.model.set_value(cdt, cdn, "purpose_2", soi.purpose_2);
     frappe.model.set_value(cdt, cdn, "quantity_2", soi.quantity_2);
+    frappe.model.set_value(cdt, cdn, "ordered_on_2", soi.ordered_on_2);
+    frappe.model.set_value(cdt, cdn, "arraiving_on_2", soi.arraiving_on_2);
 
     frappe.model.set_value(cdt, cdn, "collection_3", soi.collection_3);
     frappe.model.set_value(cdt, cdn, "supplier_3", soi.supplier_3);
@@ -43,6 +47,8 @@ function set_values_from_item(cdt, cdn, soi) {
     frappe.model.set_value(cdt, cdn, "color_3", soi.color_3);
     frappe.model.set_value(cdt, cdn, "purpose_3", soi.purpose_3);
     frappe.model.set_value(cdt, cdn, "quantity_3", soi.quantity_3);
+    frappe.model.set_value(cdt, cdn, "ordered_on_3", soi.ordered_on_3);
+    frappe.model.set_value(cdt, cdn, "arraiving_on_3", soi.arraiving_on_3);
 
     // pillows
 
