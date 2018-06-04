@@ -29,18 +29,21 @@ class Searcher:
 
             # loop over the rows in the index
             for row in reader:
-                # parse out the image ID and features, then compute the
-                # chi-squared distance between the features in our index
-                # and our query features
-                features = [float(x) for x in row[1:]]
-                d = self.chi2_distance(features, queryFeatures)
+                try:
+                    # parse out the image ID and features, then compute the
+                    # chi-squared distance between the features in our index
+                    # and our query features
+                    features = [float(x) for x in row[1:]]
+                    d = self.chi2_distance(features, queryFeatures)
 
-                # now that we have the distance between the two feature
-                # vectors, we can udpate the results dictionary -- the
-                # key is the current image ID in the index and the
-                # value is the distance we just computed, representing
-                # how 'similar' the image in the index is to our query
-                results[row[0]] = d
+                    # now that we have the distance between the two feature
+                    # vectors, we can udpate the results dictionary -- the
+                    # key is the current image ID in the index and the
+                    # value is the distance we just computed, representing
+                    # how 'similar' the image in the index is to our query
+                    results[row[0]] = d
+                except:
+                    pass
 
             # close the reader
             f.close()
@@ -126,7 +129,6 @@ def get_data():
     pyimagesearch["dataset1"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/public/files"
     pyimagesearch["dataset2"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/private/files"
     pyimagesearch["index"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/dataset.csv"
-    pyimagesearch["result_path"] = "/home/frappe/frappe-bench-dimela/sites/erp.dimeladesign.com/private/files"
     return pyimagesearch
 
 
@@ -243,7 +245,7 @@ def search_result(file_name, url_addon):
 
 @frappe.whitelist()
 def search_test_result():
-    file_name = "14.jpg"
+    file_name = "Bella_M.JPG"
     url_addon = "private/"
 
     search = "<div style='float:left'>"
