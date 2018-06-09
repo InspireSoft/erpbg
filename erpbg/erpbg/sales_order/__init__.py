@@ -140,13 +140,13 @@ def divan_pillow_collection(item, number):
 
     if item["divan_pcollection_" + str(number) + "_quantity"]:
         if space:
-            html += " "
+            html += ", "
         space = True
         html += u"л.м. " + item["divan_pcollection_" + str(number) + "_quantity"]
 
     if item["divan_pcollection_" + str(number) + "_number"]:
         if space:
-            html += " "
+            html += ", "
         space = True
         html += str(item["divan_pcollection_" + str(number) + "_number"]) + (u" брой" if item["divan_pcollection_" + str(number) + "_number"] == 1 else u" броя")
 
@@ -196,7 +196,7 @@ def collection(item, number):
 
     if item["ordered_on_" + str(number)]:
         if space:
-            html += " "
+            html += ", "
         space = True
         html += u"Поръчан на " + item["ordered_on_" + str(number)].strftime("%d") + "." + item["ordered_on_" + str(number)].strftime("%m") + "." + item["ordered_on_" + str(number)].strftime("%Y")
 
