@@ -114,52 +114,41 @@ def divan_pillow_collection(item, number):
     html = ""
     space = False
 
-    if item["divan_pcollection_" + str(number) + "_number"]:
-        if space:
-            html += ", "
-        else:
-            space = True
-        html += str(item["divan_pcollection_" + str(number) + "_number"]) + (u" брой" if item["divan_pcollection_" + str(number) + "_number"] == 1 else u" броя")
-
     if item["divan_pcollection_" + str(number) + "_supplier"]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
+        space = True
         html += u"Доставчик " + item["divan_pcollection_" + str(number) + "_supplier"]
-
-    if item["divan_pcollection_" + str(number) + "_design"]:
-        if space:
-            html += ", "
-        else:
-            html += " "
-            space = True
-        html += u"Дезайн " + item["divan_pcollection_" + str(number) + "_design"]
 
     if item["divan_pcollection_" + str(number) + "_name"]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
+        space = True
         html += " " + item["divan_pcollection_" + str(number) + "_name"]
+
+    if item["divan_pcollection_" + str(number) + "_design"]:
+        if space:
+            html += " "
+        space = True
+        html += u"Дезайн " + item["divan_pcollection_" + str(number) + "_design"]
 
     if item["divan_pcollection_" + str(number) + "_damaska_color"]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
-        html += u"Дамаска цвят: " + item["divan_pcollection_" + str(number) + "_damaska_color"]
+        space = True
+        html += item["divan_pcollection_" + str(number) + "_damaska_color"]
 
     if item["divan_pcollection_" + str(number) + "_quantity"]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
-        html += u"Дамаска количество: " + item["divan_pcollection_" + str(number) + "_quantity"] + u" л.м."
+        space = True
+        html += u"л.м. " + item["divan_pcollection_" + str(number) + "_quantity"]
+
+    if item["divan_pcollection_" + str(number) + "_number"]:
+        if space:
+            html += " "
+        space = True
+        html += str(item["divan_pcollection_" + str(number) + "_number"]) + (u" брой" if item["divan_pcollection_" + str(number) + "_number"] == 1 else u" броя")
 
     return html
 
@@ -169,44 +158,53 @@ def collection(item, number):
 
     space = False
 
-    if item["quantity_" + str(number)]:
+    if item["supplier_" + str(number)]:
         if space:
-            html += ", "
-        else:
-            space = True
-        html += item["quantity_" + str(number)] + u" л.м."
+            html += " "
+        space = True
+        html += item["supplier_" + str(number)]
 
     if item["name_" + str(number)]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
-        html += " " + item["name_" + str(number)]
+        space = True
+        html += item["name_" + str(number)]
+
+    if item["design_" + str(number)]:
+        if space:
+            html += " "
+        space = True
+        html += item["design_" + str(number)]
+
+    if item["color_" + str(number)]:
+        if space:
+            html += " "
+        space = True
+        html += item["color_" + str(number)]
+
+    if item["quantity_" + str(number)]:
+        if space:
+            html += ", "
+        space = True
+        html +=  u" л.м. " + item["quantity_" + str(number)]
 
     if item["purpose_" + str(number)]:
         if space:
             html += " "
-        else:
-            html += " "
-            space = True
+        space = True
         html += u"(приложение - " + item["purpose_" + str(number)] + ")"
 
-    if item["color_" + str(number)]:
+    if item["ordered_on_" + str(number)]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
-        html += u"Цвят: " + item["color_" + str(number)]
+        space = True
+        html += u"Поръчан на " + item["ordered_on_" + str(number)].strftime("%d") + "." + item["ordered_on_" + str(number)].strftime("%m") + "." + item["ordered_on_" + str(number)].strftime("%Y")
 
-    if item["supplier_" + str(number)]:
+    if item["arraiving_on_" + str(number)]:
         if space:
-            html += ", "
-        else:
             html += " "
-            space = True
-        html += u"Доставчик: " + item["supplier_" + str(number)]
+        space = True
+        html += u"при нас на " + item["arraiving_on_" + str(number)].strftime("%d") + "." + item["arraiving_on_" + str(number)].strftime("%m") + "." + item["arraiving_on_" + str(number)].strftime("%Y")
 
     return html
 
@@ -269,64 +267,36 @@ def make_report(names):
 
             # doc item koja section
             if item.estestvena_koja or item.eco_koja or item.damaska:
+                if item.estestvena_koja:
+                    html += u"Естествена кожа"
+                    koja = True
+                if item.eco_koja:
+                    if koja:
+                        html += ", "
+                    html += u"Еко кожа"
+                    koja = True
+                if item.damaska:
+                    if koja:
+                        html += ", "
+                    html += u"Дамаска"
+                html += "<br/>"
+
                 if item.collection_1:
-                    koja = False
-                    html += u"Колекция: "
-                    if item.estestvena_koja:
-                        html += u"Естествена кожа"
-                        koja = True
-                    if item.eco_koja:
-                        if koja:
-                            html += ", "
-                        html += u"Еко кожа"
-                        koja = True
-                    if item.damaska:
-                        if koja:
-                            html += ", "
-                        html += u"Дамаска"
-                    html += " " + collection(item, 1) + "<br/>"
+                    html += u"Колекция 1: " + collection(item, 1) + "<br/>"
                 if item.collection_2:
-                    koja = False
-                    html += u"Колекция: "
-                    if item.estestvena_koja:
-                        html += u"Естествена кожа"
-                        koja = True
-                    if item.eco_koja:
-                        if koja:
-                            html += ", "
-                        html += u"Еко кожа"
-                        koja = True
-                    if item.damaska:
-                        if koja:
-                            html += ", "
-                        html += u"Дамаска"
-                    html += " " + collection(item, 2) + "<br/>"
+                    html += u"Колекция 2: " + collection(item, 2) + "<br/>"
                 if item.collection_3:
-                    koja = False
-                    html += u"Колекция: "
-                    if item.estestvena_koja:
-                        html += u"Естествена кожа"
-                        koja = True
-                    if item.eco_koja:
-                        if koja:
-                            html += ", "
-                        html += u"Еко кожа"
-                        koja = True
-                    if item.damaska:
-                        if koja:
-                            html += ", "
-                        html += u"Дамаска"
-                    html += " " + collection(item, 3) + "<br/>"
+                    html += u"Колекция 3: " + collection(item, 3) + "<br/>"
 
             # doc item pillow section
             if item.divan_pillow_collection_1:
-                html += u"Колекция декоративни възглавници:"
+                html += u"Колекция 1 декоративни възглавници:"
                 html += divan_pillow_collection(item, 1) + "<br/>"
             if item.divan_pillow_collection_2:
-                html += u"Колекция декоративни възглавници:"
+                html += u"Колекция 2 декоративни възглавници:"
                 html += divan_pillow_collection(item, 2) + "<br/>"
             if item.divan_pillow_collection_3:
-                html += u"Колекция декоративни възглавници:"
+                html += u"Колекция 3 декоративни възглавници:"
                 html += divan_pillow_collection(item, 3) + "<br/>"
 
             # doc item type image
@@ -334,16 +304,16 @@ def make_report(names):
             if item.divan_modification or item.image:
                 html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
                 if item.divan_modification:
-                    html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                    html += "<img src='/private/files/divan_" + item.divan_modification + "' alt='' style='vertical-align: top;max-height: 150px;' />"
                 if item.image:
-                    html += "<img src='/private/files/divan_" + item.image + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                    html += "<img src='/private/files/divan_" + item.image + "' alt='' style='vertical-align: top;max-height: 150px;' />"
                 html += "</div><br/>"
 
         # doc attachment images
         if len(attachments) > 0:
             html += "<div style='margin-left: auto; margin-right: auto; display: block; text-align: center;'>"
             for doc_file in attachments:
-                html += "<img src='" + doc_file.file_url + "' alt='' style='vertical-align: top;max-height: 600px;' />"
+                html += "<img src='" + doc_file.file_url + "' alt='' style='vertical-align: top;max-height: 150px;' />"
             html += "</div><br/>"
         html += "<br/>"
 
