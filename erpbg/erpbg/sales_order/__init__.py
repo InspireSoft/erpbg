@@ -267,6 +267,7 @@ def make_report(names):
 
             # doc item koja section
             if item.estestvena_koja or item.eco_koja or item.damaska:
+                koja = False
                 if item.estestvena_koja:
                     html += u"Естествена кожа"
                     koja = True
