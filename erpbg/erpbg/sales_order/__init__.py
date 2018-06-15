@@ -98,6 +98,7 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
 
     qattachments = frappe.db.sql("""SELECT * FROM `tabQuotation Attachment` WHERE `parenttype`='Quotation' AND `parent`=%s""", (quotation_name), as_dict=True)
     sattachments = []
+    id = 1
     for qattachment in qattachments:
         sattachment = frappe.new_doc("Sales Order Attachment")
 
@@ -106,6 +107,8 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
         sattachment.attachment_name = qattachment.attachment_name
         sattachment.owner = qattachment.owner
         sattachment.attachment = qattachment.attachment
+        sattachment.idx = id
+        id = id + 1
 
         sattachment.name = None
         sattachment.parent = sales_order_name

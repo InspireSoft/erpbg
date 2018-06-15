@@ -51,8 +51,13 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                     "sales_order_name": frm.doc.name
                 },
                 callback: function(r) {
-                    console.error(r);
-                    cur_frm.refresh();
+                    if(r.message) {
+                        r.message.forEach(function(attachment) {
+                            var child = cur_frm.add_child("sales_order_attachment");
+                            frappe.model.set_value(child.doctype, child.name, "attachment", item.attachment);
+                        });
+                        cur_frm.refresh();
+                    }
                 }
             });
             frappe.model.set_value(cdt, cdn, "copied_attachments", 1);
