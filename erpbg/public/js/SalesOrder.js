@@ -14,6 +14,18 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
             }
         });
     });
+});
+
+
+frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
+    if(frm.doc.docstatus == 1) {
+        if(frm.doc.status != 'Closed') {
+            frm.add_custom_button(
+                __('BOM'),
+                function() { make_bom(locals[cdt][cdn]) }, __("Make")
+            );
+        }
+    }
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.docstatus == 0) {
         if(frm.doc.copied_attachments == 0 && frm.doc.items && frm.doc.items.length > 0 && frm.doc.items[0].prevdoc_docname) {
@@ -39,7 +51,7 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
                     "sales_order_name": frm.doc.name
                 },
                 callback: function(r) {
-                    frm.refresh();
+                    cur_frm.refresh();
                 }
             });
             frappe.model.set_value(cdt, cdn, "copied_attachments", 1);
@@ -51,22 +63,6 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
         cur_frm.set_df_property("sales_order_attachment", "hidden", false);
     } else {
         cur_frm.set_df_property("sales_order_attachment", "hidden", true);
-    }
-});
-
-
-frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
-    if(frm.doc.docstatus == 1) {
-        if(frm.doc.status != 'Closed') {
-            frm.add_custom_button(
-                __('BOM'),
-                function() { make_bom(locals[cdt][cdn]) }, __("Make")
-            );
-        }
-    }
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0) {
-        cur_frm.set_df_property("sales_order_attachment", "hidden", false);
-        return;
     }
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
