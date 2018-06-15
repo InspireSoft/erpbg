@@ -59,4 +59,13 @@ frappe.ui.form.on("Item", "onload_post_render", function (frm, cdt, cdn) {
             }
         });
     }
+    if(!locals[cdt][cdn].cdescription) {
+        cur_frm.set_value("cdescription", " ");
+    }
+    if(!locals[cdt][cdn].note) {
+        cur_frm.set_value("note", " ");
+    }
+    if(!locals[cdt][cdn].item_private_calculations) {
+        cur_frm.set_value("item_private_calculations", " ");
+    }
 });
