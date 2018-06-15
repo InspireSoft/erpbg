@@ -54,7 +54,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                     if(r.message) {
                         r.message.forEach(function(attachment) {
                             var child = cur_frm.add_child("sales_order_attachment");
-                            frappe.model.set_value(child.doctype, child.name, "attachment", item.attachment);
+                            frappe.model.set_value(child.doctype, child.name, "attachment", attachment.attachment);
                         });
                         cur_frm.refresh();
                     }
