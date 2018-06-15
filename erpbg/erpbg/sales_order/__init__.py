@@ -92,11 +92,11 @@ def get_attachments_of_quotation(quotation_name, sales_order_name):
 
 @frappe.whitelist()
 def copy_quotation_attachments(quotation_name, sales_order_name):
-    existing_attachments = frappe.db.sql("""SELECT * FROM `tabSales Order Attachment` WHERE `parenttype`='Quotation' AND `parent`=%s""", (sales_order_name), as_dict=True)
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabSales Order Attachment` WHERE `parenttype`='Sales Order' AND `parent`=%s""", (sales_order_name), as_dict=True)
     if len(existing_attachments) > 0:
         return False
 
-    qattachments = frappe.db.sql("""SELECT * FROM `tabQuotation Attachment` WHERE `parent`=%s""", (quotation_name), as_dict=True)
+    qattachments = frappe.db.sql("""SELECT * FROM `tabQuotation Attachment` WHERE `parenttype`='Quotation' AND `parent`=%s""", (quotation_name), as_dict=True)
     sattachments = []
     for qattachment in qattachments:
         sattachment = frappe.new_doc("Sales Order Attachment")
