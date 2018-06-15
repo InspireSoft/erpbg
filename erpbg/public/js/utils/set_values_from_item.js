@@ -59,6 +59,8 @@ function set_values_from_item(cdt, cdn, item) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_number", item.divan_pcollection_1_number);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_design", item.divan_pcollection_1_design);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_1_quantity", item.divan_pcollection_1_quantity);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_1_ordered_on", item.divan_pcollection_1_ordered_on);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_1_arraiving_on", item.divan_pcollection_1_arraiving_on);
 
     frappe.model.set_value(cdt, cdn, "divan_pillow_collection_2", item.divan_pillow_collection_2);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_supplier", item.divan_pcollection_2_supplier);
@@ -67,6 +69,8 @@ function set_values_from_item(cdt, cdn, item) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_number", item.divan_pcollection_2_number);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_design", item.divan_pcollection_2_design);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_2_quantity", item.divan_pcollection_2_quantity);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_2_ordered_on", item.divan_pcollection_2_ordered_on);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_2_arraiving_on", item.divan_pcollection_2_arraiving_on);
 
     frappe.model.set_value(cdt, cdn, "divan_pillow_collection_3", item.divan_pillow_collection_3);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_supplier", item.divan_pcollection_3_supplier);
@@ -75,6 +79,8 @@ function set_values_from_item(cdt, cdn, item) {
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_number", item.divan_pcollection_3_number);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_design", item.divan_pcollection_3_design);
     frappe.model.set_value(cdt, cdn, "divan_pcollection_3_quantity", item.divan_pcollection_3_quantity);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_3_ordered_on", item.divan_pcollection_3_ordered_on);
+    frappe.model.set_value(cdt, cdn, "divan_pcollection_3_arraiving_on", item.divan_pcollection_3_arraiving_on);
 
     // legs
 
@@ -85,6 +91,8 @@ function set_values_from_item(cdt, cdn, item) {
     frappe.model.set_value(cdt, cdn, "legs_supplier", item.legs_supplier);
     frappe.model.set_value(cdt, cdn, "legs_image", item.legs_image);
     frappe.model.set_value(cdt, cdn, "divan_legs_other", item.divan_legs_other);
+    frappe.model.set_value(cdt, cdn, "legs_arraiving_on", item.legs_arraiving_on);
+    frappe.model.set_value(cdt, cdn, "legs_ordered_on", item.legs_ordered_on);
 
     // Bed
 
@@ -117,18 +125,24 @@ function set_values_from_item(cdt, cdn, item) {
     // inner_construction
 
     frappe.model.set_value(cdt, cdn, "from_dimela", item.from_dimela);
+    frappe.model.set_value(cdt, cdn, "inner_construction_supplier", item.undermatric_supplier);
     frappe.model.set_value(cdt, cdn, "inner_construction_material", item.inner_construction_material);
     frappe.model.set_value(cdt, cdn, "inner_construction_bottom", item.inner_construction_bottom);
     frappe.model.set_value(cdt, cdn, "inner_construction_mechanic", item.inner_construction_mechanic);
+    frappe.model.set_value(cdt, cdn, "inner_construction_ordered_on", item.inner_construction_ordered_on);
+    frappe.model.set_value(cdt, cdn, "inner_construction_arraiving_on", item.inner_construction_arraiving_on);
 
     // undermatric_frame
 
     frappe.model.set_value(cdt, cdn, "undermatric_frame_from_dimela", item.undermatric_frame_from_dimela);
-    frappe.model.set_value(cdt, cdn, "undermatric_order", item.undermatric_order);
+    frappe.model.set_value(cdt, cdn, "undermatric_supplier", item.undermatric_supplier);
     frappe.model.set_value(cdt, cdn, "undermatric_metal", item.undermatric_metal);
     frappe.model.set_value(cdt, cdn, "undermatric_wood", item.undermatric_wood);
     frappe.model.set_value(cdt, cdn, "undermatric_lifting_mechanic", item.undermatric_lifting_mechanic);
     frappe.model.set_value(cdt, cdn, "undermatric_no_mechanic", item.undermatric_no_mechanic);
+    frappe.model.set_value(cdt, cdn, "undermatric_no_mechanic", item.undermatric_no_mechanic);
+    frappe.model.set_value(cdt, cdn, "undermatric_ordered_on", item.undermatric_ordered_on);
+    frappe.model.set_value(cdt, cdn, "undermatric_arraiving_on", item.undermatric_arraiving_on);
 
     // mechanic
 
