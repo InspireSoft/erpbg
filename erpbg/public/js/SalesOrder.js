@@ -51,6 +51,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                     "sales_order_name": frm.doc.name
                 },
                 callback: function(r) {
+                    console.error(r);
                     cur_frm.refresh();
                 }
             });

@@ -98,11 +98,15 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
 
     qattachments = frappe.db.sql("""SELECT * FROM `tabQuotation Attachment` WHERE `parenttype`='Quotation' AND `parent`=%s""", (quotation_name), as_dict=True)
     sattachments = []
-    print ""
-    print "copy_quotation_attachments"
     for qattachment in qattachments:
         sattachment = frappe.new_doc("Sales Order Attachment")
-        sattachment.update(qattachment)
+
+        sattachment.modified = qattachment.modified
+        sattachment.modified_by = qattachment.modified_by
+        sattachment.attachment_name = qattachment.attachment_name
+        sattachment.owner = qattachment.owner
+        sattachment.attachment = qattachment.attachment
+
         sattachment.name = None
         sattachment.parent = sales_order_name
         sattachment.parenttype = "Sales Order"
@@ -111,9 +115,7 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
         sattachment.save(ignore_permissions=True)
         sattachments.append(sattachment)
         frappe.db.commit()
-        print sattachment
-    print ""
-    return True
+    return sattachments
 
 
 def divan_pillow_collection(item, number):
