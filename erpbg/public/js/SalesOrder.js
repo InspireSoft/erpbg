@@ -47,7 +47,7 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
         }
     }
 
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+    if(frm.doc.docstatus == 1) {
         cur_frm.set_df_property("sales_order_attachment", "hidden", false);
     } else {
         cur_frm.set_df_property("sales_order_attachment", "hidden", true);
@@ -64,7 +64,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
             );
         }
     }
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+    if(frm.doc.docstatus == 1) {
         cur_frm.set_df_property("sales_order_attachment", "hidden", false);
         return;
     }
@@ -95,7 +95,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
         cur_frm.set_value("itemimagecopy", 1);
     }
 
-    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+    if(frm.doc.docstatus == 1) {
         cur_frm.set_df_property("sales_order_attachment", "hidden", false);
     }
 });
