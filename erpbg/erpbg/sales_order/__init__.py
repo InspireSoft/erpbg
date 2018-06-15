@@ -104,6 +104,8 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
         sattachment.name = None
         sattachment.parent = sales_order_name
         sattachment.parenttype = "Sales Order"
+        sattachment.parentfield = "sales_order_attachment"
+        sattachment.docstatus = 0
         sattachment.save(ignore_permissions=True)
         sattachments.append(sattachment)
         frappe.db.commit()
