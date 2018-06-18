@@ -134,7 +134,7 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
 def divan_pillow_collection(item, number):
     html = "<tr>"
 
-    html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
+    html += '<td style="width: 95px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
     html += u"Колекция " + safe_str(number) + u"декоративни възглавници: "
     html += "</b></td>"
 
@@ -188,7 +188,7 @@ def divan_pillow_collection(item, number):
 def collection(item, number):
     html = "<tr>"
 
-    html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
+    html += '<td style="width: 95px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
     html += u"Колекция " + safe_str(number) + ": "
     html += "</b></td>"
 
@@ -231,7 +231,7 @@ def collection(item, number):
     html += u'<td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>'
     if item["arraiving_on_" + safe_str(number)]:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
-        html += u"при нас на " + item["arraiving_on_" + safe_str(number)].strftime("%d") + "." + item["arraiving_on_" + safe_str(number)].strftime("%m") + "." + item["arraiving_on_" + safe_str(number)].strftime("%Y")
+        html += item["arraiving_on_" + safe_str(number)].strftime("%d") + "." + item["arraiving_on_" + safe_str(number)].strftime("%m") + "." + item["arraiving_on_" + safe_str(number)].strftime("%Y")
         html += '</div></td>'
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
@@ -312,7 +312,7 @@ def make_report(names):
                     html += u"Дамаска"
 
                 if item.collection_1 or item.collection_2 or item.collection_3:
-                    html += '<table style="border-collapse: collapse;border 0px;>'
+                    html += '<table style="width:100%;border-collapse: collapse;border 0px;>'
                 if item.collection_1:
                     html += collection(item, 1)
                 if item.collection_2:
@@ -325,7 +325,7 @@ def make_report(names):
             # doc item pillow section
 
             if item.collection_1 or item.collection_2 or item.collection_3:
-                    html += '<table style="border-collapse: collapse;border 0px;>'
+                    html += '<table style="width:100%;border-collapse: collapse;border 0px;>'
             if item.divan_pillow_collection_1:
                 html += divan_pillow_collection(item, 1)
             if item.divan_pillow_collection_2:
