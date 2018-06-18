@@ -9,12 +9,15 @@ from frappe import _
 
 @frappe.whitelist()
 def get_doc_from_print(doctype, docname):
-
-    html = "<b>test</b>"
+    doc = frappe.db.sql("""SELECT * FROM `tab%s` WHERE `name`=%s""", (doctype, docname), as_dict=True)
+    meta = frappe.get_meta(doc.doctype)
+    format = meta.default_print_format
+    html = frappe.get_print(doctype, docname, format, doc=doc)
 
     from werkzeug.wrappers import Response
     response = Response()
     response.mimetype = 'application/msword'
     response.charset = 'utf-8'
+    response.name = "test.doc"
     response.data = html
     return response
