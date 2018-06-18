@@ -24,5 +24,5 @@ def get_doc_from_print(doctype, docname):
         response.filename = "{name}.doc".format(name=doc.title.replace(" ", "-").replace("/", "-"))
         response.data = html
     except Exception as e:
-        return [str(e)]
+        return traceback.format_exc().splitlines()
     return response
