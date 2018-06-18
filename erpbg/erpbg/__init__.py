@@ -16,7 +16,8 @@ def get_doc_from_print(doctype, docname):
         response = Response()
         response.mimetype = 'application/msword'
         response.charset = 'utf-8'
-        response.filename = u"{name}.doc".format(name=doc.title.encode('utf-8').replace(" ", "-").replace("/", "-"))
+        doc.title = doc.title.encode('utf-8')
+        response.filename = u"{name}.doc".format(name=doc.title.replace(" ", "-").replace("/", "-"))
         response.data = html
     except Exception as e:
         return traceback.format_exc().splitlines()
