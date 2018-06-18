@@ -293,7 +293,7 @@ def make_report(names):
         html += "<br/>"
         for item in items:
             # doc item name
-            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; описание: " + item.cdescription + "<br/>"
+            html += "<div style='padding-left: 30px; padding-right: 30px;'>- " + item.item_name + u"; " + item.cdescription + "<br/>"
 
             # doc item koja section
             if item.estestvena_koja or item.eco_koja or item.damaska:
@@ -314,7 +314,7 @@ def make_report(names):
                 html += u" от Димела</b>"
 
                 if item.collection_1 or item.collection_2 or item.collection_3:
-                    html += '<table style="width:100%;border-collapse: collapse;border 0px;">'
+                    html += '<table style="width:100%;border-collapse: collapse;border 0px; margin-left: 30px; margin-right: 30px;">'
                 if item.collection_1:
                     html += collection(item, 1)
                 if item.collection_2:
@@ -327,7 +327,7 @@ def make_report(names):
             # doc item pillow section
 
             if item.collection_1 or item.collection_2 or item.collection_3:
-                    html += u'<b>Декоративни възглавници</b><table style="width:100%;border-collapse: collapse;border 0px;">'
+                    html += u'<b>Декоративни възглавници</b><table style="width:100%;border-collapse: collapse;border 0px; margin-left: 30px; margin-right: 30px;">'
             if item.divan_pillow_collection_1:
                 html += divan_pillow_collection(item, 1)
             if item.divan_pillow_collection_2:
