@@ -326,7 +326,7 @@ def make_report(names):
 
             # doc item pillow section
 
-            if item.collection_1 or item.collection_2 or item.collection_3:
+            if item.divan_pillow_collection_1 or item.divan_pillow_collection_2 or item.divan_pillow_collection_3:
                     html += u'<b>Декоративни възглавници</b><table style="width:100%;border-collapse: collapse;border 0px; margin-left: 30px; margin-right: 30px;">'
             if item.divan_pillow_collection_1:
                 html += divan_pillow_collection(item, 1)
