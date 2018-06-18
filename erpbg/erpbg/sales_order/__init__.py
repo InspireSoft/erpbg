@@ -6,6 +6,16 @@ import json
 from frappe import _
 
 
+
+def safe_str(obj):
+    """ return the byte string representation of obj """
+    try:
+        return str(obj)
+    except UnicodeEncodeError:
+        # obj is unicode
+        return unicode(obj).encode('unicode_escape')
+
+
 @frappe.whitelist()
 def get_bomed_items(sales_order_name):
     '''Returns items with BOM that already do not have a linked Sales Order'''
@@ -13,12 +23,12 @@ def get_bomed_items(sales_order_name):
     sales_order_items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s""", (sales_order_name), as_dict=True)
 
     for item in sales_order_items:
-        bom = get_default_bom_item_object(str(item["item_code"]))
+        bom = get_default_bom_item_object(safe_str(item["item_code"]))
         if bom:
             items.append(dict(
-                item_code=str(item["item_code"]),
+                item_code=safe_str(item["item_code"]),
                 sales_order=sales_order_name,
-                warehouse=str(item["warehouse"])
+                warehouse=safe_str(item["warehouse"])
             ))
     return items
 
@@ -125,31 +135,31 @@ def divan_pillow_collection(item, number):
     html = "<tr>"
 
     html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
-    html += u"Колекция " + str(number) + u"декоративни възглавници: "
+    html += u"Колекция " + safe_str(number) + u"декоративни възглавници: "
     html += "</b></td>"
 
     html += '<td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
-    if item["divan_pcollection_" + str(number) + "_supplier"]:
-        html += " " + str(item["divan_pcollection_" + str(number) + "_supplier"])
-    if item["divan_pcollection_" + str(number) + "_name"]:
-        html += " " + str(item["divan_pcollection_" + str(number) + "_name"])
-    if item["divan_pcollection_" + str(number) + "_design"]:
-        html += " " + str(item["divan_pcollection_" + str(number) + "_design"])
-    if item["divan_pcollection_" + str(number) + "_damaska_color"]:
-        html += " " + str(item["divan_pcollection_" + str(number) + "_damaska_color"])
+    if item["divan_pcollection_" + safe_str(number) + "_supplier"]:
+        html += " " + safe_str(item["divan_pcollection_" + safe_str(number) + "_supplier"])
+    if item["divan_pcollection_" + safe_str(number) + "_name"]:
+        html += " " + safe_str(item["divan_pcollection_" + safe_str(number) + "_name"])
+    if item["divan_pcollection_" + safe_str(number) + "_design"]:
+        html += " " + safe_str(item["divan_pcollection_" + safe_str(number) + "_design"])
+    if item["divan_pcollection_" + safe_str(number) + "_damaska_color"]:
+        html += " " + safe_str(item["divan_pcollection_" + safe_str(number) + "_damaska_color"])
     html += '</td>'
 
     html += u'<td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b></td>'
-    if item["divan_pcollection_" + str(number) + "_quantity"]:
+    if item["divan_pcollection_" + safe_str(number) + "_quantity"]:
         html += '<td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
-        html += str(item["divan_pcollection_" + str(number) + "_quantity"])
+        html += safe_str(item["divan_pcollection_" + safe_str(number) + "_quantity"])
         html += '</td>'
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td></td>'
 
-    if item["divan_pcollection_" + str(number) + "_number"]:
+    if item["divan_pcollection_" + safe_str(number) + "_number"]:
         html += u'<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>Брой:</b>'
-        html += str(item["divan_pcollection_" + str(number) + "_number"])
+        html += safe_str(item["divan_pcollection_" + safe_str(number) + "_number"])
         html += "</td>"
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>'
@@ -157,17 +167,17 @@ def divan_pillow_collection(item, number):
     html += "</tr><tr>"
 
     html += u'<td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>'
-    if item["divan_pcollection_" + str(number) + "_ordered_on"]:
+    if item["divan_pcollection_" + safe_str(number) + "_ordered_on"]:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
-        html += item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%d") + "." + item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%m") + "." + item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%Y")
+        html += item["divan_pcollection_" + safe_str(number) + "_ordered_on"].strftime("%d") + "." + item["divan_pcollection_" + safe_str(number) + "_ordered_on"].strftime("%m") + "." + item["divan_pcollection_" + safe_str(number) + "_ordered_on"].strftime("%Y")
         html += '</div></td>'
     else:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
 
     html += u'<td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>'
-    if item["divan_pcollection_" + str(number) + "_arraiving_on"]:
+    if item["divan_pcollection_" + safe_str(number) + "_arraiving_on"]:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
-        html += item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%d") + "." + item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%m") + "." + item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%Y")
+        html += item["divan_pcollection_" + safe_str(number) + "_arraiving_on"].strftime("%d") + "." + item["divan_pcollection_" + safe_str(number) + "_arraiving_on"].strftime("%m") + "." + item["divan_pcollection_" + safe_str(number) + "_arraiving_on"].strftime("%Y")
         html += '</div></td>'
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
@@ -179,31 +189,31 @@ def collection(item, number):
     html = "<tr>"
 
     html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
-    html += u"Колекция " + str(number) + ": "
+    html += u"Колекция " + safe_str(number) + ": "
     html += "</b></td>"
 
     html += '<td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
-    if item["supplier_" + str(number)]:
-        html += " " + str(item["supplier_" + str(number)])
-    if item["name_" + str(number)]:
-        html += " " + str(item["name_" + str(number)])
-    if item["design_" + str(number)]:
-        html += " " + str(item["design_" + str(number)])
-    if item["color_" + str(number)]:
-        html += " " + str(item["color_" + str(number)])
+    if item["supplier_" + safe_str(number)]:
+        html += " " + safe_str(item["supplier_" + safe_str(number)])
+    if item["name_" + safe_str(number)]:
+        html += " " + safe_str(item["name_" + safe_str(number)])
+    if item["design_" + safe_str(number)]:
+        html += " " + safe_str(item["design_" + safe_str(number)])
+    if item["color_" + safe_str(number)]:
+        html += " " + safe_str(item["color_" + safe_str(number)])
     html += '</td>'
 
     html += u'<td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b></td>'
-    if item["quantity_" + str(number)]:
+    if item["quantity_" + safe_str(number)]:
         html += '<td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
-        html += str(item["quantity_" + str(number)])
+        html += safe_str(item["quantity_" + safe_str(number)])
         html += '</td>'
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td></td>'
 
-    if item["purpose_" + str(number)]:
+    if item["purpose_" + safe_str(number)]:
         html += u'<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>за:</b>'
-        html += str(item["purpose_" + str(number)])
+        html += safe_str(item["purpose_" + safe_str(number)])
         html += "</td>"
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>'
@@ -211,17 +221,17 @@ def collection(item, number):
     html += "</tr><tr>"
 
     html += u'<td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>'
-    if item["ordered_on_" + str(number)]:
+    if item["ordered_on_" + safe_str(number)]:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
-        html += item["ordered_on_" + str(number)].strftime("%d") + "." + item["ordered_on_" + str(number)].strftime("%m") + "." + item["ordered_on_" + str(number)].strftime("%Y")
+        html += item["ordered_on_" + safe_str(number)].strftime("%d") + "." + item["ordered_on_" + safe_str(number)].strftime("%m") + "." + item["ordered_on_" + safe_str(number)].strftime("%Y")
         html += '</div></td>'
     else:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
 
     html += u'<td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>'
-    if item["arraiving_on_" + str(number)]:
+    if item["arraiving_on_" + safe_str(number)]:
         html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
-        html += u"при нас на " + item["arraiving_on_" + str(number)].strftime("%d") + "." + item["arraiving_on_" + str(number)].strftime("%m") + "." + item["arraiving_on_" + str(number)].strftime("%Y")
+        html += u"при нас на " + item["arraiving_on_" + safe_str(number)].strftime("%d") + "." + item["arraiving_on_" + safe_str(number)].strftime("%m") + "." + item["arraiving_on_" + safe_str(number)].strftime("%Y")
         html += '</div></td>'
     else:
         html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
@@ -250,9 +260,9 @@ def make_report(names):
                 html += u"от "
             else:
                 html += u"за ";
-            html += str(docs[0].delivery_date.strftime("%d") + "-" + docs[0].delivery_date.strftime("%m") + "-" + docs[0].delivery_date.strftime("%Y")) + u"г. "
+            html += safe_str(docs[0].delivery_date.strftime("%d") + "-" + docs[0].delivery_date.strftime("%m") + "-" + docs[0].delivery_date.strftime("%Y")) + u"г. "
         if len(docs) > 1 and docs[len(docs) - 1].delivery_date:
-            html += u"до " + str(docs[len(docs) - 1].delivery_date.strftime("%d") + "-" + docs[len(docs) - 1].delivery_date.strftime("%m") + "-" + docs[len(docs) - 1].delivery_date.strftime("%Y")) + u"г. "
+            html += u"до " + safe_str(docs[len(docs) - 1].delivery_date.strftime("%d") + "-" + docs[len(docs) - 1].delivery_date.strftime("%m") + "-" + docs[len(docs) - 1].delivery_date.strftime("%Y")) + u"г. "
     html += "</h1><br/><br/>"
 
     # doc info and attachments
@@ -270,10 +280,10 @@ def make_report(names):
                 html += " - "
             info = True
             html += u"Срок "
-            date = str(doc.delivery_date.strftime("%d") + "-" + doc.delivery_date.strftime("%m") + "-" + doc.delivery_date.strftime("%Y"))
+            date = safe_str(doc.delivery_date.strftime("%d") + "-" + doc.delivery_date.strftime("%m") + "-" + doc.delivery_date.strftime("%Y"))
             import datetime
             d = datetime.datetime.now()
-            now = '-'.join(str(x) for x in (d.day, d.month, d.year))
+            now = '-'.join(safe_str(x) for x in (d.day, d.month, d.year))
             html += "<font"
             if datetime.datetime.strptime(now, "%d-%m-%Y") >= datetime.datetime.strptime(date, "%d-%m-%Y"):
                 html += " color='red'"
