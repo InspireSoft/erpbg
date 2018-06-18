@@ -21,7 +21,7 @@ def get_doc_from_print(doctype, docname):
     frappe.local.form_dict.doc = doc
     frappe.local.form_dict.no_letterhead = 0
 
-    html = frappe.website.render.build_page("printview")
+    html = frappe.utils.get_html(doc, name=docname, print_format=format, meta=None, no_letterhead=0, trigger_print=False)
     return html
 
     response = Response()
