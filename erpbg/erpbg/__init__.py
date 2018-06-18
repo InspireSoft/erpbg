@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import frappe
-import json
-from frappe import _
+from frappe.website.render import build_page
+from werkzeug.wrappers import Response
 
 
 
@@ -14,30 +14,20 @@ def get_doc_from_print(doctype, docname):
     # meta = frappe.get_meta(doc.doctype)
     # format = get_print_format_doc(None, meta)
     format = "DimelaSalesOrder"
-    html = frappe.get_print(doc.doctype, doc.name, format, doc=doc)
+
+    frappe.local.form_dict.doctype = doctype
+    frappe.local.form_dict.name = docname
+    frappe.local.form_dict.format = format
+    frappe.local.form_dict.style = None
+    frappe.local.form_dict.doc = doc
+    frappe.local.form_dict.no_letterhead = 0
+
+    html = frappe.build_page("printview")
     return html
 
-    from werkzeug.wrappers import Response
     response = Response()
     response.mimetype = 'application/msword'
     response.charset = 'utf-8'
     response.filename = "{name}.doc".format(name=doc.title.replace(" ", "-").replace("/", "-"))
     response.data = html
     return response
-
-
-
-def get_print_format_doc(print_format_name, meta):
-	"""Returns print format document"""
-	if not print_format_name:
-		print_format_name = frappe.form_dict.format \
-			or meta.default_print_format or "Standard"
-
-	if print_format_name == "Standard":
-		return None
-	else:
-		try:
-			return frappe.get_doc("Print Format", print_format_name)
-		except frappe.DoesNotExistError:
-			# if old name, return standard!
-			return None
