@@ -12,7 +12,6 @@ def get_doc_from_print(doctype, docname):
     try:
         doc = frappe.get_doc(doctype, docname)
         html = frappe.get_print(doctype=doc.doctype, name=doc.name, doc=doc)
-        return doc.doctype
 
         response = Response()
         response.mimetype = 'application/msword'
