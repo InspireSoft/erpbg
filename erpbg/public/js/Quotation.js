@@ -46,10 +46,6 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
@@ -92,12 +88,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     }
 });
 
-
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
 
     // link to e-mail:
     if(Quotation_From_Communication != null) {
@@ -187,3 +178,6 @@ frappe.ui.form.on("Quotation", "cnumber", function(frm, cdt, cdn){
     console.log(frm.doc);
     frm.doc.title = frm.doc.cnumber;
 });
+
+frappe.ui.form.on("Quotation", "onload_post_render", item_query );
+frappe.ui.form.on("Quotation", "refresh", item_query );

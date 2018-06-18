@@ -2,11 +2,6 @@
  * Created by Simeon on 21-Nov-17.
  */
 frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {
@@ -23,11 +18,6 @@ frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) 
 
 
 frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     if(frm.doc.docstatus == 1) {
         if(frm.doc.status != 'Closed') {
             frm.add_custom_button(
@@ -234,3 +224,6 @@ var custom_button_attached_handler = function(wrapper) {
     }
 };
 jQuery(document).bind("ajaxComplete", custom_button_attached_handler);
+
+frappe.ui.form.on("Sales Order", "onload_post_render", item_query );
+frappe.ui.form.on("Sales Order", "refresh", item_query );

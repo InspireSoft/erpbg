@@ -12,17 +12,8 @@ frappe.ui.form.on("Sales Invoice Item", "cdescription", function (frm, cdt, cdn)
 
 frappe.ui.form.on("Sales Invoice Item", "refresh", function (frm, cdt, cdn) {
 
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
 });
 
-
-frappe.ui.form.on("Sales Invoice Item", "onload_post_render", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-});
+frappe.ui.form.on("Sales Invoice Item", "onload_post_render", item_query );
+frappe.ui.form.on("Sales Invoice Item", "refresh", item_query );

@@ -3,6 +3,7 @@
 		"public/js/utils/set_values_from_item.js",
 		"public/js/utils/modification_image.js",
 		"public/js/utils/fileUpload.js",
+		"public/js/utils/query.js",
 		"public/js/QuotationAttachment.js",
 		"public/js/SalesInvoice.js",
 		"public/js/Quotation.js",

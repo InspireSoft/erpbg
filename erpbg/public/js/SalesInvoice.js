@@ -2,11 +2,6 @@
  * Created by Simeon on 21-Nov-17.
  */
 frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {
@@ -30,10 +25,8 @@ frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn
 });
 
 frappe.ui.form.on("Sales Invoice", "refresh", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     cur_frm.set_df_property("naming_series", "hidden", true);
 });
+
+frappe.ui.form.on("Sales Invoice", "onload_post_render", item_query );
+frappe.ui.form.on("Sales Invoice", "refresh", item_query );

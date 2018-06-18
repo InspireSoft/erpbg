@@ -11,28 +11,11 @@ frappe.ui.form.on("Sales Order Item", "cdescription", function (frm, cdt, cdn) {
 
 
 frappe.ui.form.on("Sales Order Item", "refresh", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-
     locals[cdt][cdn].description = locals[cdt][cdn].cdescription;
-});
-
-
-frappe.ui.form.on("Sales Order Item", "onload_post_render", function (frm, cdt, cdn) {
-
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
 });
 
 frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
 
-    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
-        return {query: "erpbg.erpbg.item_query"}
-    }
-    
     if(!frm.doc.__islocal || frm.doc.__islocal == 0) {
         frappe.call({
             method: "frappe.client.get",
@@ -60,3 +43,6 @@ frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
         });
     }
 });
+
+frappe.ui.form.on("Sales Order Item", "onload_post_render", item_query );
+frappe.ui.form.on("Sales Order Item", "refresh", item_query );
