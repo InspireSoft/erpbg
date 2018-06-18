@@ -121,103 +121,166 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
     return sattachments
 
 
+
+
+
+
+
+
+
+    <tr>
+        <td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>Колекция 2</b>:</td>
+        <td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">
+        {% if item.supplier_2 %}
+            {{ item.divan_pcollection_2_supplier }}
+        {% endif %}
+        {% if item.divan_pcollection_2_name %}
+            {{ item.divan_pcollection_2_name }}
+        {% endif %}
+        {% if item.divan_pcollection_2_design %}
+            {{ item.divan_pcollection_2_design }}
+        {% endif %}
+        {% if item.divan_pcollection_2_color %}
+            {{ item.divan_pcollection_2_color }}
+        {% endif %}
+        </td>
+
+        {% if item.divan_pcollection_2_quantity %}
+            <td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b> </td>
+            <td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">{{ item.divan_pcollection_2_quantity }} </td>
+        {% else %}
+            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
+            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
+        {% endif %}
+
+        {% if item.divan_pcollection_2_number %}
+            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>брой:</b> {{ item.divan_pcollection_2_number }}</td>
+        {% else %}
+            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>
+        {% if item.divan_pcollection_2_ordered_on %}
+            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">{{ item.divan_pcollection_2_ordered_on }}</div></td>
+        {% else %}
+            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>
+        {% endif %}
+
+        <td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>
+        {% if item.divan_pcollection_2_arraiving_on %}
+            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">{{ item.divan_pcollection_2_arraiving_on }}</div></td>
+        {% else %}
+            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>
+        {% endif %}
+    </tr>
+
 def divan_pillow_collection(item, number):
-    html = ""
-    space = False
+    html = "<tr>"
 
+    html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
+    html += u"Колекция " + str(number) + u"декоративни възглавници: "
+    html += "</b></td>"
+
+    html += '<td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
     if item["divan_pcollection_" + str(number) + "_supplier"]:
-        if space:
-            html += " "
-        space = True
-        html += u"Доставчик " + item["divan_pcollection_" + str(number) + "_supplier"]
-
+        html += " " + item["divan_pcollection_" + str(number) + "_supplier"]
     if item["divan_pcollection_" + str(number) + "_name"]:
-        if space:
-            html += " "
-        space = True
         html += " " + item["divan_pcollection_" + str(number) + "_name"]
-
     if item["divan_pcollection_" + str(number) + "_design"]:
-        if space:
-            html += " "
-        space = True
-        html += u"Дезайн " + item["divan_pcollection_" + str(number) + "_design"]
-
+        html += " " + item["divan_pcollection_" + str(number) + "_design"]
     if item["divan_pcollection_" + str(number) + "_damaska_color"]:
-        if space:
-            html += " "
-        space = True
-        html += item["divan_pcollection_" + str(number) + "_damaska_color"]
+        html += " " + item["divan_pcollection_" + str(number) + "_damaska_color"]
+    html += '</td>'
 
+    html += u'<td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b></td>'
     if item["divan_pcollection_" + str(number) + "_quantity"]:
-        if space:
-            html += ", "
-        space = True
-        html += u"л.м. " + item["divan_pcollection_" + str(number) + "_quantity"]
+        html += '<td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
+        html += item["divan_pcollection_" + str(number) + "_quantity"]
+        html += '</td>'
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td></td>'
 
     if item["divan_pcollection_" + str(number) + "_number"]:
-        if space:
-            html += ", "
-        space = True
-        html += str(item["divan_pcollection_" + str(number) + "_number"]) + (u" брой" if item["divan_pcollection_" + str(number) + "_number"] == 1 else u" броя")
+        html += u'<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>Брой:</b>'
+        html += item["divan_pcollection_" + str(number) + "_number"]
+        html += "</td>"
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>'
 
-    return html
+    html += "</tr><tr>"
+
+    html += u'<td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>'
+    if item["divan_pcollection_" + str(number) + "_ordered_on"]:
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
+        html += item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%d") + "." + item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%m") + "." + item["divan_pcollection_" + str(number) + "_ordered_on"].strftime("%Y")
+        html += '</div></td>'
+    else:
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
+
+    html += u'<td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>'
+    if item["divan_pcollection_" + str(number) + "_arraiving_on"]:
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
+        html += u"при нас на " + item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%d") + "." + item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%m") + "." + item["divan_pcollection_" + str(number) + "_arraiving_on"].strftime("%Y")
+        html += '</div></td>'
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
+
+    return html + "</tr>"
 
 
 def collection(item, number):
-    html = ""
+    html = "<tr>"
 
-    space = False
+    html += '<td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
+    html += u"Колекция " + str(number) + ": "
+    html += "</b></td>"
 
+    html += '<td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
     if item["supplier_" + str(number)]:
-        if space:
-            html += " "
-        space = True
-        html += item["supplier_" + str(number)]
-
+        html += " " + item["supplier_" + str(number)]
     if item["name_" + str(number)]:
-        if space:
-            html += " "
-        space = True
-        html += item["name_" + str(number)]
-
+        html += " " + item["name_" + str(number)]
     if item["design_" + str(number)]:
-        if space:
-            html += " "
-        space = True
-        html += item["design_" + str(number)]
-
+        html += " " + item["design_" + str(number)]
     if item["color_" + str(number)]:
-        if space:
-            html += " "
-        space = True
-        html += item["color_" + str(number)]
+        html += " " + item["color_" + str(number)]
+    html += '</td>'
 
+    html += u'<td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b></td>'
     if item["quantity_" + str(number)]:
-        if space:
-            html += ", "
-        space = True
-        html +=  u" л.м. " + item["quantity_" + str(number)]
+        html += '<td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
+        html += item["quantity_" + str(number)]
+        html += '</td>'
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td></td>'
 
     if item["purpose_" + str(number)]:
-        if space:
-            html += " "
-        space = True
-        html += u"(приложение - " + item["purpose_" + str(number)] + ")"
+        html += u'<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>за:</b>'
+        html += item["purpose_" + str(number)]
+        html += "</td>"
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>'
 
+    html += "</tr><tr>"
+
+    html += u'<td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>'
     if item["ordered_on_" + str(number)]:
-        if space:
-            html += ", "
-        space = True
-        html += u"Поръчан на " + item["ordered_on_" + str(number)].strftime("%d") + "." + item["ordered_on_" + str(number)].strftime("%m") + "." + item["ordered_on_" + str(number)].strftime("%Y")
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
+        html += item["ordered_on_" + str(number)].strftime("%d") + "." + item["ordered_on_" + str(number)].strftime("%m") + "." + item["ordered_on_" + str(number)].strftime("%Y")
+        html += '</div></td>'
+    else:
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
 
+    html += u'<td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>'
     if item["arraiving_on_" + str(number)]:
-        if space:
-            html += " "
-        space = True
+        html += '<td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">'
         html += u"при нас на " + item["arraiving_on_" + str(number)].strftime("%d") + "." + item["arraiving_on_" + str(number)].strftime("%m") + "." + item["arraiving_on_" + str(number)].strftime("%Y")
+        html += '</div></td>'
+    else:
+        html += '<td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>'
 
-    return html
+    return html+"</tr>"
 
 
 @frappe.whitelist()
@@ -291,25 +354,30 @@ def make_report(names):
                     if koja:
                         html += ", "
                     html += u"Дамаска"
-                html += "<br/>"
 
+                if item.collection_1 or item.collection_2 or item.collection_3:
+                    html += '<table style="border-collapse: collapse;border 0px;>'
                 if item.collection_1:
-                    html += u"Колекция 1: " + collection(item, 1) + "<br/>"
+                    html += collection(item, 1)
                 if item.collection_2:
-                    html += u"Колекция 2: " + collection(item, 2) + "<br/>"
+                    html += collection(item, 2)
                 if item.collection_3:
-                    html += u"Колекция 3: " + collection(item, 3) + "<br/>"
+                    html += collection(item, 3)
+                if item.collection_1 or item.collection_2 or item.collection_3:
+                    html += "</table>"
 
             # doc item pillow section
+
+            if item.collection_1 or item.collection_2 or item.collection_3:
+                    html += '<table style="border-collapse: collapse;border 0px;>'
             if item.divan_pillow_collection_1:
-                html += u"Колекция 1 декоративни възглавници:"
-                html += divan_pillow_collection(item, 1) + "<br/>"
+                html += divan_pillow_collection(item, 1)
             if item.divan_pillow_collection_2:
-                html += u"Колекция 2 декоративни възглавници:"
-                html += divan_pillow_collection(item, 2) + "<br/>"
+                html += divan_pillow_collection(item, 2)
             if item.divan_pillow_collection_3:
-                html += u"Колекция 3 декоративни възглавници:"
-                html += divan_pillow_collection(item, 3) + "<br/>"
+                html += divan_pillow_collection(item, 3)
+            if item.divan_pillow_collection_1 or item.divan_pillow_collection_2 or item.divan_pillow_collection_3:
+                html += "</table>"
 
             # doc item type image
             html += "</div>"
