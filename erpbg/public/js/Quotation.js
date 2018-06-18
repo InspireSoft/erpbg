@@ -90,6 +90,10 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
+    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+        return {query: "erpbg.erpbg.item_query"}
+    }
+
     // link to e-mail:
     if(Quotation_From_Communication != null) {
         frm.doc.communicationlink = Quotation_From_Communication;

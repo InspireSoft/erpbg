@@ -2,6 +2,9 @@
  * Created by Simeon on 21-Nov-17.
  */
 frappe.ui.form.on("Sales Order", "onload_post_render", function (frm, cdt, cdn) {
+    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+        return {query: "erpbg.erpbg.item_query"}
+    }
     jQuery("div[data-fieldname='items'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.items.forEach(function(item) {
