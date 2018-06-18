@@ -13,7 +13,7 @@ def safe_str(obj):
         return str(obj)
     except UnicodeEncodeError:
         # obj is unicode
-        return unicode(obj).encode('unicode_escape')
+        return str(unicode(obj).encode('utf-8')).decode('utf-8')
 
 
 @frappe.whitelist()
