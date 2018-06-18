@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import frappe
-from frappe.website.render import build_page
 from werkzeug.wrappers import Response
 
 
@@ -22,7 +21,7 @@ def get_doc_from_print(doctype, docname):
     frappe.local.form_dict.doc = doc
     frappe.local.form_dict.no_letterhead = 0
 
-    html = frappe.build_page("printview")
+    html = frappe.website.render.build_page("printview")
     return html
 
     response = Response()
