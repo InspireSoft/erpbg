@@ -10,9 +10,9 @@ from frappe import _
 @frappe.whitelist()
 def get_doc_from_print(doctype, docname):
     doc = frappe.db.sql("""SELECT * FROM `tab"""+doctype+"""` WHERE `name`=%s""", (docname), as_dict=True)
-    return doc
     doc = doc[0]
     meta = frappe.get_meta(doc.doctype)
+    return meta
     format = meta.default_print_format
     html = frappe.get_print(doctype, docname, format, doc=doc)
 
