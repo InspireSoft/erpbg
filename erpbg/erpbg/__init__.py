@@ -26,4 +26,3 @@ def get_doc_from_print(doctype, docname):
         # response.type = "download"
     except Exception as e:
         return traceback.format_exc().splitlines()
-    return response
