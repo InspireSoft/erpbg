@@ -26,11 +26,11 @@ def get_doc_from_print(doctype, docname):
 def item_query(doctype, txt, searchfield, start, page_length, filters, as_dict=False):
 	conditions = []
 	return frappe.db.sql("""select
+            item_code,
             item_name,
             type,
             if(length(cdescription) > 40,
-                concat(substr(cdescription, 1, 40), "..."), cdescription) as cdecription,
-            item_code
+                concat(substr(cdescription, 1, 40), "..."), cdescription) as cdecription
 		from `tabItem`
 		where docstatus < 2
 			and has_variants=0
