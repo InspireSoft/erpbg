@@ -121,60 +121,6 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
     return sattachments
 
 
-
-
-
-
-
-
-
-    <tr>
-        <td style="width: 82px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>Колекция 2</b>:</td>
-        <td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">
-        {% if item.supplier_2 %}
-            {{ item.divan_pcollection_2_supplier }}
-        {% endif %}
-        {% if item.divan_pcollection_2_name %}
-            {{ item.divan_pcollection_2_name }}
-        {% endif %}
-        {% if item.divan_pcollection_2_design %}
-            {{ item.divan_pcollection_2_design }}
-        {% endif %}
-        {% if item.divan_pcollection_2_color %}
-            {{ item.divan_pcollection_2_color }}
-        {% endif %}
-        </td>
-
-        {% if item.divan_pcollection_2_quantity %}
-            <td style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>л.м.</b> </td>
-            <td style="border-bottom: 1px dotted black;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">{{ item.divan_pcollection_2_quantity }} </td>
-        {% else %}
-            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
-            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
-        {% endif %}
-
-        {% if item.divan_pcollection_2_number %}
-            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>брой:</b> {{ item.divan_pcollection_2_number }}</td>
-        {% else %}
-            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"></td>
-        {% endif %}
-    </tr>
-    <tr>
-        <td style="width: 90px;text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>поръчан на</b>: </td>
-        {% if item.divan_pcollection_2_ordered_on %}
-            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">{{ item.divan_pcollection_2_ordered_on }}</div></td>
-        {% else %}
-            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>
-        {% endif %}
-
-        <td colspan="2" style="text-align: right;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>при нас на</b>: </td>
-        {% if item.divan_pcollection_2_arraiving_on %}
-            <td style="text-align: left;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;">{{ item.divan_pcollection_2_arraiving_on }}</div></td>
-        {% else %}
-            <td style="padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><div style="border-bottom: 1px dotted black; width:70px;height: 18px;"></div></td>
-        {% endif %}
-    </tr>
-
 def divan_pillow_collection(item, number):
     html = "<tr>"
 
