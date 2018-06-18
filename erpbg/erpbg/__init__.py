@@ -14,13 +14,14 @@ def get_doc_from_print(doctype, docname):
     # meta = frappe.get_meta(doc.doctype)
     # format = get_print_format_doc(None, meta)
     format = "DimelaSalesOrder"
-    html = frappe.get_print(doctype, docname, format, doc=doc)
+    html = frappe.get_print(doc.doctype, doc.name, format, doc=doc)
+    return html
 
     from werkzeug.wrappers import Response
     response = Response()
     response.mimetype = 'application/msword'
     response.charset = 'utf-8'
-    response.name = "test.doc"
+    response.filename = "{name}.doc".format(name=doc.title.replace(" ", "-").replace("/", "-"))
     response.data = html
     return response
 
