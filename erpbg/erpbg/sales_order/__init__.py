@@ -135,7 +135,7 @@ def divan_pillow_collection(item, number):
     html = "<tr>"
 
     html += '<td style="width: 95px;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;"><b>'
-    html += u"Колекция " + safe_str(number) + u"декоративни възглавници: "
+    html += u"Колекция " + safe_str(number) + ": "
     html += "</b></td>"
 
     html += '<td style="border-bottom: 1px dotted black;min-width: 200px;text-align: center;padding-bottom: 0px !important;padding-top: 0px !important;margin-top: 0px !important;margin-bottom: 0px !important;">'
@@ -298,6 +298,7 @@ def make_report(names):
             # doc item koja section
             if item.estestvena_koja or item.eco_koja or item.damaska:
                 koja = False
+                html += "<b>"
                 if item.estestvena_koja:
                     html += u"Естествена кожа"
                     koja = True
@@ -310,6 +311,7 @@ def make_report(names):
                     if koja:
                         html += ", "
                     html += u"Дамаска"
+                html += u" от Димела</b>"
 
                 if item.collection_1 or item.collection_2 or item.collection_3:
                     html += '<table style="width:100%;border-collapse: collapse;border 0px;">'
@@ -325,7 +327,7 @@ def make_report(names):
             # doc item pillow section
 
             if item.collection_1 or item.collection_2 or item.collection_3:
-                    html += '<table style="width:100%;border-collapse: collapse;border 0px;">'
+                    html += '<b>Декоративни възглавници</b><table style="width:100%;border-collapse: collapse;border 0px;">'
             if item.divan_pillow_collection_1:
                 html += divan_pillow_collection(item, 1)
             if item.divan_pillow_collection_2:
