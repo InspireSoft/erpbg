@@ -13,12 +13,17 @@ def get_doc_from_print(doctype, docname):
         doc = frappe.get_doc(doctype, docname)
         html = frappe.get_print(doctype=doc.doctype, name=doc.name, doc=doc)
 
-        response = Response()
-        response.mimetype = 'application/msword'
-        response.charset = 'utf-8'
-        response.filename = "{name}.doc".format(name=docname.replace(" ", "-").replace("/", "-"))
-        response.filecontent = html
-        response.type = "download"
+        frappe.local.response.filename = "{name}.doc".format(name=docname.replace(" ", "-").replace("/", "-"))
+        frappe.local.response.filecontent = html
+        frappe.local.response.type = "download"
+
+
+        # response = Response()
+        # response.mimetype = 'application/msword'
+        # response.charset = 'utf-8'
+        # response.filename = "{name}.doc".format(name=docname.replace(" ", "-").replace("/", "-"))
+        # response.data = html
+        # response.type = "download"
     except Exception as e:
         return traceback.format_exc().splitlines()
     return response
