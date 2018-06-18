@@ -14,9 +14,6 @@ frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn
             }
         });
     });
-});
-
-frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn) {
 
     cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
         return {query: "erpbg.erpbg.item_query"}
@@ -32,5 +29,10 @@ frappe.ui.form.on("Sales Invoice", "onload_post_render", function (frm, cdt, cdn
 });
 
 frappe.ui.form.on("Sales Invoice", "refresh", function (frm, cdt, cdn) {
+
+    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+        return {query: "erpbg.erpbg.item_query"}
+    }
+
     cur_frm.set_df_property("naming_series", "hidden", true);
 });

@@ -45,6 +45,10 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
+    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+        return {query: "erpbg.erpbg.item_query"}
+    }
+
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
