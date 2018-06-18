@@ -22,6 +22,7 @@ function check_for_communication_images(frm) {
 }
 
 frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
+
     // do nothing if code is not set:
     if(cur_frm.doctype != "Quotation" || !locals[cdt][cdn].item_code) {
         return;
@@ -45,7 +46,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
-    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
         return {query: "erpbg.erpbg.item_query"}
     }
 
@@ -94,7 +95,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
-    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
         return {query: "erpbg.erpbg.item_query"}
     }
 

@@ -8,6 +8,11 @@ frappe.ui.form.on("Quotation Item", "divan_modification_link", function (frm, cd
 });
 
 frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
+
+    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+        return {query: "erpbg.erpbg.item_query"}
+    }
+
     if(!locals[cdt][cdn].type) {
         frappe.call({
             method: "frappe.client.get",
@@ -60,7 +65,7 @@ frappe.ui.form.on("Quotation Item", "cdescription", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation Item", "onload_post_render", function (frm, cdt, cdn) {
 
-    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
         return {query: "erpbg.erpbg.item_query"}
     }
 });
@@ -68,7 +73,7 @@ frappe.ui.form.on("Quotation Item", "onload_post_render", function (frm, cdt, cd
 
 frappe.ui.form.on("Quotation Item", "refresh", function (frm, cdt, cdn) {
 
-    cur_frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+    frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
         return {query: "erpbg.erpbg.item_query"}
     }
 
