@@ -14,7 +14,7 @@ def get_doc_from_print(doctype, docname):
     # format = get_print_format_doc(None, meta)
     format = "DimelaSalesOrder"
 
-    html = frappe.get_print(doctype=doctype, name=docname, print_format=format, as_pdf=False, doc=doc, output=None, no_letterhead=0)
+    html = frappe.get_print(doctype=doctype, name=docname, print_format=None, as_pdf=False, doc=doc, output=None, no_letterhead=0)
     return html
 
     response = Response()
