@@ -9,7 +9,7 @@ from werkzeug.wrappers import Response
 @frappe.whitelist()
 def get_doc_from_print(doctype, docname):
     try:
-        doc = frappe.db.sql("""SELECT * FROM `tab"""+doctype+"""` WHERE `name`=%s""", (docname), as_dict=True)
+        doc = frappe.db.sql("""SELECT * FROM `tabSales Order` WHERE `name`=%s""", ("SO-00012"), as_dict=True)
         doc = doc[0]
         # meta = frappe.get_meta(doc.doctype)
         # format = get_print_format_doc(None, meta)
