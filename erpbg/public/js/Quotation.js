@@ -53,24 +53,41 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
     // get item image and set it as Quotation attachment for showing in print:
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
-        var added = [];
+        var addedta = [];
+        var addeda = [];
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
-                var skip = false;
+                var skipta = false;
                 cur_frm.doc.quotation_attachment.forEach(function(attachment) {
                     if(attachment.name == item.image.name) {
-                        skip = true;
+                        skipta = true;
                     }
                 });
-                added.forEach(function(added){
+                addedta.forEach(function(added){
                     if(added.name == item.image.name) {
-                        skip = true;
+                        skipta = true;
                     }
                 });
-                if(!skip) {
-                    added.push(item.image);
+                if(!skipta) {
+                    addedta.push(item.image);
                     var child = cur_frm.add_child("quotation_attachment");
+                }
+                var skipa = false;
+                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
+                    if(attachment.name == item.image.name) {
+                        skipa = true;
+                    }
+                });
+                addedta.forEach(function(added){
+                    if(added.name == item.image.name) {
+                        skipa = true;
+                    }
+                });
+                if(!skipa) {
+                    addeda.push(item.image);
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
+                }
+                if(!skipta || !skipa) {
                     cur_frm.refresh();
                 }
             }
