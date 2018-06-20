@@ -25,6 +25,8 @@ function check_for_communication_images(frm) {
 
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
+            console.error("cur_frm");
+            console.error(cur_frm);
             console.error("items_remove input");
                 console.error(cdt);
                 console.error(cdn);
