@@ -70,8 +70,14 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 });
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
+    
+    if(frm.doc.docstatus == 1) {
+        // saved doc protection
+        return;
+    }
 
-    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && frm.doc.docstatus != 1 && !frm.doc.qname) {
+
+    if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) !frm.doc.qname) {
         cur_frm.set_value("qname", frm.doc.name);
     }
 
@@ -115,7 +121,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 }
             }
         });
-        if(frm.doc.qname != frm.doc.name && frm.doc.docstatus != 1) {
+        if(frm.doc.qname != frm.doc.name) {
             frappe.call({
                 method: "erpbg.erpbg.copy_attachments_from_doc",
                 args: { "from_doctype": "Quotation", "from_docname": frm.doc.qname, "to_doctype": "Quotation", "to_docname": frm.doc.name },
