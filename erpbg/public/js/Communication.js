@@ -41,11 +41,11 @@ frappe.ui.form.on("Communication", {
 });
 
 frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn) {
-    // if(chosen_language == "") {
-    //     get_chosen_language();
-    // } else {
-    //     communication_make_button_fix();
-    // }
+    if(chosen_language == "") {
+        get_chosen_language();
+    } else {
+        communication_make_button_fix();
+    }
     // if(cur_frm.doc.communication_medium == "Email" && cur_frm.doc.sent_or_received == "Received") {
     //     frappe.call({
     //         method: "erpbg.erpbg.communication.mark_as_seen",
@@ -54,7 +54,7 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
     //             frm.refresh();
     //         }
     //     });
-    }
+    // }
 });
 
 
