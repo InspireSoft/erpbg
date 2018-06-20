@@ -25,18 +25,18 @@ function get_chosen_language() {
 
 var Quotation_From_Communication = null;
 frappe.ui.form.on("Communication", {
-	refresh: function(doc,cdt,cdn) {
-		// // setup custom Make button only if Communication is Email
-		// if(cur_frm.doc.communication_medium == "Email" && cur_frm.doc.sent_or_received == "Received") {
-         //    cur_frm.add_custom_button(__("Quotation"), new function() {
-         //        Quotation_From_Communication = cur_frm.doc.name;
-         //        frappe.new_doc("Quotation");
-         //    }, "Make");
-         //    cur_frm.add_custom_button(__("Quick Quotation"), new function() {
-         //        quick_quotation();
-         //    }, "Make");
-         //    communication_make_button_fix();
-		// }
+	refresh: function(frm,cdt,cdn) {
+		// setup custom Make button only if Communication is Email
+		if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
+            frm.add_custom_button(__("Quotation"), new function() {
+                Quotation_From_Communication = cur_frm.doc.name;
+                frappe.new_doc("Quotation");
+            }, "Make");
+            frm.add_custom_button(__("Quick Quotation"), new function() {
+                quick_quotation();
+            }, "Make");
+            communication_make_button_fix();
+		}
 	}
 });
 
@@ -46,7 +46,7 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
     } else {
         communication_make_button_fix();
     }
-    // if(cur_frm.doc.communication_medium == "Email" && cur_frm.doc.sent_or_received == "Received") {
+    // if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
     //     frappe.call({
     //         method: "erpbg.erpbg.communication.mark_as_seen",
     //         args: { "cname": locals[cdt][cdn].name },
