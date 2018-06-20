@@ -97,15 +97,13 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 if(!skipta) {
                     var child = cur_frm.add_child("quotation_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment",item.image);
+                    frappe.call({
+                        method: "erpbg.erpbg.quotation.add_attachment_from_item",
+                        args: { "qname": frm.doc.name, "item_code": item.item_code },
+                        callback: function (r) {}
+                    });
                     skipta = false;
                 }
-                frappe.call({
-                    method: "erpbg.erpbg.quotation.add_attachment_from_item",
-                    args: { "qname": frm.doc.name, "item_code": item.item_code },
-                    callback: function (r) {
-                        frm.refresh();
-                    }
-                });
             }
         });
     }
