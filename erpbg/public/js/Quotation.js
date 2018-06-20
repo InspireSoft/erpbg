@@ -36,11 +36,9 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         args: { "item_code": locals[cdt][cdn].item_code },
         callback: function (r) {
             if (r.message) {
-                if(!frm.doc.note) {
-                    cur_frm.set_value("note", r.message[0]["note"]);
-                } else {
-                    cur_frm.set_value("note", frm.doc.note + "<br/>" + r.message[0]["note"]);
-                }
+                var child = cur_frm.add_child("quotation_notes");
+                frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
+                cur_frm.refresh();
             }
         }
     });
