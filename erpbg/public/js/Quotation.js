@@ -214,19 +214,22 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         for(var nidx_source = 1; nidx_source <= frm.doc.notes.length; nidx_source++) {
             frm.doc.notes[nidx_source-1].iidx = "";
             frm.doc.notes[nidx_source-1].cdn = "";
-            var iidx = 1;
-            while(exclude.includes(iidx) && iidx <= frm.doc.items.length) {
-                iidx++;
-            }
-            if(iidx <= frm.doc.items.length) {
-                for(;iidx <= frm.doc.items.length;) {
-                    if(frm.doc.items[iidx-1].note === frm.doc.notes[nidx_source-1].note) {
-                        exclude.push(iidx);
-                        frm.doc.notes[nidx_source-1].iidx = iidx;
+            if(exclude.length < frm.doc.items.length) {
+                var iidx = 1;
+                while(exclude.includes(iidx) && iidx <= frm.doc.items.length) {
+                    iidx++;
+                }
+                if(iidx <= frm.doc.items.length) {
+                    for(;iidx <= frm.doc.items.length;) {
+                        if(frm.doc.items[iidx-1].note === frm.doc.notes[nidx_source-1].note) {
+                            exclude.push(iidx);
+                            frm.doc.notes[nidx_source-1].iidx = iidx;
+                            iidx = frm.doc.items.length+1;
+                        }
+                        do {
+                            iidx++;
+                        } while(exclude.includes(iidx) && iidx <= frm.doc.items.length);
                     }
-                    do {
-                        iidx++;
-                    } while(exclude.includes(iidx) && iidx <= frm.doc.items.length);
                 }
             }
         }
