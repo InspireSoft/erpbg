@@ -43,6 +43,7 @@ def add_attachment_from_item(doctype, docname, item_code):
     return attachment
 
 
+@frappe.whitelist()
 def copy_attachments_from_doc(from_doctype, from_docname, to_doctype, to_docname):
     from_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`=%s AND `attached_to_name`=%s""", (from_doctype, from_docname), as_dict=True)
     if len(from_attachments) <= 0:
