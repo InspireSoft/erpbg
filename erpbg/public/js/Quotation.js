@@ -26,7 +26,7 @@ function check_for_communication_images(frm) {
 function notes_on_refresh() {
     cur_frm.doc.notes.forEach(function(note) {
         if(!note.cdn && note.iidx) {
-            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.item[iidx].name;
+            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.item[note.iidx].name;
             cur_frm.refresh_field('notes');
         }
     });
