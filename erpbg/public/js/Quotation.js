@@ -87,14 +87,10 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         var skipta = false;
         frm.doc.items.forEach(function(item) {
             if(item.image) {
-                console.error(item.image);
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.attachment == item.image) {
-                            console.error(attachment.attachment+" == "+item.image);
                             skipta = true;
-                        } else {
-                            console.error(attachment.attachment+" != "+item.image);
                         }
                     });
                 }
@@ -106,7 +102,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.attachment == item.image.name) {
-                            frm.attachments.update_attachment(attachment);
+                            frm.attachments.update_attachment(attachment.attachment);
                         }
                     });
                 }
@@ -118,7 +114,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
     } else {
-        cur_frm.get_field("cnumber").$input.focus();
+        cur_frm.get_field("task_time").$input.focus();
     }
 
     if(frm.doc.__islocal || frm.doc.__islocal == 1) {
