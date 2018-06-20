@@ -37,7 +37,7 @@ frappe.ui.form.on("Item", "refresh", function (frm, cdt, cdn) {
             callback: function (r) {
                 if(r.message) {
                     cur_frm.set_value("item_code", r.message);
-                    cur_frm.set_value("item_name", "");
+                    cur_frm.set_value("item_name", "Име");
                 }
             }
         });
@@ -54,7 +54,7 @@ frappe.ui.form.on("Item", "onload_post_render", function (frm, cdt, cdn) {
             callback: function (r) {
                 if(r.message) {
                     cur_frm.set_value("item_code", r.message);
-                    cur_frm.set_value("item_name", "");
+                    cur_frm.set_value("item_name", "Име");
                 }
             }
         });
