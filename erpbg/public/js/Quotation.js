@@ -205,11 +205,13 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     cur_frm.set_df_property("quotation_attachment", "hidden", true);
 
     var skippm = false;
-    cur_frm.doc.payment_ways.forEach(function(payment_ways) {
-        if(!skippm && payment_ways.description) {
-            skippm = True;
-        }
-    });
+    if(cur_frm.doc.payment_ways.length>0) {
+        cur_frm.doc.payment_ways.forEach(function(payment_ways) {
+            if(!skippm && payment_ways.description) {
+                skippm = True;
+            }
+        });
+    }
 
     if(!skippm) {
         var child = frm.add_child("payment_ways");
