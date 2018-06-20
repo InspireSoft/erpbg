@@ -25,6 +25,7 @@ function check_for_communication_images(frm) {
 
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
+                console.error(cdn);
         var nidx = -1;
         cur_frm.doc.notes.forEach(function(notes) {
             if(notes.cdn == cdn) {
@@ -32,8 +33,8 @@ frappe.ui.form.on('Quotation Item', {
             }
         });
         if(nidx!=-1) {
-            frm.get_field("notes").grid.grid_rows[nidx].remove();
-            frm.refresh_field('notes');
+            cur_frm.get_field("notes").grid.grid_rows[nidx].remove();
+            cur_frm.refresh_field('notes');
         }
     }
 });
