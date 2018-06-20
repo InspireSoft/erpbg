@@ -29,17 +29,21 @@ frappe.ui.form.on('Quotation Item', {
                 console.error(cdt);
                 console.error(cdn);
                 console.error(doc);
-            console.error("items");
-        cur_frm.doc.items.forEach(function(item) {
+            console.error("grid items");
+            cur_frm.get_field("notes").grid.grid_rows.forEach(function(item) {
                 console.error(item.name);
-        });
+            });
+            console.error("doc items");
+            cur_frm.doc.items.forEach(function(item) {
+                    console.error(item.name);
+            });
 
         var nidx = -1;
             console.error("notes");
         cur_frm.doc.notes.forEach(function(note) {
             console.error(note);
             if(note.cdn == cdn) {
-                nidx = 1;
+                nidx = note.idx;
             }
         });
         if(nidx!=-1) {
