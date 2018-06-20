@@ -28,11 +28,11 @@ frappe.ui.form.on("Communication", {
 	refresh: function(frm,cdt,cdn) {
 		// setup custom Make button only if Communication is Email
 		if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
-            frm.add_custom_button(__("Quotation"), new function() {
+            frm.add_custom_button(__("Quotation"), function()  {
                 Quotation_From_Communication = cur_frm.doc.name;
                 frappe.new_doc("Quotation");
             }, "Make");
-            frm.add_custom_button(__("Quick Quotation"), new function() {
+            frm.add_custom_button(__("Quick Quotation"), function()  {
                 quick_quotation();
             }, "Make");
             communication_make_button_fix();
@@ -46,15 +46,15 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
     } else {
         communication_make_button_fix();
     }
-    // if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
-    //     frappe.call({
-    //         method: "erpbg.erpbg.communication.mark_as_seen",
-    //         args: { "cname": locals[cdt][cdn].name },
-    //         callback: function (r) {
-    //             frm.refresh();
-    //         }
-    //     });
-    // }
+    if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
+        frappe.call({
+            method: "erpbg.erpbg.communication.mark_as_seen",
+            args: { "cname": locals[cdt][cdn].name },
+            callback: function (r) {
+                frm.refresh();
+            }
+        });
+    }
 });
 
 
