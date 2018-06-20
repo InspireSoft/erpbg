@@ -192,7 +192,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     if(cur_frm.doc.payment_ways) {
         cur_frm.doc.payment_ways.forEach(function(payment_ways) {
             if(!skippm && payment_ways.description) {
-                skippm = True;
+                skippm = true;
             }
         });
     }
