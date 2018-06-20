@@ -49,8 +49,9 @@ function add_to_attachments(image) {
         frappe.model.set_value(child.doctype, child.name, "attachment",image);
     }
 
+    console.error(cur_frm.attachments);
     var skipa = false;
-    if(cur_frm.doc.quotation_attachment) {
+    if(cur_frm.attachments) {
         cur_frm.attachments.forEach(function (attachment) {
             if (attachment.name == image.name) {
                 skipta = true;
@@ -67,7 +68,6 @@ frappe.ui.form.on('Quotation Item', {
         var nidx = -1;
         if(cur_frm.doc.notes) {
             cur_frm.doc.notes.forEach(function (note) {
-                console.error(note);
                 if (note.cdn == cdn) {
                     nidx = note.idx;
                 }
