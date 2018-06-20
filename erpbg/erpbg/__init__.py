@@ -16,6 +16,66 @@ def get_item_image(item_code):
     return item
 
 
+@frappe.whitelist()
+def add_attachment_from_item(doctype, docname, item_code):
+    item_file_url = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
+    if len(item_file_url) <= 0:
+        return False
+    item_file_url = item_file_url[0].image
+
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`=%s AND `file_url`=%s AND `attached_to_name`=%s""", (doctype, item_file_url, docname), as_dict=True)
+    if len(existing_attachments) > 0:
+        return "None"
+
+    file = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `file_url`=%s""", (item_file_url), as_dict=True)
+    if len(file) <= 0:
+        return "None"
+    file = file[0]
+
+    attachment = frappe.new_doc("File")
+    attachment.update(file)
+    attachment.name = None
+    attachment.attached_to_name = docname
+    attachment.attached_to_doctype = doctype
+    attachment.save(ignore_permissions=True)
+    frappe.db.commit()
+
+    return attachment
+
+
+def copy_attachments_from_doc(from_doctype, from_docname, to_doctype, to_docname):
+    from_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`=%s AND `attached_to_name`=%s""", (from_doctype, from_docname), as_dict=True)
+    if len(from_attachments) <= 0:
+        return "None"
+
+    to_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`=%s AND `attached_to_name`=%s""", (to_doctype, to_docname), as_dict=True)
+    new_attachments = []
+    if len(to_attachments)>0:
+        for from_attachment in from_attachments:
+            is_new = True
+            for to_attachment in to_attachments:
+                if from_attachment.file_url == to_attachment.file_url:
+                    is_new = False
+            if is_new:
+                attachment = frappe.new_doc("File")
+                attachment.update(from_attachment)
+                attachment.name = None
+                attachment.attached_to_name = to_docname
+                attachment.attached_to_doctype = to_doctype
+                attachment.save(ignore_permissions=True)
+                new_attachments.append(attachment)
+                frappe.db.commit()
+    else:
+        for from_attachment in from_attachments:
+            attachment = frappe.new_doc("File")
+            attachment.update(from_attachment)
+            attachment.name = None
+            attachment.attached_to_name = to_docname
+            attachment.attached_to_doctype = to_doctype
+            attachment.save(ignore_permissions=True)
+            new_attachments.append(attachment)
+            frappe.db.commit()
+    return new_attachments
 
 @frappe.whitelist()
 def get_doc_from_print(doctype, docname):
