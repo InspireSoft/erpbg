@@ -33,11 +33,11 @@ frappe.ui.form.on("Communication", {
                 frappe.new_doc("Quotation");
             }, "Make");
             cur_frm.add_custom_button(__("Quick Quotation"), new function() {
-                quick_quotation(frm);
+                quick_quotation();
             }, "Make");
             communication_make_button_fix();
 		}
-	},
+	}
 });
 
 frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn) {
@@ -56,13 +56,13 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
 });
 
 
-function quick_quotation(frm) {
+function quick_quotation() {
     var dialog = new frappe.ui.Dialog({
         title: __('Fill in data for Quick Quotation'),
         fields: [
-            {label: "Client", fieldtype:'Data', fieldname: 'cilent', description: __('Name of new client'), "default": frm.doc.sender_full_name, reqd: 1},
-            {label: "Contact", fieldtype:'Data', fieldname: 'contact', description: __('Name of contact for client'), "default": frm.doc.sender_full_name, reqd: 1},
-            {label: "E-mail", fieldtype:'Data', fieldname: 'contact_email', description: __('E-mail of contact for client'), "default": frm.doc.sender },
+            {label: "Client", fieldtype:'Data', fieldname: 'cilent', description: __('Name of new client'), "default": cur_frm.doc.sender_full_name, reqd: 1},
+            {label: "Contact", fieldtype:'Data', fieldname: 'contact', description: __('Name of contact for client'), "default": cur_frm.doc.sender_full_name, reqd: 1},
+            {label: "E-mail", fieldtype:'Data', fieldname: 'contact_email', description: __('E-mail of contact for client'), "default": cur_frm.doc.sender }
         ],
         primary_action: function() {
             var data = dialog.get_values();
@@ -72,7 +72,7 @@ function quick_quotation(frm) {
                     customer_name: data.cilent,
                     contact_name: data.contact,
                     email: data.contact_email,
-                    communication: frm.doc.name
+                    communication: cur_frm.doc.name
                 },
                 freeze: true,
                 callback: function(r) {
