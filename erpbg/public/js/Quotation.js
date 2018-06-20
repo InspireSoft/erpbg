@@ -233,9 +233,10 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
                 }
             }
         }
+        frm.save();
+    } else {
+        frm.refresh();
     }
-
-    frm.refresh();
 });
 
 frappe.ui.form.on("Quotation", "customer", function(frm, cdt, cdn){
