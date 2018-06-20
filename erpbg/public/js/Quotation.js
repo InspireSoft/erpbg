@@ -72,7 +72,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && !frm.doc.qname) {
-        frm.doc.qname = frm.doc.name;
+        cur_frm.set_value("qname", frm.doc.name);
     }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
@@ -129,7 +129,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     }
                 }
             });
-            frm.doc.qname = frm.doc.name;
+            cur_frm.set_value("qname", frm.doc.name);
             Quotation_is_in_process_of_dublication = false;
         }
     }
@@ -155,7 +155,6 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     }
 });
 
-var Quotation_is_in_process_of_dublication = false;
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     // link to e-mail:
@@ -235,7 +234,6 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     // execution only on dublication
     if (frm.doc.notes && frm.doc.notes.length > 0 && frm.doc.items && frm.doc.items.length > 0) {
-        Quotation_is_in_process_of_dublication = true;
         var exclude = [];
         for(var nidx_source = 1; nidx_source <= frm.doc.notes.length; nidx_source++) {
             frm.doc.notes[nidx_source-1].iidx = "";
