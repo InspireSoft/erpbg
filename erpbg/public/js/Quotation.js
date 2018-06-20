@@ -36,23 +36,7 @@ function notes_on_refresh() {
 
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
-            console.error("cur_frm");
-            console.error(cur_frm);
-            console.error("items_remove input");
-                console.error(cdt);
-                console.error(cdn);
-                console.error(doc);
-            console.error("grid items");
-            cur_frm.get_field("notes").grid.grid_rows.forEach(function(item) {
-                console.error(item.name);
-            });
-            console.error("doc items");
-            cur_frm.doc.items.forEach(function(item) {
-                    console.error(item.name);
-            });
-
         var nidx = -1;
-            console.error("notes");
         cur_frm.doc.notes.forEach(function(note) {
             console.error(note);
             if(note.cdn == cdn) {
@@ -62,7 +46,6 @@ frappe.ui.form.on('Quotation Item', {
         if(nidx!=-1) {
             cur_frm.get_field("notes").grid.grid_rows[nidx-1].remove()
             cur_frm.refresh_field('notes');
-            cur_frm.save();
         }
     }
 });
@@ -85,8 +68,6 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 cur_frm.doc.notes.forEach(function(notes) {
                     nidx ++;
                 });
-                console.error("added item data");
-                console.error(locals[cdt][cdn]);
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
