@@ -26,7 +26,7 @@ function check_for_communication_images(frm) {
 function notes_on_refresh() {
     cur_frm.doc.notes.forEach(function(note) {
         if(!note.cdn && note.iidx) {
-            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.item[note.iidx].name;
+            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.item[note.iidx-1].name;
             cur_frm.refresh_field('notes');
         }
     });
@@ -58,7 +58,7 @@ frappe.ui.form.on('Quotation Item', {
             }
         });
         if(nidx!=-1) {
-            cur_frm.doc.nots.splice(frm.doc.nots[nidx], 1);
+            cur_frm.get_field("notes").grid.grid_rows[nidx-1].remove()
             cur_frm.refresh_field('notes');
             cur_frm.save();
         }
