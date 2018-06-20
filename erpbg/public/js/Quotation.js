@@ -50,17 +50,17 @@ function add_to_attachments(image) {
     }
 
     console.error(cur_frm.attachments);
-    var skipa = false;
-    if(cur_frm.attachments) {
-        cur_frm.attachments.forEach(function (attachment) {
-            if (attachment.name == image.name) {
-                skipta = true;
-            }
-        });
-    }
-    if(!skipa) {
+    // var skipa = false;
+    // if(cur_frm.attachments) {
+    //     cur_frm.attachments.forEach(function (attachment) {
+    //         if (attachment.name == image.name) {
+    //             skipta = true;
+    //         }
+    //     });
+    // }
+    // if(!skipa) {
         cur_frm.attachments.update_attachment(attachment);
-    }
+    // }
 }
 
 frappe.ui.form.on('Quotation Item', {
