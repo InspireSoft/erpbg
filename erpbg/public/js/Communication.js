@@ -10,7 +10,7 @@ function communication_make_button_fix() {
 }
 
 var chosen_language = "";
-function get_chosen_language(user, callback) {
+function get_chosen_language() {
     frappe.call({
         method: "erpbg.erpbg.user.get_user_lang",
         args: { "user": frappe.session.user },
@@ -25,14 +25,14 @@ function get_chosen_language(user, callback) {
 
 var Quotation_From_Communication = null;
 frappe.ui.form.on("Communication", {
-	refresh: (frm) => {
+	refresh: function(doc,cdt,cdn) {
 		// setup custom Make button only if Communication is Email
-		if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
-            frm.add_custom_button(__("Quotation"), () => {
+		if(cur_frm.doc.communication_medium == "Email" && cur_frm.doc.sent_or_received == "Received") {
+            cur_frm.add_custom_button(__("Quotation"), new function() {
                 Quotation_From_Communication = frm.doc.name;
-                frappe.new_doc("Quotation")
+                frappe.new_doc("Quotation");
             }, "Make");
-            frm.add_custom_button(__("Quick Quotation"), () => {
+            cur_frm.add_custom_button(__("Quick Quotation"), new function() {
                 quick_quotation(frm);
             }, "Make");
             communication_make_button_fix();
@@ -42,7 +42,7 @@ frappe.ui.form.on("Communication", {
 
 frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn) {
     if(chosen_language == "") {
-        get_chosen_language(user);
+        get_chosen_language();
     } else {
         communication_make_button_fix();
     }
