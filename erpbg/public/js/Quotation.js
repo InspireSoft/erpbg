@@ -25,16 +25,20 @@ function check_for_communication_images(frm) {
 
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
+            console.error("items_remove input");
                 console.error(cdt);
                 console.error(cdn);
                 console.error(doc);
+            console.error("items");
         cur_frm.doc.items.forEach(function(item) {
                 console.error(item.name);
         });
 
         var nidx = -1;
-        cur_frm.doc.notes.forEach(function(notes) {
-            if(notes.cdn == cdn) {
+            console.error("notes");
+        cur_frm.doc.notes.forEach(function(note) {
+            console.error(note);
+            if(note.cdn == cdn) {
                 nidx = 1;
             }
         });
@@ -63,7 +67,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 cur_frm.doc.notes.forEach(function(notes) {
                     nidx ++;
                 });
-                console.error(locals[cdt][cdn].idx);
+                console.error("added item data");
+                console.error(locals[cdt][cdn]);
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 frappe.model.set_value(child.doctype, child.name, "cdn", cdn);
