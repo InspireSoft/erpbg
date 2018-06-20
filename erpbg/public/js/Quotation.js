@@ -95,10 +95,10 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     var child = cur_frm.add_child("quotation_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
                 }
-                cur_frm.refresh();
             }
         });
         cur_frm.set_value("itemimagecopy", 1);
+        cur_frm.refresh();
     } else {
         cur_frm.set_value("itemimagecopy", 0);
     }
@@ -172,7 +172,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     var skippm = False;
     cur_frm.doc.payment_ways.forEach(function(payment_ways) {
-        if(payment_ways.description) {
+        if(!skippm && payment_ways.description) {
             skippm = True;
         }
     });

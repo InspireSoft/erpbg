@@ -90,11 +90,13 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
                     added.push(item.image);
                     var child = cur_frm.add_child("sales_order_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
-                    cur_frm.refresh();
                 }
             }
         });
         cur_frm.set_value("itemimagecopy", 1);
+        cur_frm.refresh();
+    } else {
+        cur_frm.set_value("itemimagecopy", 0);
     }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0) {
