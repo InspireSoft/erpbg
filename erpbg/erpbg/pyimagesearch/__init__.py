@@ -196,7 +196,7 @@ def search_dataset(attached_imgname, url_addon):
 
         # loop over the results
         for (score, resultID) in results:
-            attachment_files = frappe.db.sql('''SELECT * FROM `tabFile` WHERE `file_name`=%s;''', (resultID), as_dict=True)
+            attachment_files = frappe.db.sql('''SELECT * FROM `tabFile` WHERE `file_name`=%s AND `attached_to_doctype`<>'Image Search';''', (resultID), as_dict=True)
             if len(attachment_files) > 0:
                 data = {"file_url": attachment_files[0]["file_url"], "docs": {}}
                 for file in attachment_files:
@@ -226,11 +226,13 @@ def search_result(file_name, url_addon):
         cell += "<div style='float:left;padding-left: 10px;'>"
         if "docs" in data:
             first_doctype = True
+            if len(data["docs"])<=0:
+                cell += frappe._("Качен на сървъра, но не закачен към документ.");
             for doctype in data["docs"]:
                 if not first_doctype:
                     cell += "<br/>"
                 first_doctype = False
-                cell += str(doctype)+": "
+                cell += frappe._(doctype)+": "
                 first_docname = True
                 for docname in data["docs"][doctype]:
                     if not first_docname:

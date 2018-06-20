@@ -1,0 +1,107 @@
+<html>
+    
+    <head>
+        <title>Dimela Item js</title>
+    </head>
+    
+    <body>
+        
+        
+        <script>
+            var fields = [
+                "pulnej",
+                "dulbo4ina_sedalka",
+                "gabarit_6irina",
+                "gabarit_viso4ina",
+                "gabarit_dulbo4ina",
+                "grub_viso4ina",
+                "dulbo4ina_na_sqdane",
+                "oblegalka_6irina_gore",
+                "oblegalka_6irina_dolu",
+                "oblegalka_ugul",
+                "grub_6irina",
+                "cagari_h",
+                "cagari_d",
+                "separate",
+                "size_matrac",
+                "thinkness_matrac",
+                "height_sitting",
+                "sinking_matrac",
+                "under_matric_order",
+                "name_1",
+                "color_1",
+                "purpose_1",
+                "supplier_1",
+                "quantity_1",
+                "name_2",
+                "color_2",
+                "purpose_2",
+                "supplier_2",
+                "quantity_2",
+                "name_3",
+                "color_3",
+                "purpose_3",
+                "supplier_3",
+                "quantity_3",
+                "divan_pcollection_1_name",
+                "divan_pcollection_1_supplier",
+                "divan_pcollection_1_size",
+                "divan_pcollection_1_damaska_color",
+                "divan_pcollection_1_quantity",
+                "divan_pcollection_2_name",
+                "divan_pcollection_2_supplier",
+                "divan_pcollection_2_size",
+                "divan_pcollection_2_damaska_color",
+                "divan_pcollection_2_quantity",
+                "divan_pcollection_3_name",
+                "divan_pcollection_3_supplier",
+                "divan_pcollection_3_size",
+                "divan_pcollection_3_damaska_color",
+                "divan_pcollection_3_quantity",
+                "divan_legs_color",
+                "divan_mechanic",
+                "divan_modification_link",
+                "legs_size",
+                "design_1",
+                "design_2",
+                "design_3",
+                "divan_pcollection_1_purpose",
+                "divan_pcollection_2_purpose",
+                "divan_pcollection_3_purpose",
+                "legs_model",
+                "bed_model",
+                "bed_lenth",
+                "bed_height",
+                "bed_depth",
+                "cargi_model",
+                "cargi_design",
+                "cargi_height",
+                "cargi_weight",
+                "matrac_lenght",
+                "matrac_width",
+                "matrac_weight",
+                "sit_height",
+                "pp_thickness",
+                "undermatric_order",
+                "ppmodel",
+                "pp_height",
+                "inner_construction_material",
+                "name_or_catalog_number",
+                "inner_construction_bottom",
+                "matrac_sitting_depth",
+                "pptype",
+                "pp_lenght",
+                "mechanic_supplier"
+            ];
+            
+            for (i=0; i < fields.length; i++) {
+                document.write("ALTER TABLE `tabSales Order Item` MODIFY "+fields[i]+" varchar(70);");
+            }
+            
+        </script>
+        
+        
+    </body>
+    
+    
+</html>

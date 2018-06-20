@@ -24,13 +24,15 @@ function check_for_communication_images(frm) {
 }
 
 function notes_on_refresh() {
-    cur_frm.doc.notes.forEach(function(note) {
-        if(!note.cdn && note.iidx) {
-            cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
-            cur_frm.doc.notes[note.idx-1].iidx = "";
-            cur_frm.refresh_field('notes');
-        }
-    });
+    if(cur_frm.doc.notes.lenght>0) {
+        cur_frm.doc.notes.forEach(function(note) {
+            if(!note.cdn && note.iidx) {
+                cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
+                cur_frm.doc.notes[note.idx-1].iidx = "";
+                cur_frm.refresh_field('notes');
+            }
+        });
+    }
 }
 
 frappe.ui.form.on('Quotation Item', {
@@ -202,7 +204,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     cur_frm.set_df_property("quotation_attachment", "hidden", true);
 
-    var skippm = False;
+    var skippm = false;
     cur_frm.doc.payment_ways.forEach(function(payment_ways) {
         if(!skippm && payment_ways.description) {
             skippm = True;

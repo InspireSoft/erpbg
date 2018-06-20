@@ -169,4 +169,12 @@ function set_values_from_item(cdt, cdn, item) {
     frappe.model.set_value(cdt, cdn, "tabla_model", item.tabla_model);
     frappe.model.set_value(cdt, cdn, "tabla_seeable_back", item.tabla_seeable_back);
     frappe.model.set_value(cdt, cdn, "tabla_width", item.tabla_width);
+
+    frappe.model.set_value(cdt, cdn, "depth", item.depth);
+    frappe.model.set_value(cdt, cdn, "height", item.height);
+    frappe.model.set_value(cdt, cdn, "lenght", item.lenght);
+    frappe.model.set_value(cdt, cdn, "sitting_depth", item.sitting_depth);
+    frappe.model.set_value(cdt, cdn, "filling", item.filling);
+    frappe.model.set_value(cdt, cdn, "back_pillows_model", item.back_pillows_model);
+    frappe.model.set_value(cdt, cdn, "back_pillows_size", item.back_pillows_size);
 }

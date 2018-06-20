@@ -260,7 +260,7 @@ def make_report(names):
 
         # doc name
         html += u"<font style='font-weight: bold;background-color: yellow;'> ⏺ </font>"
-        html += "<font style='font-weight: bold'>" + doc.title + "</font>"
+        html += "<font style='font-weight: bold;background-color: yellow;'>" + doc.title + "</font>"
 
         # doc date
         info = False
@@ -273,10 +273,12 @@ def make_report(names):
             import datetime
             d = datetime.datetime.now()
             now = '-'.join(safe_str(x) for x in (d.day, d.month, d.year))
-            html += "<font"
+            html += "<font color='"
             if datetime.datetime.strptime(now, "%d-%m-%Y") >= datetime.datetime.strptime(date, "%d-%m-%Y"):
-                html += " color='red'"
-            html += ">"+date + u"г. </font>"
+                html += "red"
+            else:
+                html += "blue"
+            html += "'>"+date + u"г. </font>"
 
         # doc item info and type image
         html += "<br/>"
