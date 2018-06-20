@@ -179,12 +179,41 @@ def copy_attachments(qname, communicationlink):
     for cattachment in cattachments:
         qattachment = frappe.new_doc("File")
         qattachment.update(cattachment)
+        qattachment.name = None
         qattachment.attached_to_name = qname
         qattachment.attached_to_doctype = "Quotation"
         qattachment.save(ignore_permissions=True)
         qattachments.append(qattachment)
         frappe.db.commit()
     return qattachments
+
+
+@frappe.whitelist()
+def add_attachment_from_item(qname, item_code):
+
+    item_file_url = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
+    if len(item_file_url) <= 0:
+        return False
+    item_file_url = item_file_url[0].image
+
+    existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Quotation' AND `file_url`=%s AND `attached_to_name`=%s""", (item_file_url, qname), as_dict=True)
+    if len(existing_attachments) > 0:
+        return False
+
+    file = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `file_url`=%s""", (item_file_url), as_dict=True)
+    if len(file) <= 0:
+        return False
+    file = file[0]
+
+    attachment = frappe.new_doc("File")
+    attachment.update(file)
+    attachment.name = None
+    attachment.attached_to_name = qname
+    attachment.attached_to_doctype = "Quotation"
+    attachment.save(ignore_permissions=True)
+    frappe.db.commit()
+
+    return True
 
 
 @frappe.whitelist()

@@ -99,13 +99,13 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     frappe.model.set_value(child.doctype, child.name, "attachment",item.image);
                     skipta = false;
                 }
-                if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
-                    frm.doc.quotation_attachment.forEach(function (attachment) {
-                        if (attachment.attachment == item.image.name) {
-                            frm.attachments.update_attachment(attachment.attachment);
-                        }
-                    });
-                }
+                frappe.call({
+                    method: "erpbg.erpbg.quotation.add_attachment_from_item",
+                    args: { "qname": frm.doc.name, "item_code": item.item_code },
+                    callback: function (r) {
+                        frm.refresh();
+                    }
+                });
             }
         });
     }
