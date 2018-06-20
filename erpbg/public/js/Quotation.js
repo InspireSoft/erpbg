@@ -23,46 +23,6 @@ function check_for_communication_images(frm) {
     }
 }
 
-function notes_on_refresh() {
-    if(cur_frm.doc.notes && cur_frm.doc.notes.length>0) {
-        cur_frm.doc.notes.forEach(function(note) {
-            if(!note.cdn && note.iidx) {
-                cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
-                cur_frm.doc.notes[note.idx-1].iidx = "";
-                cur_frm.refresh_field('notes');
-            }
-        });
-    }
-}
-
-function add_to_attachments(image) {
-    var skipta = false;
-    if(cur_frm.doc.quotation_attachment) {
-        cur_frm.doc.quotation_attachment.forEach(function (attachment) {
-            if (attachment.name == image.name) {
-                skipta = true;
-            }
-        });
-    }
-    if(!skipta) {
-        var child = cur_frm.add_child("quotation_attachment");
-        frappe.model.set_value(child.doctype, child.name, "attachment",image);
-    }
-
-    console.error(cur_frm.attachments);
-    // var skipa = false;
-    // if(cur_frm.attachments) {
-    //     cur_frm.attachments.forEach(function (attachment) {
-    //         if (attachment.name == image.name) {
-    //             skipta = true;
-    //         }
-    //     });
-    // }
-    // if(!skipa) {
-        cur_frm.attachments.update_attachment(image);
-    // }
-}
-
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
         var nidx = -1;
@@ -111,11 +71,35 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
-    notes_on_refresh();
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        if (frm.doc.notes && frm.doc.notes.length > 0) {
+            frm.doc.notes.forEach(function (note) {
+                if (!note.cdn && note.iidx) {
+                    frm.doc.notes[note.idx - 1].cdn = cur_frm.doc.items[note.iidx - 1].name;
+                    frm.doc.notes[note.idx - 1].iidx = "";
+                    frm.refresh_field('notes');
+                }
+            });
+        }
+    }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
-        cur_frm.doc.items.forEach(function(item) {
-            add_to_attachments(item.image);
+        frm.doc.items.forEach(function(item) {
+            if(item.image) {
+                var skipta = false;
+                if(cur_frm.doc.quotation_attachment) {
+                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
+                        if (attachment.name == item.image.name) {
+                            skipta = true;
+                        }
+                    });
+                }
+                if(!skipta) {
+                    var child = cur_frm.add_child("quotation_attachment");
+                    frappe.model.set_value(child.doctype, child.name, "attachment",item.image);
+                }
+                frm.attachments.update_attachment(item.image);
+            }
         });
     }
 
