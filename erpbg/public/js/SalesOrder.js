@@ -27,6 +27,11 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
         }
     }
 
+    if(frm.doc.docstatus == 1 || frm.doc.status == 'Closed') {
+        // saved / canceled doc protection
+        return;
+    }
+
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.docstatus == 0) {
         if(frm.doc.copied_attachments == 0 && frm.doc.items && frm.doc.items.length > 0 && frm.doc.items[0].prevdoc_docname) {
             frappe.call({

@@ -71,8 +71,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
-    if(frm.doc.docstatus == 1) {
-        // saved doc protection
+    if(frm.doc.docstatus == 1 || frm.doc.status == 'Closed') {
+        // saved / canceled doc protection
         return;
     }
 
