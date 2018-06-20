@@ -143,8 +143,6 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
-    } else {
-        cur_frm.get_field("task_time").$input.focus();
     }
 
     if(frm.doc.__islocal || frm.doc.__islocal == 1) {
