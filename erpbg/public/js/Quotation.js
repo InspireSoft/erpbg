@@ -24,7 +24,7 @@ function check_for_communication_images(frm) {
 }
 
 function notes_on_refresh() {
-    if(cur_frm.doc.notes.lenght>0) {
+    if(cur_frm.doc.notes.length>0) {
         cur_frm.doc.notes.forEach(function(note) {
             if(!note.cdn && note.iidx) {
                 cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
@@ -38,15 +38,17 @@ function notes_on_refresh() {
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
         var nidx = -1;
-        cur_frm.doc.notes.forEach(function(note) {
-            console.error(note);
-            if(note.cdn == cdn) {
-                nidx = note.idx;
+        if(cur_frm.doc.notes.length>0) {
+            cur_frm.doc.notes.forEach(function (note) {
+                console.error(note);
+                if (note.cdn == cdn) {
+                    nidx = note.idx;
+                }
+            });
+            if (nidx != -1) {
+                cur_frm.get_field("notes").grid.grid_rows[nidx - 1].remove()
+                cur_frm.refresh_field('notes');
             }
-        });
-        if(nidx!=-1) {
-            cur_frm.get_field("notes").grid.grid_rows[nidx-1].remove()
-            cur_frm.refresh_field('notes');
         }
     }
 });
@@ -66,9 +68,11 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
             if (r.message) {
 
                 var nidx = 1;
-                cur_frm.doc.notes.forEach(function(notes) {
-                    nidx ++;
-                });
+                if(cur_frm.doc.notes.length>0) {
+                    cur_frm.doc.notes.forEach(function (notes) {
+                        nidx++;
+                    });
+                }
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
@@ -84,11 +88,13 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         callback: function (r) {
             if (r.message) {
                 var skipta = false;
-                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-                    if(attachment.name == r.message.image.name) {
-                        skipta = true;
-                    }
-                });
+                if(cur_frm.doc.quotation_attachment.length>0) {
+                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
+                        if (attachment.name == r.message.image.name) {
+                            skipta = true;
+                        }
+                    });
+                }
                 if(!skipta) {
                     var child = cur_frm.add_child("quotation_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
@@ -114,16 +120,18 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
                 var skipta = false;
-                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-                    if(attachment.name == item.image.name) {
-                        skipta = true;
-                    }
-                });
-                addedta.forEach(function(added){
-                    if(added.name == item.image.name) {
-                        skipta = true;
-                    }
-                });
+                if(cur_frm.doc.quotation_attachment.length>0) {
+                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
+                        if (attachment.name == item.image.name) {
+                            skipta = true;
+                        }
+                    });
+                    addedta.forEach(function (added) {
+                        if (added.name == item.image.name) {
+                            skipta = true;
+                        }
+                    });
+                }
                 if(!skipta) {
                     addedta.push(item.image);
                     var child = cur_frm.add_child("quotation_attachment");
