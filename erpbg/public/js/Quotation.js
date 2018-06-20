@@ -84,19 +84,23 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     }
 
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
+        var skipta = false;
         frm.doc.items.forEach(function(item) {
             if(item.image) {
-                var skipta = false;
-                if(cur_frm.doc.quotation_attachment) {
-                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
+                if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
+                    frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.name == item.image.name) {
+                            console.error(attachment.name+" == "+item.image.name);
                             skipta = true;
+                        } else {
+                            console.error(attachment.name+" != "+item.image.name);
                         }
                     });
                 }
                 if(!skipta) {
                     var child = cur_frm.add_child("quotation_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment",item.image);
+                    skipta = false;
                 }
                 frm.attachments.update_attachment(item.image);
             }
@@ -106,6 +110,8 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
+    } else {
+        cur_frm.get_field("cnumber").$input.focus();
     }
 
     if(frm.doc.__islocal || frm.doc.__islocal == 1) {
