@@ -63,7 +63,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
-                cur_frm.save();
+                setTimeout(function(){ cur_frm.save(); }, 500);
             }
         }
     });
