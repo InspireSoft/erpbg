@@ -102,6 +102,35 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
     }
 });
 
+frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
+
+    // do nothing if code is not set:
+    if(cur_frm.doctype != "Sales Order" || !locals[cdt][cdn].item_code) {
+        return;
+    }
+
+    // add item image to Sales Order attachments:
+    frappe.call({
+        method: "erpbg.erpbg.get_item_image",
+        args: { "item_code": locals[cdt][cdn].item_code },
+        callback: function (r) {
+            if (r.message) {
+                var skipta = false;
+                cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
+                    if(attachment.name == r.message.image.name) {
+                        skipta = true;
+                    }
+                });
+                if(!skipta) {
+                    var child = cur_frm.add_child("sales_order_attachment");
+                    frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
+                    cur_frm.refresh();
+                }
+            }
+        }
+    });
+});
+
 
 function make_bom(doc) {
     frappe.call({

@@ -259,6 +259,7 @@ def make_report(names):
         items = frappe.db.sql("""SELECT * FROM `tabSales Order Item` WHERE `parent`=%s;""", (doc.name), as_dict=True)
 
         # doc name
+        html += u"<font style='font-weight: bold;background-color: yellow;'> ⏺ </font>"
         html += "<font style='font-weight: bold'>" + doc.title + "</font>"
 
         # doc date

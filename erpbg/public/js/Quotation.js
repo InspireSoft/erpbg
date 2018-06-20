@@ -18,6 +18,8 @@ function check_for_communication_images(frm) {
                 }
             }
         });
+    } else {
+        frm.doc.imagecopy = 0;
     }
 }
 
@@ -42,6 +44,27 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
             }
         }
     });
+
+    // add item image to Quotation attachments:
+    frappe.call({
+        method: "erpbg.erpbg.get_item_image",
+        args: { "item_code": locals[cdt][cdn].item_code },
+        callback: function (r) {
+            if (r.message) {
+                var skipta = false;
+                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
+                    if(attachment.name == r.message.image.name) {
+                        skipta = true;
+                    }
+                });
+                if(!skipta) {
+                    var child = cur_frm.add_child("quotation_attachment");
+                    frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
+                    cur_frm.refresh();
+                }
+            }
+        }
+    });
 });
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
@@ -54,7 +77,6 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     // get item image and set it as Quotation attachment for showing in print:
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
         var addedta = [];
-        var addeda = [];
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
                 var skipta = false;
@@ -71,28 +93,14 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 if(!skipta) {
                     addedta.push(item.image);
                     var child = cur_frm.add_child("quotation_attachment");
-                }
-                var skipa = false;
-                cur_frm.doc.quotation_attachment.forEach(function(attachment) {
-                    if(attachment.name == item.image.name) {
-                        skipa = true;
-                    }
-                });
-                addedta.forEach(function(added){
-                    if(added.name == item.image.name) {
-                        skipa = true;
-                    }
-                });
-                if(!skipa) {
-                    addeda.push(item.image);
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
                 }
-                if(!skipta || !skipa) {
-                    cur_frm.refresh();
-                }
+                cur_frm.refresh();
             }
         });
         cur_frm.set_value("itemimagecopy", 1);
+    } else {
+        cur_frm.set_value("itemimagecopy", 0);
     }
 
     // get images from e-mail:
@@ -149,6 +157,8 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         return;
     }
 
+    cur_frm.set_value("itemimagecopy", 0);
+
     // Default values setters for new documents:
 
     if(!frm.doc.letter_head && frm.doc.letter_head != "Dimela-Info-Head") {
@@ -160,14 +170,23 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     cur_frm.set_df_property("quotation_attachment", "hidden", true);
 
-    var child = frm.add_child("payment_ways");
-    frappe.model.set_value(child.doctype, child.name, "description", "50% авансово плащане");
+    var skippm = False;
+    cur_frm.doc.payment_ways.forEach(function(payment_ways) {
+        if(payment_ways) {
+            skippm = true;
+        }
+    });
 
-    var child = frm.add_child("payment_ways");
-    frappe.model.set_value(child.doctype, child.name, "description", "50% при издаване на готово изделие");
+    if(!skippm) {
+        var child = frm.add_child("payment_ways");
+        frappe.model.set_value(child.doctype, child.name, "description", "50% авансово плащане");
 
-    var child = frm.add_child("payment_ways");
-    frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360");
+        var child = frm.add_child("payment_ways");
+        frappe.model.set_value(child.doctype, child.name, "description", "50% при издаване на готово изделие");
+
+        var child = frm.add_child("payment_ways");
+        frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360");
+    }
 
     frm.refresh();
 });

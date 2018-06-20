@@ -8,6 +8,14 @@ from frappe.desk.reportview import get_match_cond, get_filters_cond
 from frappe.utils import nowdate
 
 
+@frappe.whitelist()
+def get_item_image(item_code):
+    item = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
+    if len(item) > 1:
+        item = item[0]
+    return item
+
+
 
 @frappe.whitelist()
 def get_doc_from_print(doctype, docname):
