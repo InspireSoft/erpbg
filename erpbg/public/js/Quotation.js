@@ -69,7 +69,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
-    if(frm.doc.docstatus == 1 || frm.doc.status == 'Closed') {
+    if(frm.doc.docstatus == 1 || frm.doc.status == 'Closed' || !frm.doc.items || frm.doc.items.length <= 0) {
         // saved / canceled doc protection
         return;
     }
@@ -158,6 +158,11 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 });
 
 frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
+
+    if(frm.doc.docstatus == 1 || frm.doc.status == 'Closed' || !frm.doc.items || frm.doc.items.length <= 0) {
+        // saved / canceled doc protection
+        return;
+    }
 
     // link to e-mail:
     if(Quotation_From_Communication != null) {
