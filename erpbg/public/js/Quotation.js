@@ -28,6 +28,10 @@ frappe.ui.form.on('Quotation Item', {
                 console.error(cdt);
                 console.error(cdn);
                 console.error(doc);
+        cur_frm.doc.items.forEach(function(item) {
+                console.error(item.name);
+        });
+
         var nidx = -1;
         cur_frm.doc.notes.forEach(function(notes) {
             if(notes.cdn == cdn) {
