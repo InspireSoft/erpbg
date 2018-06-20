@@ -80,68 +80,39 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
             }
         }
     });
-
-    // add item image to Quotation attachments:
-    frappe.call({
-        method: "erpbg.erpbg.get_item_image",
-        args: { "item_code": locals[cdt][cdn].item_code },
-        callback: function (r) {
-            if (r.message) {
-                var skipta = false;
-                if(cur_frm.doc.quotation_attachment && cur_frm.doc.quotation_attachment.length>0) {
-                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
-                        if (attachment.name == r.message.image.name) {
-                            skipta = true;
-                        }
-                    });
-                }
-                if(!skipta) {
-                    var child = cur_frm.add_child("quotation_attachment");
-                    frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
-                    cur_frm.refresh();
-                }
-            }
-        }
-    });
 });
+
+function add_to_attachments(image) {
+    var skipta = false;
+    if(cur_frm.doc.quotation_attachment && cur_frm.doc.quotation_attachment.length>0) {
+        cur_frm.doc.quotation_attachment.forEach(function (attachment) {
+            if (attachment.name == image.name) {
+                skipta = true;
+            }
+        });
+    }
+    if(!skipta) {
+        var child = cur_frm.add_child("quotation_attachment");
+        frappe.model.set_value(child.doctype, child.name, "attachment",image);
+    }
+}
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
     notes_on_refresh();
+
+    if(cur_frm.doc.items && cur_frm.doc.items.length>0) {
+        cur_frm.doc.items.forEach(function(item) {
+            add_to_attachments(item.image);
+        });
+    }
 
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
         cur_frm.get_field("customer").$input.focus();
     }
 
-    // get item image and set it as Quotation attachment for showing in print:
-    if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
-        var addedta = [];
-        cur_frm.doc.items.forEach(function(item) {
-            if(item.image) {
-                var skipta = false;
-                if(cur_frm.doc.quotation_attachment.length>0) {
-                    cur_frm.doc.quotation_attachment.forEach(function (attachment) {
-                        if (attachment.name == item.image.name) {
-                            skipta = true;
-                        }
-                    });
-                    addedta.forEach(function (added) {
-                        if (added.name == item.image.name) {
-                            skipta = true;
-                        }
-                    });
-                }
-                if(!skipta) {
-                    addedta.push(item.image);
-                    var child = cur_frm.add_child("quotation_attachment");
-                    frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
-                }
-            }
-        });
-        cur_frm.set_value("itemimagecopy", 1);
-        cur_frm.refresh();
-    } else if(frm.doc.__islocal || frm.doc.__islocal == 1) {
+    if(frm.doc.__islocal || frm.doc.__islocal == 1) {
         cur_frm.set_value("itemimagecopy", 0);
     }
 

@@ -118,11 +118,13 @@ frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
         callback: function (r) {
             if (r.message) {
                 var skipta = false;
-                cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
-                    if(attachment.name == r.message.image.name) {
-                        skipta = true;
-                    }
-                });
+                if(cur_frm.doc.sales_order_attachment && cur_frm.doc.sales_order_attachment.length>=1) {
+                    cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
+                        if(attachment.name == r.message.image.name) {
+                            skipta = true;
+                        }
+                    });
+                }
                 if(!skipta) {
                     var child = cur_frm.add_child("sales_order_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
