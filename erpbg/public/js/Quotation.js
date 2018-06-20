@@ -33,8 +33,7 @@ frappe.ui.form.on('Quotation Item', {
                 }
             });
             if (nidx != -1) {
-                cur_frm.get_field("notes").grid.grid_rows[nidx - 1].remove()
-                cur_frm.refresh_field('notes');
+                cur_frm.get_field("notes").grid.grid_rows[nidx - 1].remove();
             }
         }
     }
@@ -63,7 +62,6 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
-                setTimeout(function(){ cur_frm.save(); }, 500);
             }
         }
     });
@@ -75,7 +73,6 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         // saved / canceled doc protection
         return;
     }
-
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) && !frm.doc.qname) {
         cur_frm.set_value("qname", frm.doc.name);
@@ -96,6 +93,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
     if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         var skipta = false;
         frm.doc.items.forEach(function(item) {
+            skipta = false;
             if(item.image) {
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {

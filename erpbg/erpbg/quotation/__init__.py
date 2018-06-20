@@ -115,6 +115,7 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     quotation.transaction_date = str(datetime.datetime.now().strftime("%Y")) + "-" + str(datetime.datetime.now().strftime("%m")) + "-" + str(datetime.datetime.now().strftime("%d"))
     quotation.flags.ignore_mandatory = True
     quotation.flags.ignore_permissions = True
+    quotation.letter_head = "Dimela-Info-Head"
     quotation.save()
 
     taxes = frappe.new_doc("Sales Taxes and Charges")
@@ -153,8 +154,8 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
     payment2.parenttype = "Quotation"
     payment3.parenttype = "Quotation"
 
-    payment1.description = u"50% авансово плащане"
-    payment2.description = u"50% при издаване на готово изделие"
+    payment1.description = u"60% авансово плащане"
+    payment2.description = u"40% при издаване на готово изделие"
     payment3.description = u"Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360"
 
     payment1.save()

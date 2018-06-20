@@ -20,7 +20,7 @@ def get_item_image(item_code):
 def add_attachment_from_item(doctype, docname, item_code):
     item_file_url = frappe.db.sql("""SELECT `image` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
     if len(item_file_url) <= 0:
-        return False
+        return "None"
     item_file_url = item_file_url[0].image
 
     existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`=%s AND `file_url`=%s AND `attached_to_name`=%s""", (doctype, item_file_url, docname), as_dict=True)
