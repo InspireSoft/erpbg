@@ -59,7 +59,7 @@ function add_to_attachments(image) {
     //     });
     // }
     // if(!skipa) {
-        cur_frm.attachments.update_attachment(attachment);
+        cur_frm.attachments.update_attachment(image);
     // }
 }
 
