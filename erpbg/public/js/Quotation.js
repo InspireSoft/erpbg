@@ -87,6 +87,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         var skipta = false;
         frm.doc.items.forEach(function(item) {
             if(item.image) {
+                console.error(item.image);
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.name == item.image.name) {
