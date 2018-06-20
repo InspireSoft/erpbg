@@ -90,11 +90,11 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 console.error(item.image);
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {
-                        if (attachment.name == item.image.name) {
-                            console.error(attachment.name+" == "+item.image.name);
+                        if (attachment.attachment == item.image) {
+                            console.error(attachment.attachment+" == "+item.image);
                             skipta = true;
                         } else {
-                            console.error(attachment.name+" != "+item.image.name);
+                            console.error(attachment.attachment+" != "+item.image);
                         }
                     });
                 }
@@ -103,7 +103,13 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     frappe.model.set_value(child.doctype, child.name, "attachment",item.image);
                     skipta = false;
                 }
-                frm.attachments.update_attachment(item.image);
+                if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
+                    frm.doc.quotation_attachment.forEach(function (attachment) {
+                        if (attachment.attachment == item.image.name) {
+                            frm.attachments.update_attachment(attachment);
+                        }
+                    });
+                }
             }
         });
     }
