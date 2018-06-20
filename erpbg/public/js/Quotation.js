@@ -36,7 +36,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         args: { "item_code": locals[cdt][cdn].item_code },
         callback: function (r) {
             if (r.message) {
-                var child = cur_frm.add_child("quotation_notes");
+                var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
                 cur_frm.refresh();
             }
