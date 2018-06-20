@@ -75,21 +75,27 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
         var added = [];
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
-                var skip = false;
-                cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
-                    if(attachment.name == item.image.name) {
-                        skip = true;
-                    }
-                });
-                added.forEach(function(added){
-                    if(added.name == item.image.name) {
-                        skip = true;
-                    }
-                });
-                if(!skip) {
-                    added.push(item.image);
+                if(frm.doc.sales_order_attachment && frm.doc.sales_order_attachment.length>=0) {
+                    frm.doc.sales_order_attachment.forEach(function (attachment) {
+                        if (attachment.attachment == item.image) {
+                            skipta = true;
+                        }
+                    });
+                }
+                if(!skipta) {
                     var child = cur_frm.add_child("sales_order_attachment");
                     frappe.model.set_value(child.doctype, child.name, "attachment", item.image);
+                    frappe.call({
+                        method: "erpbg.erpbg.add_attachment_from_item",
+                        args: { "doctype": frm.doc.doctype, "docname": frm.doc.name, "item_code": item.item_code },
+                        callback: function (r) {
+                            if (r.message == "None") {
+                            } else if (r.message !== undefined) {
+                                frm.attachments.update_attachment(r.message[0]);
+                            }
+                        }
+                    });
+                    skipta = false;
                 }
             }
         });
@@ -110,29 +116,6 @@ frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
     if(cur_frm.doctype != "Sales Order" || !locals[cdt][cdn].item_code) {
         return;
     }
-
-    // add item image to Sales Order attachments:
-    frappe.call({
-        method: "erpbg.erpbg.get_item_image",
-        args: { "item_code": locals[cdt][cdn].item_code },
-        callback: function (r) {
-            if (r.message) {
-                var skipta = false;
-                if(cur_frm.doc.sales_order_attachment && cur_frm.doc.sales_order_attachment.length>=1) {
-                    cur_frm.doc.sales_order_attachment.forEach(function(attachment) {
-                        if(attachment.name == r.message.image.name) {
-                            skipta = true;
-                        }
-                    });
-                }
-                if(!skipta) {
-                    var child = cur_frm.add_child("sales_order_attachment");
-                    frappe.model.set_value(child.doctype, child.name, "attachment", r.message.image);
-                    cur_frm.refresh();
-                }
-            }
-        }
-    });
 });
 
 
