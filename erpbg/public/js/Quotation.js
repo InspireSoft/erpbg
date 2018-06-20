@@ -111,7 +111,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                         callback: function (r) {
                             if (r.message == "None") {
                             } else if (r.message !== undefined) {
-                                frm.attachments.update_attachment(r.message[0]);
+                                frm.attachments.update_attachment(r.message);
                             }
                         }
                     });
