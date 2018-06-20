@@ -95,7 +95,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
         });
         cur_frm.set_value("itemimagecopy", 1);
         cur_frm.refresh();
-    } else {
+    } else if(frm.doc.__islocal || frm.doc.__islocal == 1) {
         cur_frm.set_value("itemimagecopy", 0);
     }
 
