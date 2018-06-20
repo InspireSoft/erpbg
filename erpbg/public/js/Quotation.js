@@ -26,7 +26,6 @@ function check_for_communication_images(frm) {
 function notes_on_refresh() {
     cur_frm.doc.notes.forEach(function(note) {
         if(!note.cdn && note.iidx) {
-            console.error(cur_frm.doc.items);
             cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
             cur_frm.doc.notes[note.idx-1].iidx = "";
             cur_frm.refresh_field('notes');
