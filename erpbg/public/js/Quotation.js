@@ -31,7 +31,7 @@ frappe.ui.form.on('Quotation Item', {
                 nidx = 1;
             }
         });
-        if(id!=-1) {
+        if(nidx!=-1) {
             frm.get_field("notes").grid.grid_rows[nidx].remove();
             frm.refresh_field('notes');
         }
