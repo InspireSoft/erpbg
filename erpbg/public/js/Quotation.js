@@ -24,7 +24,7 @@ function check_for_communication_images(frm) {
 }
 
 function notes_on_refresh() {
-    if(cur_frm.doc.notes.length>0) {
+    if(cur_frm.doc.notes && cur_frm.doc.notes.length>0) {
         cur_frm.doc.notes.forEach(function(note) {
             if(!note.cdn && note.iidx) {
                 cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
@@ -38,7 +38,7 @@ function notes_on_refresh() {
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
         var nidx = -1;
-        if(cur_frm.doc.notes.length>0) {
+        if(cur_frm.doc.notes && cur_frm.doc.notes.length>0) {
             cur_frm.doc.notes.forEach(function (note) {
                 console.error(note);
                 if (note.cdn == cdn) {
@@ -68,7 +68,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
             if (r.message) {
 
                 var nidx = 1;
-                if(cur_frm.doc.notes.length>0) {
+                if(cur_frm.doc.notes && cur_frm.doc.notes.length>0) {
                     cur_frm.doc.notes.forEach(function (notes) {
                         nidx++;
                     });
@@ -88,7 +88,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
         callback: function (r) {
             if (r.message) {
                 var skipta = false;
-                if(cur_frm.doc.quotation_attachment.length>0) {
+                if(cur_frm.doc.quotation_attachment && cur_frm.doc.quotation_attachment.length>0) {
                     cur_frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.name == r.message.image.name) {
                             skipta = true;
@@ -213,7 +213,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
     cur_frm.set_df_property("quotation_attachment", "hidden", true);
 
     var skippm = false;
-    if(cur_frm.doc.payment_ways.length>0) {
+    if(cur_frm.doc.payment_ways && cur_frm.doc.payment_ways.length>0) {
         cur_frm.doc.payment_ways.forEach(function(payment_ways) {
             if(!skippm && payment_ways.description) {
                 skippm = True;
