@@ -208,6 +208,30 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360");
     }
 
+    // execution only on dublication
+    if (frm.doc.notes && frm.doc.notes.length > 0 && frm.doc.items && frm.doc.items.length > 0) {
+        var exclude = [];
+        for(var nidx_source = 1; nidx_source <= frm.doc.notes.length; nidx_source++) {
+            frm.doc.notes[nidx_source-1].iidx = "";
+            frm.doc.notes[nidx_source-1].cdn = "";
+            var iidx = 1;
+            while(exclude.includes(iidx) && iidx <= frm.doc.items.length) {
+                iidx++;
+            }
+            if(iidx <= frm.doc.items.length) {
+                for(;iidx <= frm.doc.items.length;) {
+                    if(frm.doc.items[iidx-1].note === frm.doc.notes[nidx_source-1].note) {
+                        exclude.push(iidx);
+                        frm.doc.notes[nidx_source-1].iidx = iidx;
+                    }
+                    do {
+                        iidx++;
+                    } while(exclude.includes(iidx) && iidx <= frm.doc.items.length);
+                }
+            }
+        }
+    }
+
     frm.refresh();
 });
 
