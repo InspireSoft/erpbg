@@ -27,8 +27,8 @@ function notes_on_refresh() {
     cur_frm.doc.notes.forEach(function(note) {
         if(!note.cdn && note.iidx) {
             console.error(cur_frm.doc.items);
-            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.items[note.iidx-1].name;
-            cur_frm.doc.notes[note.idx].iidx = "";
+            cur_frm.doc.notes[note.idx-1].cdn = cur_frm.doc.items[note.iidx-1].name;
+            cur_frm.doc.notes[note.idx-1].iidx = "";
             cur_frm.refresh_field('notes');
         }
     });
