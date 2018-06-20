@@ -286,7 +286,7 @@ def make_report(names):
             if item.type==u"Механизъм":
                 html += item.item_name
             else:
-                html += u"; " + item.cdescription + "<br/>"
+                html += item.cdescription + "<br/>"
 
                 # doc item koja section
                 if item.estestvena_koja or item.eco_koja or item.damaska:

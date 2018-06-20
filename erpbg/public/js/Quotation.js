@@ -172,17 +172,17 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     var skippm = False;
     cur_frm.doc.payment_ways.forEach(function(payment_ways) {
-        if(payment_ways) {
-            skippm = true;
+        if(payment_ways.description) {
+            skippm = True;
         }
     });
 
     if(!skippm) {
         var child = frm.add_child("payment_ways");
-        frappe.model.set_value(child.doctype, child.name, "description", "50% авансово плащане");
+        frappe.model.set_value(child.doctype, child.name, "description", "60% авансово плащане");
 
         var child = frm.add_child("payment_ways");
-        frappe.model.set_value(child.doctype, child.name, "description", "50% при издаване на готово изделие");
+        frappe.model.set_value(child.doctype, child.name, "description", "40% при издаване на готово изделие");
 
         var child = frm.add_child("payment_ways");
         frappe.model.set_value(child.doctype, child.name, "description", "Банкова сметка на „Димела мебел”ООД:\nIBAN: BG55BPBI79421022579401\nБАНКА: Пощенска Банка\nБулстат: 204948360");
