@@ -29,7 +29,7 @@ frappe.ui.form.on("Communication", {
 		// setup custom Make button only if Communication is Email
 		if(cur_frm.doc.communication_medium == "Email" && cur_frm.doc.sent_or_received == "Received") {
             cur_frm.add_custom_button(__("Quotation"), new function() {
-                Quotation_From_Communication = frm.doc.name;
+                Quotation_From_Communication = cur_frm.doc.name;
                 frappe.new_doc("Quotation");
             }, "Make");
             cur_frm.add_custom_button(__("Quick Quotation"), new function() {
