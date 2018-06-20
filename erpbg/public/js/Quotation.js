@@ -23,6 +23,15 @@ function check_for_communication_images(frm) {
     }
 }
 
+function notes_on_refresh() {
+    cur_frm.doc.notes.forEach(function(note) {
+        if(!note.cdn && note.iidx) {
+            cur_frm.doc.notes[note.idx].cdn = cur_frm.doc.item[iidx].name;
+            cur_frm.refresh_field('notes');
+        }
+    });
+}
+
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
             console.error("cur_frm");
@@ -49,8 +58,9 @@ frappe.ui.form.on('Quotation Item', {
             }
         });
         if(nidx!=-1) {
-            cur_frm.get_field("notes").grid.grid_rows[nidx].remove();
+            cur_frm.doc.nots.splice(frm.doc.nots[nidx], 1);
             cur_frm.refresh_field('notes');
+            cur_frm.save();
         }
     }
 });
@@ -77,9 +87,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 console.error(locals[cdt][cdn]);
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
-                frappe.model.set_value(child.doctype, child.name, "cdn", cdn);
-                frappe.model.set_value(child.doctype, child.name, "nidx", nidx);
-                cur_frm.refresh();
+                frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
+                cur_frm.save();
             }
         }
     });
@@ -107,6 +116,8 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
 });
 
 frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
+
+    notes_on_refresh();
 
     // focus not on first field (e-mail link):
     if(frm.doc.__islocal && !locals[cdt][cdn].customer) {
