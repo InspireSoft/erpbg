@@ -101,7 +101,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
 
     notes_on_refresh();
 
-    if(cur_frm.doc.items && cur_frm.doc.items.length>0) {
+    if(!frm.doc.__islocal || frm.doc.__islocal == 0 || !frm.doc.__unsaved || frm.doc.__unsaved == 0) {
         cur_frm.doc.items.forEach(function(item) {
             add_to_attachments(item.image);
         });
