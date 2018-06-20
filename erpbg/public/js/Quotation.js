@@ -25,6 +25,7 @@ function check_for_communication_images(frm) {
 
 frappe.ui.form.on('Quotation Item', {
     items_remove: function(doc,cdt,cdn) {
+        console.error(locals[cdt][cdn]);
         var nidx = -1;
         cur_frm.doc.notes.forEach(function(notes) {
             if(notes.iidx == locals[cdt][cdn].idx) {
