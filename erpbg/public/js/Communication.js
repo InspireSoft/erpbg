@@ -46,7 +46,7 @@ frappe.ui.form.on("Communication", "onload_post_render", function (frm, cdt, cdn
     } else {
         communication_make_button_fix();
     }
-    if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received") {
+    if(frm.doc.communication_medium == "Email" && frm.doc.sent_or_received == "Received" && frm.doc.seen == 0) {
         frappe.call({
             method: "erpbg.erpbg.communication.mark_as_seen",
             args: { "cname": locals[cdt][cdn].name },

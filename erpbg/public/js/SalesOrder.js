@@ -78,6 +78,7 @@ frappe.ui.form.on("Sales Order", "refresh", function (frm, cdt, cdn) {
 
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.itemimagecopy == 0) {
         var added = [];
+        var skipta = false;
         cur_frm.doc.items.forEach(function(item) {
             if(item.image) {
                 if(frm.doc.sales_order_attachment && frm.doc.sales_order_attachment.length>=0) {

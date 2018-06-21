@@ -163,12 +163,29 @@ function set_values_from_item(cdt, cdn, item) {
 
     // tabla
 
+    frappe.model.set_value(cdt, cdn, "tabla_colection", item.tabla_colection);
     frappe.model.set_value(cdt, cdn, "tabla_attachable", item.tabla_attachable);
-    frappe.model.set_value(cdt, cdn, "tabla_depth", item.tabla_depth);
+    frappe.model.set_value(cdt, cdn, "tabla_width", item.tabla_width);
     frappe.model.set_value(cdt, cdn, "tabla_height", item.tabla_height);
+    frappe.model.set_value(cdt, cdn, "tabla_depth", item.tabla_depth);
     frappe.model.set_value(cdt, cdn, "tabla_model", item.tabla_model);
     frappe.model.set_value(cdt, cdn, "tabla_seeable_back", item.tabla_seeable_back);
-    frappe.model.set_value(cdt, cdn, "tabla_width", item.tabla_width);
+
+    frappe.model.set_value(cdt, cdn, "tabla_colection_2", item.tabla_colection_2);
+    frappe.model.set_value(cdt, cdn, "tabla_attachable_2", item.tabla_attachable_2);
+    frappe.model.set_value(cdt, cdn, "tabla_width_2", item.tabla_width_2);
+    frappe.model.set_value(cdt, cdn, "tabla_height_2", item.tabla_height_2);
+    frappe.model.set_value(cdt, cdn, "tabla_depth_2", item.tabla_depth_2);
+    frappe.model.set_value(cdt, cdn, "tabla_model_2", item.tabla_model_2);
+    frappe.model.set_value(cdt, cdn, "tabla_seeable_back_2", item.tabla_seeable_back_2);
+
+    frappe.model.set_value(cdt, cdn, "tabla_colection_3", item.tabla_colection_3);
+    frappe.model.set_value(cdt, cdn, "tabla_attachable_3", item.tabla_attachable_3);
+    frappe.model.set_value(cdt, cdn, "tabla_width_3", item.tabla_width_3);
+    frappe.model.set_value(cdt, cdn, "tabla_height_3", item.tabla_height_3);
+    frappe.model.set_value(cdt, cdn, "tabla_depth_3", item.tabla_depth_3);
+    frappe.model.set_value(cdt, cdn, "tabla_model_3", item.tabla_model_3);
+    frappe.model.set_value(cdt, cdn, "tabla_seeable_back_3", item.tabla_seeable_back_3);
 
     frappe.model.set_value(cdt, cdn, "depth", item.depth);
     frappe.model.set_value(cdt, cdn, "height", item.height);

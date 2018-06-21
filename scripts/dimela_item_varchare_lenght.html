@@ -65,9 +65,10 @@
                 "design_1",
                 "design_2",
                 "design_3",
-                "divan_pcollection_1_purpose",
-                "divan_pcollection_2_purpose",
-                "divan_pcollection_3_purpose",
+                "tabla_model",
+                "tabla_height",
+                "tabla_depth",
+                "tabla_size",
                 "legs_model",
                 "bed_model",
                 "bed_lenth",
@@ -91,11 +92,15 @@
                 "matrac_sitting_depth",
                 "pptype",
                 "pp_lenght",
-                "mechanic_supplier"
+                "mechanic_supplier",
+                "undermatric_frame_supplier",
+                "inner_construction_supplier",
+                "legs_color",
+                "legs_supplier"
             ];
             
             for (i=0; i < fields.length; i++) {
-                document.write("ALTER TABLE `tabItem` MODIFY "+fields[i]+" varchar(70);");
+                document.write("ALTER TABLE `tabItem` MODIFY "+fields[i]+" TEXT;");
             }
             
         </script>
