@@ -119,7 +119,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     });
                     skipta = false;
                 }
-                frm.doc.items[item.idx].image_copied = 1;
+                frm.doc.items[item.idx-1].image_copied = 1;
             }
         });
         if(frm.doc.qname != frm.doc.name) {
