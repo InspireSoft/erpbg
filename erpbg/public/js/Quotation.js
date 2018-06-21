@@ -93,7 +93,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
         var skipta = false;
         frm.doc.items.forEach(function(item) {
             skipta = false;
-            if(item.image) {
+            if(item.image && item.image_copied == 0) {
                 if(frm.doc.quotation_attachment && frm.doc.quotation_attachment.length>=0) {
                     frm.doc.quotation_attachment.forEach(function (attachment) {
                         if (attachment.attachment == item.image) {
@@ -119,6 +119,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                     });
                     skipta = false;
                 }
+                frm.doc.items[item.idx].image_copied = 1;
             }
         });
         if(frm.doc.qname != frm.doc.name) {
