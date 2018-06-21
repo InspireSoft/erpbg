@@ -29,7 +29,7 @@ frappe.ui.form.on("Sales Order Item", "item_code", function (frm, cdt, cdn) {
                 if(r.message.image) {
                     var skip = false;
                     cur_frm.doc.sales_order_attachment.forEach(function(qa) {
-                        if(qa.attachment.name == r.message.image.name) {
+                        if(qa.attachment == r.message.image.file_url) {
                             skip = true;
                         }
                     });

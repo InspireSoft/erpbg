@@ -122,6 +122,7 @@ frappe.ui.form.on("Quotation", "refresh", function (frm, cdt, cdn) {
                 frm.doc.items[item.idx-1].image_copied = 1;
             }
         });
+        frm.refresh_field('quotation_attachment');
         if(frm.doc.qname != frm.doc.name) {
             frappe.call({
                 method: "erpbg.erpbg.copy_attachments_from_doc",
