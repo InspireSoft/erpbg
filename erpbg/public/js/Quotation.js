@@ -6,15 +6,14 @@ function check_for_communication_images(frm) {
     if((!frm.doc.__islocal || frm.doc.__islocal == 0) && frm.doc.status && (frm.doc.status == 0 || frm.doc.status == "Draft") && frm.doc.communicationlink && frm.doc.imagecopy == 0) {
         frm.doc.imagecopy = 1;
         frappe.call({
-            method: "erpbg.erpbg.quotation.copy_attachments",
-            args: { "qname": frm.doc.name, "communicationlink": frm.doc.communicationlink },
+            method: "erpbg.erpbg.copy_attachments_from_doc",
+            args: { "to_docname": frm.doc.name,  "to_doctype": frm.doc.doctype, "from_docname": frm.doc.communicationlink, "from_doctype": "Communication" },
             callback: function (r) {
                 if (r.message == "None") {
                 } else if (r.message !== undefined) {
                     r.message.forEach(function(attachment){
                         frm.attachments.update_attachment(attachment);
                     });
-                    frm.save();
                 }
             }
         });

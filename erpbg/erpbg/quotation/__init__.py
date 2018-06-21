@@ -168,28 +168,6 @@ def make_quick_quotation(customer_name, contact_name, email, communication):
 
 
 @frappe.whitelist()
-def copy_attachments(qname, communicationlink):
-    existing_attachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Quotation' AND `attached_to_name`=%s""", (qname), as_dict=True)
-    if len(existing_attachments) > 0:
-        return False
-
-    cattachments = frappe.db.sql("""SELECT * FROM `tabFile` WHERE `attached_to_doctype`='Communication' AND `attached_to_name`=%s""", (communicationlink), as_dict=True)
-    if len(cattachments)<=0:
-        return "None"
-    qattachments = []
-    for cattachment in cattachments:
-        qattachment = frappe.new_doc("File")
-        qattachment.update(cattachment)
-        qattachment.name = None
-        qattachment.attached_to_name = qname
-        qattachment.attached_to_doctype = "Quotation"
-        qattachment.save(ignore_permissions=True)
-        qattachments.append(qattachment)
-        frappe.db.commit()
-    return qattachments
-
-
-@frappe.whitelist()
 def get_item_note(item_code):
     item = frappe.db.sql("""SELECT `note` FROM `tabItem` WHERE `item_code`=%s""", (item_code), as_dict=True)
     if len(item) > 1:
