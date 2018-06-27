@@ -31,7 +31,7 @@ function type_image(url) {
             }
         });
         if(!hasI) {
-            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\""+url+"\" />");
+            jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html(jQuery("div[data-fieldname='divan_modification_image'] div.missing-image").html()+"<img src=\"http://sys.dimeladesign.com:8003"+url+"\" />");
         } else {
             jQuery("div[data-fieldname='divan_modification_image'] div.missing-image img").attr("src", url);
         }

@@ -25,6 +25,19 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 }
             }
         });
+    } else if(locals[cdt][cdn].item_code) {
+        frappe.call({
+            method: "frappe.client.get",
+            args: {
+                doctype: "Item",
+                filters: {
+                    item_code: locals[cdt][cdn].item_code
+                }
+            },
+            callback: function(r) {
+                set_values_from_item(cdt, cdn, r.message);
+            }
+        });
     }
 });
 
