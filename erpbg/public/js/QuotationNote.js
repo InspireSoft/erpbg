@@ -1,7 +1,7 @@
 // Quotation Note
 
 frappe.ui.form.on("Quotation Note", "note", function (frm, cdt, cdn) {
-console.log(frm);
-    frm.doc.note_view = stripHtml(frm[cdt][cdn].note);
+    console.error(frm);
+    frm.doc.note_view = stripHtml(frm.doc.note);
     frm.refresh_field('note_view');
 });
