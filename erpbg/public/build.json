@@ -8,6 +8,7 @@
 		"public/js/SalesInvoice.js",
 		"public/js/Quotation.js",
 		"public/js/QuotationItem.js",
+		"public/js/QuotationNote.js",
 		"public/js/Communication.js",
 		"public/js/ProductionOrder.js",
 		"public/js/MaterialRequest.js",

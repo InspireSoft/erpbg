@@ -8,6 +8,7 @@ import frappe
 def mark_as_seen(cname):
     com = frappe.get_doc("Communication", cname)
     com.seen = 1
+    com.flags.ignore_permissions = True
     com.save()
     return 1
 

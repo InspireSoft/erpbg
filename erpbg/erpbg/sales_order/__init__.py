@@ -117,6 +117,8 @@ def copy_quotation_attachments(quotation_name, sales_order_name):
         sattachment.attachment_name = qattachment.attachment_name
         sattachment.owner = qattachment.owner
         sattachment.attachment = qattachment.attachment
+        sattachment.width_percentige = qattachment.width_percentige
+        sattachment.attachment_name = qattachment.attachment_name
         sattachment.idx = id
         id = id + 1
 

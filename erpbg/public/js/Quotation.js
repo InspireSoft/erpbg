@@ -60,6 +60,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 }
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
+                frappe.model.set_value(child.doctype, child.name, "note_view", jQuery(r.message[0]["note"]).text());
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
             }
         }
@@ -184,6 +185,20 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
                 if(item.divan_modification_link) {
                     window.setTimeout(function() {
                         modification_image(locals[cdt][cdn]);
+                    }, 500);
+                }
+            }
+        });
+    });
+
+    // hide help fields
+    jQuery("div[data-fieldname='notes'] span.octicon-triangle-down").click(function() {
+        var a = jQuery(this).closest("div[data-idx]");
+        cur_frm.doc.notes.forEach(function(note) {
+            if(note.name == a.attr("data-name")) {
+                if(note.divan_modification_link) {
+                    window.setTimeout(function() {
+                        jQuery("div[data-fieldname='note_view']").css("display", "none");
                     }, 500);
                 }
             }
