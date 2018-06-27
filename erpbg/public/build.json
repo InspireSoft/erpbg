@@ -4,6 +4,7 @@
 		"public/js/utils/modification_image.js",
 		"public/js/utils/fileUpload.js",
 		"public/js/utils/query.js",
+		"public/js/utils/stripHTML.js",
 		"public/js/QuotationAttachment.js",
 		"public/js/SalesInvoice.js",
 		"public/js/Quotation.js",

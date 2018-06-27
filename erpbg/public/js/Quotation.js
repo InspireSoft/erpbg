@@ -60,7 +60,7 @@ frappe.ui.form.on("Quotation Item", "item_code", function (frm, cdt, cdn) {
                 }
                 var child = cur_frm.add_child("notes");
                 frappe.model.set_value(child.doctype, child.name, "note", r.message[0]["note"]);
-                frappe.model.set_value(child.doctype, child.name, "note_view", jQuery(r.message[0]["note"]).text());
+                frappe.model.set_value(child.doctype, child.name, "note_view", stripHtml(r.message[0]["note"]));
                 frappe.model.set_value(child.doctype, child.name, "iidx", locals[cdt][cdn].idx);
             }
         }
@@ -193,7 +193,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     // for Old docs, ensure help field is setuped
     cur_frm.doc.notes.forEach(function(note) {
-        note.note_view = jQuery(note.note).text();
+        note.note_view = stripHtml(note.note);
     });
     cur_frm.refresh_field('notes');
 
