@@ -191,7 +191,13 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         });
     });
 
-    // hide help fields
+    // for Old docs, ensure help field is setuped
+    cur_frm.doc.notes.forEach(function(note) {
+        note.note_view = jQuery(note.note).text();
+    });
+    cur_frm.refresh_field('notes');
+
+    // hide help field
     jQuery("div[data-fieldname='notes'] span.octicon-triangle-down").click(function() {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.notes.forEach(function(note) {
