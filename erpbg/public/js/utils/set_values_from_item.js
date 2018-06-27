@@ -135,7 +135,7 @@ function set_values_from_item(cdt, cdn, item) {
     // undermatric_frame
 
     frappe.model.set_value(cdt, cdn, "undermatric_frame_from_dimela", item.undermatric_frame_from_dimela);
-    frappe.model.set_value(cdt, cdn, "undermatric_supplier", item.undermatric_supplier);
+    frappe.model.set_value(cdt, cdn, "undermatric_frame_supplier", item.undermatric_supplier);
     frappe.model.set_value(cdt, cdn, "undermatric_metal", item.undermatric_metal);
     frappe.model.set_value(cdt, cdn, "undermatric_wood", item.undermatric_wood);
     frappe.model.set_value(cdt, cdn, "undermatric_lifting_mechanic", item.undermatric_lifting_mechanic);
