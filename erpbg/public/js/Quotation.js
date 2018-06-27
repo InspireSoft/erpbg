@@ -202,11 +202,9 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
         var a = jQuery(this).closest("div[data-idx]");
         cur_frm.doc.notes.forEach(function(note) {
             if(note.name == a.attr("data-name")) {
-                if(note.divan_modification_link) {
-                    window.setTimeout(function() {
-                        jQuery("div[data-fieldname='note_view']").css("display", "none");
-                    }, 500);
-                }
+                window.setTimeout(function() {
+                    jQuery("div.frappe-control[data-fieldname='note_view']").css("display", "none");
+                }, 500);
             }
         });
     });
