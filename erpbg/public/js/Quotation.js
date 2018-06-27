@@ -264,7 +264,7 @@ frappe.ui.form.on("Quotation", "onload_post_render", function (frm, cdt, cdn) {
 
     // execution only on dublication
     if (frm.doc.notes && frm.doc.notes.length > 0 && frm.doc.items && frm.doc.items.length > 0) {
-        frm.doc.cnumber = frm.doc.cnumber + " (copy)";
+        frm.doc.cnumber = frm.doc.cnumber + "_(copy)";
         var exclude = [];
         for(var nidx_source = 1; nidx_source <= frm.doc.notes.length; nidx_source++) {
             frm.doc.notes[nidx_source-1].iidx = "";
